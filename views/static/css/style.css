@@ -2,11 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root{
+    --bg-primary: #023047;
+    --color-white: #fff;
+    --color-gray: #CED5DC;
+    --color-green: #71DDB1;
+
     --sidebar-bg: #161A23;
     --sidebar-item:  rgba(255, 255, 255, 0.5);
     --sidebar-item-light: rgba(255, 255, 255, 0.8);
     --sidebar-item-hover: #2D2F39;
     --sidebar-color-logout: #CC8889;
+
+    --welcome-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #284F63 50%);
 }
 
 *{
@@ -31,12 +38,35 @@ body{
     font-family: 'Poppin', sans-serif;
     font-style: normal;
     font-weight: 500;
+    background-color: var(--bg-primary);
 }
 
-.container{
+.wrapper{
     max-width: 100%;
     margin: 0 auto;
 }
+
+.container{
+    padding: 2.3rem;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-white);
+}
+
+.dashboard{
+    display: grid;
+    grid-template-areas: 
+        "r-diario r-diario welcome welcome welcome"
+        "r-diario r-diario r-mensal r-mensal r-mensal"
+        "r-form r-form r-mensal r-mensal r-mensal"
+        "p-ativos p-crise r-mensal2 r-mensal2 r-mensal2"
+        "p-novos p-crise r-mensal2 r-mensal2 r-mensal2";
+}
+
+/*Sidebar*/
 
 .sidebar{
     height: 100vh;
@@ -120,8 +150,7 @@ body{
     border: 1px solid var(--sidebar-item);
 }
 
-#sidebar-collapsed > :is(.sidebar-header, .sidebar-content) > .sidebar-link,
-#sidebar-collapsed > .sidebar-foot > :is(.sidebar-config, .sidebar-bottom) > .sidebar-link{
+#sidebar-collapsed .sidebar-link{
     height: 44px;
     width: 44px;
     padding: 0;
@@ -129,8 +158,7 @@ body{
     align-self: center;
 }
 
-#sidebar-collapsed > :is(.sidebar-header, .sidebar-content) > .sidebar-link > .icon,
-#sidebar-collapsed > .sidebar-foot > :is(.sidebar-config, .sidebar-bottom) > .sidebar-link > .icon{
+#sidebar-collapsed .icon{
     margin: auto;
 }
 
@@ -158,6 +186,46 @@ body{
     color: var(--sidebar-color-logout);
 }
 
+/*Sidebar - Fim*/
+
+/*Card de Bem-vindo*/
+.welcome-card{
+    grid-area:'welcome';
+    height: 180px;
+    padding: 1rem 2rem;
+    color: var(--color-gray);
+
+    background: var(--welcome-card-bg);
+    border-radius: 10px;
+}
+
+.welcome-card .title{
+    font-size: 23px;
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+.welcome-card .subtitle{
+    line-height: 19px;
+    margin-bottom: 2.5rem;
+    font-size: 13px;
+}
+
+.welcome-card em{
+    font-style: normal;
+    color: var(--color-white);
+}
+
+.welcome-card_link{
+    font-size: 10px;
+    color: var(--color-green);
+}
+
+/*figures*/
+.meditateFig{
+    position: relative;
+    height: 170px;
+}
 
 /*Icones*/
 .icon{
@@ -211,10 +279,12 @@ body{
 }
 
 .row{
+    display: flex;
     flex-direction: row;
 }
 
 .col{
+    display: flex;
     flex-direction: column;
 }
 
@@ -247,6 +317,11 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.w-auto{
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .border{
