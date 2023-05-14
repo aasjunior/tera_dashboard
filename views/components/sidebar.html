@@ -1,0 +1,97 @@
+<aside id="sidebar-expanded" class="sidebar d-flex col">
+    <div class="sidebar-header d-flex row vertical-center">
+        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        <div class="d-flex col horizontal-start">
+            <h2 class="sidebar-title">MONITOR</h2>
+            <h3 class="user_name">{{ name }}</h3>
+        </div>
+    </div>
+    <hr class="sidebar-line">
+    <div class="sidebar-content d-flex col">
+        <h2 class="sidebar-title">MENU</h2>
+        <a href="#" class="sidebar-link d-flex row vertical-center">
+            <span class="icon homeIcon"></span>
+            <h3>Dashboard</h3>
+        </a>
+        <a href="#" class="sidebar-link d-flex row vertical-center">
+            <span class="icon patientIcon"></span>
+            <h3>Pacientes Overview</h3>
+        </a>
+        <a href="#" class="sidebar-link d-flex row vertical-center">
+            <span class="icon newPatientIcon"></span>
+            <h3>Cadastrar Paciente</h3>
+        </a>
+        <a href="#" class="sidebar-link d-flex row vertical-center">
+            <span class="icon notificationIcon"></span>
+            <h3>Notificações</h3>
+        </a>
+        <a href="#" class="sidebar-link d-flex row vertical-center">
+            <span class="icon chatIcon"></span>
+            <h3>Chat com Familiar</h3>
+        </a>
+    </div>
+    <hr class="sidebar-line">
+    <div class="sidebar-foot d-flex col space-between">
+        <div class="sidebar-config">
+            <h2 class="sidebar-title">CONFIGURAÇÕES</h2>
+            <a href="#" class="sidebar-link d-flex row vertical-center">
+                <span class="icon configIcon"></span>
+                <h3>Settings</h3>
+            </a>
+        </div>
+        <div class="sidebar-bottom">
+            <a href="#" class="sidebar-link d-flex row vertical-center">
+                <span class="icon helpIcon"></span>
+                <h3>Ajuda</h3>
+            </a>
+            <a href="#" class="sidebar-link d-flex row vertical-center">
+                <span class="icon logoutIcon"></span>
+                <h3>Sair</h3>
+            </a>
+        </div>
+    </div>
+    <button class="sidebar-collapse">&lt;</button>
+</aside>
+
+<aside id="sidebar-collapsed" class="sidebar d-flex col d-none">
+    <div class="sidebar-header d-flex row vertical-center">
+        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        <button class="sidebar-expand">&gt;</button>
+    </div>
+    <hr class="sidebar-line">
+    <div class="sidebar-content d-flex col">
+        <h2 class="sidebar-title">MENU</h2>
+        <a href="#" class="sidebar-link d-flex">
+            <span class="icon homeIcon"></span>
+        </a>
+        <a href="#" class="sidebar-link d-flex">
+            <span class="icon patientIcon"></span>
+        </a>
+        <a href="#" class="sidebar-link d-flex">
+            <span class="icon newPatientIcon"></span>
+        </a>
+        <a href="#" class="sidebar-link d-flex">
+            <span class="icon notificationIcon"></span>
+        </a>
+        <a href="#" class="sidebar-link d-flex">
+            <span class="icon chatIcon"></span>
+        </a>
+    </div>
+    <hr class="sidebar-line">
+    <div class="sidebar-foot d-flex col space-between">
+        <div class="sidebar-config d-flex col">
+            <h2 class="sidebar-title">CONFIG.</h2>
+            <a href="#" class="sidebar-link d-flex">
+                <span class="icon configIcon"></span>
+            </a>
+        </div>
+        <div class="sidebar-bottom d-flex col">
+            <a href="#" class="sidebar-link d-flex">
+                <span class="icon helpIcon"></span>
+            </a>
+            <a href="#" class="sidebar-link d-flex">
+                <span class="icon logoutIcon"></span>
+            </a>
+        </div>
+    </div>
+</aside>

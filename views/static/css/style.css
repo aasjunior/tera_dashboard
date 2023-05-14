@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --sidebar-bg: #161A23;
+    --sidebar-item:  rgba(255, 255, 255, 0.5);
+    --sidebar-item-light: rgba(255, 255, 255, 0.8);
+    --sidebar-item-hover: #2D2F39;
+    --sidebar-color-logout: #CC8889;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:where(a, ul, ol, li){
+    list-style: none;
+    color: inherit;
+    text-decoration: none;
+}
+
+button{
+    cursor: pointer;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppin', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.container{
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.sidebar{
+    height: 100vh;
+    min-height: 556px;
+    padding: 24px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-item);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.4px;
+}
+
+#sidebar-expanded{
+    width: 256px;
+}
+
+#sidebar-collapsed{
+    width: 100px;
+    align-items: center;
+}
+
+:is(.sidebar-expand, .sidebar-collapse){
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    min-height: 28px;
+    border: 1px solid var(--sidebar-item);
+    border-radius: 8px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-item-light);
+}
+
+:is(.sidebar-expand:hover, .sidebar-collapse:hover){
+    background-color: var(--sidebar-item-hover);
+    transform: scale(1.1);
+}
+
+.sidebar-expand{
+    margin-left: -2px;
+}
+
+:is(.sidebar-header, .sidebar-content, .sidebar-footer){
+    width: 100%;
+}
+
+#sidebar-collapsed:is(.sidebar-header, .sidebar-content, .sidebar-footer), .sidebar-config, .sidebar-bottom{
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#sidebar-collapsed > .sidebar-content > .sidebar-title{
+    margin: auto;
+}
+
+.sidebar-title{
+    margin: 2px 0;
+    font-size: 10px;
+}
+
+.user_image{
+    width: 44px;
+    height: 44px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+.user_name{
+    margin: 2px 0;
+    font-size: 14px;
+    color: var(--sidebar-item-light);
+}
+
+.sidebar-line{
+    width: 100%;
+    height: 1px;
+    margin: 24px 0;
+    border: 1px solid var(--sidebar-item);
+}
+
+#sidebar-collapsed > :is(.sidebar-header, .sidebar-content) > .sidebar-link,
+#sidebar-collapsed > .sidebar-foot > :is(.sidebar-config, .sidebar-bottom) > .sidebar-link{
+    height: 44px;
+    width: 44px;
+    padding: 0;
+    justify-self: center;
+    align-self: center;
+}
+
+#sidebar-collapsed > :is(.sidebar-header, .sidebar-content) > .sidebar-link > .icon,
+#sidebar-collapsed > .sidebar-foot > :is(.sidebar-config, .sidebar-bottom) > .sidebar-link > .icon{
+    margin: auto;
+}
+
+.sidebar-link{
+    padding: 10px 12px;
+    border-radius: 4px;
+}
+
+.sidebar-link:nth-child(2){
+    margin-top: 10px;
+}
+
+.sidebar-link:hover{
+    background-color: var(--sidebar-item-hover);
+}
+
+.sidebar-foot{    
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+}
+
+.sidebar-link:has(#logoutIcon){
+    margin: 0;
+    color: var(--sidebar-color-logout);
+}
+
+
+/*Icones*/
+.icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.homeIcon{
+    background-image: url(../imgs/icons/homeIcon.svg);
+}
+
+.patientIcon{
+    background-image: url(../imgs/icons/patientIcon.svg);
+}
+
+.newPatientIcon{
+    background-image: url(../imgs/icons/newPatientIcon.svg);
+}
+
+.notificationIcon{
+    background-image: url(../imgs/icons/notificationIcon.svg);
+}
+
+.chatIcon{
+    background-image: url(../imgs/icons/chatIcon.svg);
+}
+
+.configIcon{
+    background-image: url(../imgs/icons/configIcon.svg);
+}
+
+.helpIcon{
+    background-image: url(../imgs/icons/helpIcon.svg);
+}
+
+.logoutIcon{
+    background-image: url(../imgs/icons/logoutIcon.svg);
+}
+
+
+/*Classes Globais*/
+.d-none{
+    display: none !important;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.col{
+    flex-direction: column;
+}
+
+.vertical-center{
+    align-items: center;
+    align-content: center;
+}
+
+.vertical-start{
+    align-items: start;
+}
+
+.vertical-end{
+    justify-content: end;
+}
+
+.horizontal-center{
+    justify-content: center;
+}
+
+.horizontal-start{
+    justify-content: start;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.center{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.border{
+    border: 1px solid var(--sidebar-item-light);
+}
