@@ -17,3 +17,10 @@ function toggleElements(...elements) {
         element.classList.toggle('d-none');
     });
 }
+
+window.addEventListener('resize', function() {
+    const mainWrapper = document.querySelector('.dashboard');
+    const sidebar = document.querySelector('.sidebar');
+    mainWrapper.style.width = `calc(100% - ${sidebar.offsetWidth}px)`;
+});
+  

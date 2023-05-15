@@ -42,14 +42,17 @@ body{
     background-color: var(--bg-primary);
 }
 
+.header{
+    margin-bottom: 4rem;
+}
+
 .wrapper{
     max-width: 100%;
     margin: 0 auto;
 }
 
 .container{
-    position: static;
-    max-width: 100%;
+    margin-right: 0;
     padding: 2.3rem;
 }
 
@@ -62,6 +65,7 @@ body{
 /*Sidebar*/
 
 .sidebar{
+    position: fixed;
     height: 100vh;
     min-height: 556px;
     padding: 24px;
@@ -168,7 +172,7 @@ body{
     background-color: var(--sidebar-item-hover);
 }
 
-.sidebar-foot{    
+.sidebar-foot{ 
     flex-grow: 1;
     flex-shrink: 0;
     margin-bottom: 20px;
@@ -185,11 +189,11 @@ body{
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-template-areas: 
-        "r-diario r-diario welcome welcome welcome"
-        "r-diario r-diario r-mensal r-mensal r-mensal"
-        "r-form r-form r-mensal r-mensal r-mensal"
-        "p-ativos p-crise r-mensal2 r-mensal2 r-mensal2"
-        "p-novos p-crise r-mensal2 r-mensal2 r-mensal2";
+        "daily-record daily-record welcome welcome welcome"
+        "daily-record daily-record annual-record annual-record annual-record"
+        "form-answers form-answers annual-record annual-record annual-record"
+        "patients-active patients-crisis monthly-record monthly-record monthly-record"
+        "patients-new patients-crisis monthly-record monthly-record monthly-record";
     gap: 32px;
 }
 
@@ -205,11 +209,31 @@ body{
 }
 
 #daily-record{
-    grid-area: r-diario;
+    grid-area: daily-record;
+}
+
+#annual-record{
+    grid-area: annual-record;
 }
 
 #monthly-record{
-    grid-area: r-mensal;
+    grid-area: monthly-record;
+}
+
+#form-answers{
+    grid-area: form-answers;
+}
+
+#patients-crisis{
+    grid-area: patients-crisis;
+}
+
+#patients-crisis{
+    grid-area: patients-active;
+}
+
+#patients-crisis{
+    grid-area: patients-active;
 }
 
 /*Card de Bem-vindo*/
