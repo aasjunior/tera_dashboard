@@ -7,7 +7,9 @@
             <input type="search">
         </header>
         <section class="dashboard">
+            {{ daily_record('User') | safe }}
             {{ welcome_card('User') | safe }}
+            <section id="monthly-record" class="card"></section>
         </section>
     </main>
 </div>

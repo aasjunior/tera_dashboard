@@ -8,5 +8,6 @@ def init_app(app):
         components = {
             'sidebar': render_sidebar,
             'welcome_card': render_welcome_card,
+            'daily_record': render_daily_record,
         }
         return render_template("index.html", **components)
