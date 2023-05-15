@@ -1,4 +1,5 @@
 from flask import render_template
+from .components import *
 
 def render_sidebar(name, image):
     user = {
