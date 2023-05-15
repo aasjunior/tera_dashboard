@@ -1,15 +1,22 @@
 {% include 'blades/header.html' %}
-<div class="wrapper d-flex row">
+<div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
     <main class="container w-auto">
         <header class="header row space-between w-auto">
             <h1 class="title">Dashboard Overview</h1>
-            <input type="search">
+            <form action="">
+                <input type="search">
+            </form>
         </header>
         <section class="dashboard">
             {{ daily_record('User') | safe }}
             {{ welcome_card('User') | safe }}
+            <section id="annual-record" class="card"></section>
             <section id="monthly-record" class="card"></section>
+            <section id="form-answers" class="card"></section>
+            <section id="patients-crisis" class="card"></section>
+            <section id="patients-active" class="card"></section>
+            <section id="patients-new" class="card"></section>
         </section>
     </main>
 </div>
