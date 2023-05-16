@@ -4,11 +4,11 @@ const sidebarCollapsed = document.querySelector("#sidebar-collapsed");
 const sidebarExpanded = document.querySelector("#sidebar-expanded");
 
 
-btnSidebarCollapse.addEventListener('click', function(){
-   toggleElements(sidebarCollapsed, sidebarExpanded);
+btnSidebarCollapse.addEventListener('click', function () {
+    toggleElements(sidebarCollapsed, sidebarExpanded);
 });
 
-btnSidebarExpand.addEventListener('click', function(){
+btnSidebarExpand.addEventListener('click', function () {
     toggleElements(sidebarCollapsed, sidebarExpanded);
 });
 
@@ -16,4 +16,4 @@ function toggleElements(...elements) {
     elements.forEach((element) => {
         element.classList.toggle('d-none');
     });
-} 
+}
