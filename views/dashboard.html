@@ -10,7 +10,7 @@
         </header>
         <section class="dashboard">
             {{ daily_record('User') | safe }}
-            {{ welcome_card('User') | safe }}
+            {{ welcome_card('User', true) | safe }}
             <section id="annual-record" class="card"></section>
             <section id="monthly-record" class="card"></section>
             <section id="form-answers" class="card"></section>

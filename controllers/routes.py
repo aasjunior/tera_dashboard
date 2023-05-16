@@ -15,3 +15,11 @@ def init_app(app):
             'daily_record': render_daily_record,
         }
         return render_template("dashboard.html", **components)
+    
+    @app.route("/pacientes")
+    def pacientes():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+        }
+        return render_template("pacientes.html", **components)
