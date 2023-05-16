@@ -1,0 +1,137 @@
+{% include 'blades/header.html' %}
+<div class="wrapper row">
+    {{ sidebar('User', 'user.png') | safe }}
+    <main class="container w-auto">
+        <header class="header row space-between w-auto">
+            <h1 class="title">Cadastro do Paciente</h1>
+            <form action="">
+                <input type="search">
+            </form>
+        </header>
+            {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
+        <section>
+            <section class="d-flex">
+                <aside class="aside-profile"> <!--Aqui será o profile-->
+                    <img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil">
+
+                    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
+                        <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem 
+                            <input type="file" id="upload-picture" name="foto" accept="image/*">
+                        </label>
+                        <div class="mt-30">
+                            <div id=""  class="col">
+                                <label class="lbl-white" for=""> Tipo Sanguíneo </label>
+                                <select id="" class="input_dark_blue" name="sangue">
+                                    <option class="op-color" value="AC">A+</option>
+                                    <option class="op-color" value="AL">A-</option>
+                                    <option class="op-color" value="AP">B+</option>
+                                    <option class="op-color" value="AM">B-</option>
+                                    <option class="op-color" value="BA">AB+</option>
+                                    <option class="op-color" value="CE">AB-</option>
+                                    <option class="op-color" value="AP">O+</option>
+                                    <option class="op-color" value="AM">O-</option>
+                                </select>
+                            </div>
+                            <div id=""  class="col">
+                                <label class="lbl-white" for=""> Altura </label>
+                                <input class="input_dark_blue" type="text">
+                            </div>
+                            <div id=""  class="col">
+                                <label class="lbl-white" for=""> Peso </label>
+                                <input class="input_dark_blue" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </aside>
+
+                <section class="section-form"> <!--Aqui o forms-->
+                    <form  action="" class="side-left-grid">
+                        <div id="nome-grid"  class="col">
+                            <label class="lbl-green" for=""> Nome </label>
+                            <input class="input_blue" type="text">
+                        </div>
+                        <div id="data-grid"  class="col">
+                            <label class="lbl-green" for=""> Data de nascimento </label>
+                            <input class="input_blue" type="date">
+                        </div>
+                        <div id="cpf-grid"  class="col">
+                            <label class="lbl-green" for=""> CPF </label>
+                            <input class="input_blue" type="text">
+                        </div>
+                        <div id="rg-grid"  class="col">
+                            <label class="lbl-green" for=""> RG </label>
+                            <input class="input_blue" type="text">
+                        </div>
+                        <div id="cel-grid"  class="col">
+                            <label class="lbl-green" for=""> Celular </label>
+                            <input class="input_blue" type="tel">
+                        </div>
+                        <div id="email-grid"  class="col">
+                            <label class="lbl-green" for=""> Email </label>
+                            <input class="input_blue" type="email">
+                        </div>
+                        <div id="endereco-grid"  class="col">
+                            <label class="lbl-green" for=""> Endereço </label>
+                            <input class="input_blue" type="text">
+                        </div>
+                        <div id="numero-grid"  class="col">
+                            <label class="lbl-green" for=""> Nº </label>
+                            <input class="input_blue" type="text">
+                        </div>
+                        <div id="cep-grid"  class="col">
+                            <label class="lbl-green" for=""> CEP </label>
+                            <input class="input_blue" type="text">
+                        </div>
+                        <div id="cidade-grid" class="col">
+                            <label class="lbl-green" for=""> Cidade </label>
+                            <input class="input_blue" type="date">
+                        </div>
+                        <div id="estado-grid" class="col">
+                            <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
+                            <select id="" class="input_blue" name="estado">
+                                <option class="op-color" value="AC">AC</option>
+                                <option class="op-color" value="AL">AL</option>
+                                <option class="op-color" value="AP">AP</option>
+                                <option class="op-color" value="AM">AM</option>
+                                <option class="op-color" value="BA">BA</option>
+                                <option class="op-color" value="CE">CE</option>
+                                <option class="op-color" value="DF">DF</option>
+                                <option class="op-color" value="ES">ES</option>
+                                <option class="op-color" value="GO">GO</option>
+                                <option class="op-color" value="MA">MA</option>
+                                <option class="op-color" value="MT">MT</option>
+                                <option class="op-color" value="MS">MS</option>
+                                <option class="op-color" value="MG">MG</option>
+                                <option class="op-color" value="PA">PA</option>
+                                <option class="op-color" value="PB">PB</option>
+                                <option class="op-color" value="PR">PR</option>
+                                <option class="op-color" value="PE">PE</option>
+                                <option class="op-color" value="PI">PI</option>
+                                <option class="op-color" value="RJ">RJ</option>
+                                <option class="op-color" value="RN">RN</option>
+                                <option class="op-color" value="RS">RS</option>
+                                <option class="op-color" value="RO">RO</option>
+                                <option class="op-color" value="RR">RR</option>
+                                <option class="op-color" value="SC">SC</option>
+                                <option class="op-color" value="SP">SP</option>
+                                <option class="op-color" value="SE">SE</option>
+                                <option class="op-color" value="TO">TO</option>
+                            </select>
+                        </div>
+                        <div id="obs-grid" class="col">
+                            <label class="lbl-green" for=""> Observações </label>
+                            <textarea class="textarea" rows="8"></textarea>
+                        </div>
+                        
+                    </form>
+                </section>
+            </section>
+            <section class="d-flex horizontal-center"> <!--Aqui os botoes-->
+                <a href="dashboard.html" class="btn-font button btn-border-green mr-20">Voltar</a>
+                <input class="btn-font button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+                <a href="" class="btn-font button btn-border-green mr-20">Próximo</a>
+            </section>
+        </section>
+    </main>
+</div>
+{% include 'blades/footer.html' %}

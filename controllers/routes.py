@@ -23,3 +23,11 @@ def init_app(app):
             'welcome_card': render_welcome_card,
         }
         return render_template("pacientes.html", **components)
+    
+    @app.route("/paciente-dados")
+    def paciente_dados():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+        }
+        return render_template("paciente-dados.html", **components)
