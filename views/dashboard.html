@@ -9,9 +9,9 @@
             </form>
         </header>
         <section class="dashboard">
-            {{ daily_record('User') | safe }}
+            {{ daily_record(50, 180, 20) | safe }}
             {{ welcome_card('User', true) | safe }}
-            <section id="annual-record" class="card"></section>
+            {{ annual_record(50, 180, 20) | safe }}
             <section id="monthly-record" class="card"></section>
             <section id="form-answers" class="card"></section>
             <section id="patients-crisis" class="card"></section>
