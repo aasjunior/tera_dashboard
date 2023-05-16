@@ -36,14 +36,6 @@
     /* background-color: blueviolet; */
 }
 
-.lbl-green{
-    color: var(--color-green);
-}
-
-.lbl-white{
-    color: var(--color-white);
-}
-
 .form-login{
     display: grid;
     gap: 20px;

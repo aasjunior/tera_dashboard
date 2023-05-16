@@ -29,5 +29,6 @@ def init_app(app):
         components = {
             'sidebar': render_sidebar,
             'welcome_card': render_welcome_card,
+            'upload_image': render_upload_image,
         }
         return render_template("paciente-dados.html", **components)

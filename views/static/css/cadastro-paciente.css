@@ -52,8 +52,14 @@
     background-color: var(--bg-primary);
     width: 158px;
     height: 50px;
-    padding: 10px;
-    justify-self: center;
+    padding: auto;
+    padding-top: 15px;
+    align-content: center;
+    display: flex;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    margin: 0;
 }
 
 .lbl-upload-picture:hover{
@@ -76,7 +82,7 @@
     margin-top: 30px;
     padding: 20px;
     width: 338px;
-    height: 500px;
+    height: 550px;
     left: 238px;
     background-color: var(--color-light-blue);
     border-radius: 20px;
@@ -111,11 +117,9 @@
     background: var(--color-light-blue);
     border-radius: 30px;
     color: var(--color-white);
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    
 }
 
 #nome-grid{
