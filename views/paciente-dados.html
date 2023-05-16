@@ -11,39 +11,7 @@
             {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
             <section class="d-flex">
-                <aside class="aside-profile"> <!--Aqui será o profile-->
-                    <img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil">
-
-                    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
-                        <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem 
-                            <input type="file" id="upload-picture" name="foto" accept="image/*">
-                        </label>
-                        <div class="mt-30">
-                            <div id=""  class="col">
-                                <label class="lbl-white" for=""> Tipo Sanguíneo </label>
-                                <select id="" class="input_dark_blue" name="sangue">
-                                    <option class="op-color" value="AC">A+</option>
-                                    <option class="op-color" value="AL">A-</option>
-                                    <option class="op-color" value="AP">B+</option>
-                                    <option class="op-color" value="AM">B-</option>
-                                    <option class="op-color" value="BA">AB+</option>
-                                    <option class="op-color" value="CE">AB-</option>
-                                    <option class="op-color" value="AP">O+</option>
-                                    <option class="op-color" value="AM">O-</option>
-                                </select>
-                            </div>
-                            <div id=""  class="col">
-                                <label class="lbl-white" for=""> Altura </label>
-                                <input class="input_dark_blue" type="text">
-                            </div>
-                            <div id=""  class="col">
-                                <label class="lbl-white" for=""> Peso </label>
-                                <input class="input_dark_blue" type="text">
-                            </div>
-                        </div>
-                    </form>
-                </aside>
-
+                {{ upload_image(False) | safe }}
                 <section class="section-form"> <!--Aqui o forms-->
                     <form  action="" class="side-left-grid">
                         <div id="nome-grid"  class="col">

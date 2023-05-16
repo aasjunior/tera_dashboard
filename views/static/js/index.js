@@ -18,7 +18,7 @@ function toggleElements(...elements) {
     });
 } 
 
-document.getElementById("upload").addEventListener("change", function(event) {
+document.getElementById("upload-picture").addEventListener("change", function(event) {
     var input = event.target;
     var reader = new FileReader();
     
