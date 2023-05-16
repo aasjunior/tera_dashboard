@@ -1,0 +1,24 @@
+{% include 'blades/header.html' %}
+<div class="wrapper row">
+    {{ sidebar('User', 'user.png') | safe }}
+    <main class="container w-auto">
+        <header class="header row space-between w-auto">
+            <h1 class="title">Pacientes Overview</h1>
+            <form action="">
+                <input type="search">
+            </form>
+        </header>
+        <section id="patient-overview">
+            <section class="welcome-card row space-between vertical-center">
+                <div class="col">
+                    <h2 class="title">Bem vindo, <em>{{ name }}!</em></h2>
+                    <p class="subtitle">Aqui estão alguns dados gerais sobre seus <br> pacientes.</p>
+                </div>
+                <div>
+                    <a class="welcome-card_link" href="#">Saiba mais sobre o Dashboard Overview &nbsp;&gt;</a>
+                </div>
+            </section>
+        </section>
+    </main>
+</div>
+{% include 'blades/footer.html' %}
