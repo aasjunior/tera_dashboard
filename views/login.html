@@ -1,19 +1,40 @@
 {% include 'blades/header.html' %}
 
-<<<<<<< HEAD
-<div class="wrapper d-flex row">
-    <main class="main">
-      
-=======
-<div class="main">
-    <main class="container w-auto">
-        <header class="header row space-between w-auto">
-            <h1 class="title">Dashboard Overview</h1>
-            <input type="search">
-        </header>
-        <section class="dashboard">
+<div class="">
+    <main class="main-login">
+        <section class="side-left"> <!--Left side-->
+            <div> 
+                <img class="logo" src="{{ url_for('static', filename='imgs/figures/Tera-logo.png') }}" alt="Meditate" class="meditateFig">    
+            </div>
+            <div class="div-login">
+                <div>
+                    <h2>Faça o login</h2>
+                    <form action="" class="form-login">
+                        <div>
+                            <label class="lbl-green" for="">Email</label>
+                            <br>
+                            <input class="txt-login" type="text">
+                        </div>
+                        <div>
+                            <label class="lbl-green" for="">Senha</label>
+                            <br>
+                            <input class="txt-login" type="text">
+                            <p class="p-senha">Esqueceu a senha?</p>
+                        </div>
+                        <button class="btn-login">Entrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="div-copy">
+                <p class="p-copy">
+                    Copyright ©2022 Tera. Desenvolvido por <span class="span-copy">AJA</span> 
+                </p>
+            </div>
         </section>
->>>>>>> 646819e24d360cb30413a9b2438941af8a80f124
+
+      <section class="side-right"> <!--Right side-->
+        <!-- <img class="img-lateral" src="{{ url_for('static', filename='imgs/figures/img-lateral.png') }}" alt="Meditate" class="meditateFig"> -->
+      </section> 
     </main>
 </div>
 
