@@ -9,15 +9,7 @@
             </form>
         </header>
         <section id="patient-overview">
-            <section class="welcome-card row space-between vertical-center">
-                <div class="col">
-                    <h2 class="title">Bem vindo, <em>{{ name }}!</em></h2>
-                    <p class="subtitle">Aqui estão alguns dados gerais sobre seus <br> pacientes.</p>
-                </div>
-                <div>
-                    <a class="welcome-card_link" href="#">Saiba mais sobre o Dashboard Overview &nbsp;&gt;</a>
-                </div>
-            </section>
+            {{ welcome_card('User', False) | safe }}
         </section>
     </main>
 </div>

@@ -52,7 +52,6 @@ body{
 }
 
 .container{
-    margin-right: 0;
     padding: 2.3rem;
 }
 
@@ -65,7 +64,8 @@ body{
 /*Sidebar*/
 
 .sidebar{
-    position: fixed;
+    position: sticky;
+    top: 0;
     height: 100vh;
     min-height: 556px;
     padding: 24px;
@@ -239,7 +239,6 @@ body{
 /*Card de Bem-vindo*/
 .welcome-card{
     grid-area: welcome;
-    height: 180px;
     padding: 1rem 2rem;
     color: var(--color-gray);
 
@@ -255,8 +254,11 @@ body{
 
 .welcome-card .subtitle{
     line-height: 19px;
-    margin-bottom: 2.5rem;
     font-size: 13px;
+}
+
+.subtitle:has(+ .welcome-card_link){
+    margin-bottom: 2.5rem;
 }
 
 .welcome-card em{
