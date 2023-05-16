@@ -17,3 +17,18 @@ function toggleElements(...elements) {
         element.classList.toggle('d-none');
     });
 } 
+
+document.getElementById("upload").addEventListener("change", function(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    
+    reader.onload = function() {
+      var dataURL = reader.result;
+      var preview = document.getElementById("preview");
+      preview.src = dataURL;
+    };
+    
+    if (input.files && input.files[0]) {
+      reader.readAsDataURL(input.files[0]);
+    }
+  });
