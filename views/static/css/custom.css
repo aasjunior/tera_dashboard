@@ -1,66 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-:root{
-    --bg-primary: #023047;
-    --color-white: #fff;
-    --color-gray: #CED5DC;
-    --color-green: #71DDB1;
-
-    --sidebar-bg: #161A23;
-    --sidebar-item:  rgba(255, 255, 255, 0.5);
-    --sidebar-item-light: rgba(255, 255, 255, 0.8);
-    --sidebar-item-hover: #2D2F39;
-    --sidebar-color-logout: #CC8889;
-
-    --welcome-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #284F63 50%);
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:where(a, ul, ol, li){
-    list-style: none;
-    color: inherit;
-    text-decoration: none;
-}
-
-button{
-    cursor: pointer;
-}
-
-body{
-    width: 100vw;
-    max-width: 100%;
-    height: 100vh;
-    font-family: 'Poppin', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    background-color: var(--bg-primary);
-}
-
-.header{
-    margin-bottom: 4rem;
-}
-
-.wrapper{
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.container{
-    padding: 2.3rem;
-}
-
-.title{
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--color-white);
-}
-
 /*Sidebar*/
 
 .sidebar{
@@ -71,8 +8,6 @@ body{
     padding: 24px;
     background-color: var(--sidebar-bg);
     color: var(--sidebar-item);
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
     font-size: 10px;
     line-height: 12px;
@@ -187,14 +122,14 @@ body{
 .dashboard{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 0.5fr);
     grid-template-areas: 
         "daily-record daily-record welcome welcome welcome"
         "daily-record daily-record annual-record annual-record annual-record"
         "form-answers form-answers annual-record annual-record annual-record"
         "patients-active patients-crisis monthly-record monthly-record monthly-record"
         "patients-new patients-crisis monthly-record monthly-record monthly-record";
-    gap: 32px;
+    gap: var(--dashboard-gap);
 }
 
 .card{
@@ -261,6 +196,10 @@ body{
     margin-bottom: 2.5rem;
 }
 
+:is(.subtitle + .welcome-card_link){
+    color: var(--color-green);
+}
+
 .welcome-card em{
     font-style: normal;
     color: var(--color-white);
@@ -268,112 +207,9 @@ body{
 
 .welcome-card_link{
     font-size: 10px;
+    color: var(--color-white);
+}
+
+.welcome-card_link:hover{
     color: var(--color-green);
-}
-
-/*figures*/
-.meditateFig{
-    position: relative;
-    height: 170px;
-}
-
-/*Icones*/
-.icon{
-    width: 20px;
-    height: 20px;
-    margin-right: 14px;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-.homeIcon{
-    background-image: url(../imgs/icons/homeIcon.svg);
-}
-
-.patientIcon{
-    background-image: url(../imgs/icons/patientIcon.svg);
-}
-
-.newPatientIcon{
-    background-image: url(../imgs/icons/newPatientIcon.svg);
-}
-
-.notificationIcon{
-    background-image: url(../imgs/icons/notificationIcon.svg);
-}
-
-.chatIcon{
-    background-image: url(../imgs/icons/chatIcon.svg);
-}
-
-.configIcon{
-    background-image: url(../imgs/icons/configIcon.svg);
-}
-
-.helpIcon{
-    background-image: url(../imgs/icons/helpIcon.svg);
-}
-
-.logoutIcon{
-    background-image: url(../imgs/icons/logoutIcon.svg);
-}
-
-
-/*Classes Globais*/
-.d-none{
-    display: none !important;
-}
-
-.d-flex{
-    display: flex;
-}
-
-.row{
-    display: flex;
-    flex-direction: row;
-}
-
-.col{
-    display: flex;
-    flex-direction: column;
-}
-
-.vertical-center{
-    align-items: center;
-    align-content: center;
-}
-
-.vertical-start{
-    align-items: start;
-}
-
-.vertical-end{
-    justify-content: end;
-}
-
-.horizontal-center{
-    justify-content: center;
-}
-
-.horizontal-start{
-    justify-content: start;
-}
-
-.space-between{
-    justify-content: space-between;
-}
-
-.center{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.w-auto{
-    flex-grow: 1;
-    flex-shrink: 0;
-}
-
-.border{
-    border: 1px solid var(--sidebar-item-light);
 }
