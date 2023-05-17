@@ -5,8 +5,8 @@
     left: 332px;
     top: 263px;
     background: url(../imgs/figures/imagem-padrao.jpg);
-    background-size: contain;
-    border-radius: 100px;
+    background-size: cover cover;
+    border-radius: 50%;
 }
 
 .input_blue{

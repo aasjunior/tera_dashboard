@@ -18,6 +18,7 @@
     --welcome-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #284F63 50%);
 
     --dashboard-gap: 1.5rem;
+    --padding-container: 2.3rem;
 }
 
 *{
@@ -56,7 +57,7 @@ body{
 }
 
 .container{
-    padding: 2.3rem;
+    padding: var(--padding-container);
 }
 
 .title{

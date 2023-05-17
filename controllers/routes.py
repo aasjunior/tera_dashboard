@@ -32,3 +32,21 @@ def init_app(app):
             'upload_image': render_upload_image,
         }
         return render_template("paciente-dados.html", **components)
+    
+    @app.route("/paciente-diagnostico")
+    def paciente_diagnostico():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'upload_image': render_upload_image,
+        }
+        return render_template("paciente-diagnostico.html", **components)
+    
+    @app.route("/paciente-familiar")
+    def paciente_familiar():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'upload_image': render_upload_image,
+        }
+        return render_template("paciente-familiar.html", **components)

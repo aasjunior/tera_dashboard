@@ -3,6 +3,31 @@ const btnSidebarExpand = document.querySelector(".sidebar-expand");
 const sidebarCollapsed = document.querySelector("#sidebar-collapsed");
 const sidebarExpanded = document.querySelector("#sidebar-expanded");
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // TESTE PROGRESS BAR
+// script.js
+const progressBar = document.querySelector('.progress');
+
+function updateProgressBar() {
+  const currentPage = window.location.pathname.split('/').pop();
+  let progress;
+
+  if (currentPage === 'paciente-dados') {
+      progress = 33.33;
+  } else if (currentPage === 'paciente-diagnostico') {
+      progress = 66.66;
+  } else if (currentPage === 'paciente-familiar') {
+      progress = 100;
+  } else {
+      progress = 0;
+  }
+
+  progressBar.style.width = `${progress}%`;
+
+  console.log(currentPage)
+}
+
+updateProgressBar();
 
 btnSidebarCollapse.addEventListener('click', function(){
    toggleElements(sidebarCollapsed, sidebarExpanded);
@@ -28,7 +53,12 @@ document.getElementById("upload-picture").addEventListener("change", function(ev
       preview.src = dataURL;
     };
     
-    if (input.files && input.files[0]) {
+    if(input.files && input.files[0]) {
       reader.readAsDataURL(input.files[0]);
     }
   });
+
+
+
+
+
