@@ -94,3 +94,16 @@
 .w-150{
     width: 150px;
 }
+
+.clinica-grid{
+    position: relative;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+    "nome-grid nome-grid nome-grid data-grid data-grid"
+    "cpf-grid cpf-grid cpf-grid rg-grid rg-grid"
+    "endereco-grid endereco-grid endereco-grid endereco-grid numero-grid"
+    "cep-grid cep-grid cidade-grid cidade-grid estado-grid";
+}
