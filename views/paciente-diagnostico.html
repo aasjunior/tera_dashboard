@@ -17,51 +17,71 @@
                             </div>
                             <div id="obs-grid" class="col mt-10" name="obs-paciente">
                                 <label class="lbl-green" for=""> Descrição do Laudo </label>
-                                <textarea class="textarea width-600" rows="8"></textarea>
+                                <textarea class="textarea width-600" rows="8" name="descricao-diagnostico"></textarea>
                             </div>
                         </form>
                     </section>
                     <aside class="aside-data mt-30 ml-20"> <!--Datas-->
-                        <form action="">
+                        <form class="mt-20" action="">
                             <div class="col">
                                 <label class="lbl-green" for="">Admissão</label>
-                                <input type="date">
+                                <input class="input_dark_blue" type="date" name="data-admissao">
                             </div>
                             <div class="col mt-20">
                                 <label class="lbl-green" for="">Alta</label>
-                                <input type="date">
+                                <input class="input_dark_blue" type="date" name="data-alta">
                             </div>
                         </form>
                     </aside>
                 </section>
 
                 <section class="row horizontal-center"> <!--Parte de baixo-->
-                    <article class="aside-meds mt-30 mr-20"> <!--Lembretes de Medicações-->
-                        <h2 class="lbl-white fs-14">Lembretes de Medicações</h2>
-                        <form action="">
+                    <article class="aside-meds mt-20 mr-20"> <!--Lembretes de Medicações-->
+                        <h3 class="lbl-white fs-16 fs-normal text-rgt">Medicações Prescritas</h3>
+                        <form class="row" action="">
                             <div>
-                                <label for="">Medicamento</label>
-                            </div>
-                            <div>
-                                <label for="">Qtde</label>
+                                <div class="d-flex vertical-center mt-20">
+                                    <div class="col mr-20">
+                                        <label class="lbl-green fs-14 ml-10" for="">Medicamento</label>
+                                        <div class="row">
+                                            <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
+                                            <input class="input_med" type="text" name="medicamento-prescrito">
+                                        </div>
+                                
+                                    </div>
+                                    <div class="col">
+                                        <label for=""  class="lbl-green fs-14 ml-10">Qtde</label>
+                                        <input class="input_n_med" type="number" name="qtde-medicamento">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
+                                    <label class="lbl-green fs-14 ml-10 fs-normal align-self" for="">Adicionar Medicação</label>
+                                </div>
                             </div>
                         </form>
                     </article>
 
-                    <article class="aside-meds mt-30"> <!--Adicionar Lembretes de Medicações-->
-                        <h2 class="lbl-white fs-14">Adicionar Lembretes de Medicações</h2>
+                    <article class="aside-meds mt-20"> <!--Adicionar Lembretes de Medicações-->
+                        <h2 class="lbl-white fs-16 text-rgt fs-normal">Adicionar Lembretes de Medicações</h2>
                         <form action="">
-                            <div>
-                                <label for="">Hora</label>
-                                <input type="time">
+                            <div class="d-flex mt-20">
+                                <div class="col mr-20">
+                                    <label class="lbl-green fs-14 ml-10" for="">Hora</label>
+                                    <input class="hr" type="time" name="hora-lembrete">
+                                </div>
+                                <div id="select-medicamento" class="col">
+                                    <label class="lbl-green fs-14 ml-10" for=""> Medicamento </label> <!--Select dos medicamentos-->
+                                    <select id="" class="input_med lbl-white" name="lembrete-medicamento">
+                                        <option class="lbl-green" value="op1">Puxar remédio add acima</option>
+                                        <option class="lbl-green" value="op2">Puxar remédio add acima</option>
+                                        <option class="lbl-green" value="op3">Puxar remédio add acima</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div id="select-medicamento" class="col">
-                                <label class="lbl-green" for=""> Medicamento </label> <!--Select dos medicamentos-->
-                                <select id="" class="input_blue" name="medicamento">
-                                    <option class="op-color" value="op1">Puxar remédio add acima</option>
-                                    <option class="op-color" value="op2">Puxar remédio add acima</option>
-                                    <option class="op-color" value="op3">Puxar remédio add acima</option>
-                                </select>
+                            <div class="row">
+                                <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
+                                <label class="lbl-green fs-14 ml-10 fs-normal align-self" for="">Adicionar Medicação</label>
                             </div>
                         </form>
                     </article>
@@ -70,13 +90,11 @@
 
             <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
                 <a href="/paciente-dados" class="btn-font button btn-border-green mr-20">Voltar</a>
-                <input class="btn-font button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
                 <a href="/paciente-familiar" class="btn-font button btn-border-green mr-20">Próximo</a>
             </section>
         </section>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
+        {{ progress_bar() | safe }}
     </main>
 </div>
 {% include 'blades/footer.html' %}

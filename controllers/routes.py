@@ -31,6 +31,7 @@ def init_app(app):
             'welcome_card': render_welcome_card,
             'upload_image': render_upload_image,
             'header_title' : render_header_title,
+            'progress_bar' : render_progress_bar,
         }
         return render_template("paciente-dados.html", **components)
     
@@ -41,6 +42,7 @@ def init_app(app):
             'welcome_card': render_welcome_card,
             'upload_image': render_upload_image,
             'header_title' : render_header_title,
+            'progress_bar' : render_progress_bar,
         }
         return render_template("paciente-diagnostico.html", **components)
     
@@ -51,5 +53,6 @@ def init_app(app):
             'welcome_card': render_welcome_card,
             'upload_image': render_upload_image,
             'header_title' : render_header_title,
+            'progress_bar' : render_progress_bar,
         }
         return render_template("paciente-familiar.html", **components)
