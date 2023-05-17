@@ -8,55 +8,56 @@
                 <input type="search">
             </form>
         </header>
-            {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
+        {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
             <section class="d-flex">
                 {{ upload_image(False) | safe }}
                 <section class="section-form"> <!--Aqui o forms-->
-                    <form  action="" class="side-left-grid">
-                        <div id="nome-grid"  class="col">
+                    <form action="" class="side-left-grid">
+                        <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                        <div id="nome-grid" class="col">
                             <label class="lbl-green" for=""> Nome </label>
-                            <input class="input_blue" type="text">
+                            <input class="input_blue" type="text" name="nome-paciente">
                         </div>
-                        <div id="data-grid"  class="col">
+                        <div id="data-grid" class="col">
                             <label class="lbl-green" for=""> Data de nascimento </label>
-                            <input class="input_blue" type="date">
+                            <input class="input_blue" type="date" name="data-nasc-paciente">
                         </div>
-                        <div id="cpf-grid"  class="col">
+                        <div id="cpf-grid" class="col">
                             <label class="lbl-green" for=""> CPF </label>
-                            <input class="input_blue" type="text">
+                            <input class="input_blue" type="text" name="cpf-paciente">
                         </div>
-                        <div id="rg-grid"  class="col">
+                        <div id="rg-grid" class="col">
                             <label class="lbl-green" for=""> RG </label>
-                            <input class="input_blue" type="text">
+                            <input class="input_blue" type="text" name="rg-paciente">
                         </div>
-                        <div id="cel-grid"  class="col">
+                        <div id="cel-grid" class="col">
                             <label class="lbl-green" for=""> Celular </label>
-                            <input class="input_blue" type="tel">
+                            <input class="input_blue" type="tel" name="cel-paciente">
                         </div>
-                        <div id="email-grid"  class="col">
+                        <div id="email-grid" class="col">
                             <label class="lbl-green" for=""> Email </label>
-                            <input class="input_blue" type="email">
+                            <input class="input_blue" type="email" name="email-paciente">
                         </div>
-                        <div id="endereco-grid"  class="col">
+                        <div id="endereco-grid" class="col">
                             <label class="lbl-green" for=""> Endereço </label>
-                            <input class="input_blue" type="text">
+                            <input class="input_blue" type="text" name="endereco-paciente">
                         </div>
-                        <div id="numero-grid"  class="col">
+                        <div id="numero-grid" class="col">
                             <label class="lbl-green" for=""> Nº </label>
-                            <input class="input_blue" type="text">
+                            <input class="input_blue" type="text" name="numero-endereco-paciente">
                         </div>
-                        <div id="cep-grid"  class="col">
+                        <div id="cep-grid" class="col">
                             <label class="lbl-green" for=""> CEP </label>
-                            <input class="input_blue" type="text">
+                            <input class="input_blue" type="text" name="cep-paciente">
                         </div>
                         <div id="cidade-grid" class="col">
                             <label class="lbl-green" for=""> Cidade </label>
-                            <input class="input_blue" type="date">
+                            <input class="input_blue" type="date" name="cidade-paciente">
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado">
+                            <select id="" class="input_blue" name="estado-paciente">
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>
@@ -86,20 +87,23 @@
                                 <option class="op-color" value="TO">TO</option>
                             </select>
                         </div>
-                        <div id="obs-grid" class="col">
+                        <div id="obs-grid" class="col" name="obs-paciente">
                             <label class="lbl-green" for=""> Observações </label>
                             <textarea class="textarea" rows="8"></textarea>
                         </div>
-                        
+
                     </form>
                 </section>
             </section>
             <section class="d-flex horizontal-center"> <!--Aqui os botoes-->
-                <a href="dashboard.html" class="btn-font button btn-border-green mr-20">Voltar</a>
+                <a href="/dashboard" class="btn-font button btn-border-green mr-20">Voltar</a>
                 <input class="btn-font button btn-green mr-20" type="submit" value="Salvar" name="salvar">
-                <a href="" class="btn-font button btn-border-green mr-20">Próximo</a>
+                <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Próximo</a>
             </section>
         </section>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
     </main>
 </div>
 {% include 'blades/footer.html' %}
