@@ -84,11 +84,11 @@ add_medicamento.addEventListener("click", function() {
   novo_medicamento.innerHTML += "<div class='d-flex vertical-center mt-20'>" +
     "<div class='col mr-20'>" +
     "<label class='lbl-green fs-14 ml-10' for=''>Medicamento</label>" +
-    "<input class='input_med' type='text' name='medicamento-prescrito'>" +
+    "<input class='input_med' type='text' name='medicamento-prescrito[]'>" +
     "</div>" +
     "<div class='col'>" +
     "<label for='' class='lbl-green fs-14 ml-10'>Qtde</label>" +
-    "<input class='input_n_med' type='number' name='qtde-medicamento'>" +
+    "<input class='input_n_med' type='number' name='qtde-medicamento[]'>" +
     "</div>" +
     "<img class='icon-add' onclick='removerParagrafo(this.parentNode)' src='static/imgs/icons/delete.svg' alt='Icone Deletar'>" +
     "</div>";
