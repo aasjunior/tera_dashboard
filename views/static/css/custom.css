@@ -196,9 +196,11 @@
 .welcome-card .subtitle{
     line-height: 19px;
     font-size: 13px;
-    max-width: 80%;
 }
 
+.mx-80{
+    max-width: 80%;
+}
 .subtitle:has(+ .welcome-card_link){
     margin-bottom: 2.5rem;
 }
