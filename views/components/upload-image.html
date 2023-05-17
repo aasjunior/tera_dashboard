@@ -1,34 +1,6 @@
-<aside class="aside-profile"> <!--Aqui será o profile-->
-    <img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil">
-
-    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
-        <div class="d-flex horizontal-center">
-            <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem
-                <input class="" type="file" id="upload-picture" name="foto" accept="image/*">
-            </label>
-        </div>
-        <div class="mt-30">
-            <div id=""  class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
-                <select id="" class="input_dark_blue" name="sangue">
-                    <option class="op-color" value="A+">A+</option>
-                    <option class="op-color" value="A-">A-</option>
-                    <option class="op-color" value="B+">B+</option>
-                    <option class="op-color" value="B-">B-</option>
-                    <option class="op-color" value="AB+">AB+</option>
-                    <option class="op-color" value="AB-">AB-</option>
-                    <option class="op-color" value="O+">O+</option>
-                    <option class="op-color" value="O-">O-</option>
-                </select>
-            </div>
-            <div id=""  class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Altura </label>
-                <input class="input_dark_blue" type="text">
-            </div>
-            <div id=""  class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Peso </label>
-                <input class="input_dark_blue" type="text">
-            </div>
-        </div>
-    </form>
-</aside>
+<div class="col horizontal-center">
+    <label class="align-self" for=""><img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil"></label>
+    <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem
+        <input class="" type="file" id="upload-picture" name="foto" accept="image/*">
+    </label>
+</div>

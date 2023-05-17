@@ -19,7 +19,7 @@ function updateProgressBar() {
   } else if (currentPage === 'paciente-familiar') {
       progress = 100;
   } else {
-      progress = 0;
+      progress = 100;
   }
 
   progressBar.style.width = `${progress}%`;

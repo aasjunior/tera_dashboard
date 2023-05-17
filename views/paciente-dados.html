@@ -6,7 +6,35 @@
         {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
             <section class="d-flex horizontal-center">
-                {{ upload_image(False) | safe }}
+                <aside class="aside-profile"> <!--Aqui será o profile-->
+                    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
+                        {{ upload_image(False) | safe }}
+                        <div class="mt-30">
+                            <div id="" class="col">
+                                <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
+                                <select id="" class="input_dark_blue" name="sangue">
+                                    <option class="op-color" value="A+">A+</option>
+                                    <option class="op-color" value="A-">A-</option>
+                                    <option class="op-color" value="B+">B+</option>
+                                    <option class="op-color" value="B-">B-</option>
+                                    <option class="op-color" value="AB+">AB+</option>
+                                    <option class="op-color" value="AB-">AB-</option>
+                                    <option class="op-color" value="O+">O+</option>
+                                    <option class="op-color" value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div id="" class="col">
+                                <label class="lbl-white fs-14 mt-10" for=""> Altura </label>
+                                <input class="input_dark_blue" type="text">
+                            </div>
+                            <div id="" class="col">
+                                <label class="lbl-white fs-14 mt-10" for=""> Peso </label>
+                                <input class="input_dark_blue" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </aside>
+
                 <section class="section-form"> <!--Aqui o forms-->
                     <form action="" class="side-left-grid">
                         <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
@@ -48,7 +76,7 @@
                         </div>
                         <div id="cidade-grid" class="col">
                             <label class="lbl-green" for=""> Cidade </label>
-                            <input class="input_blue" type="date" name="cidade-paciente">
+                            <input class="input_blue" type="text" name="cidade-paciente">
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
@@ -92,13 +120,11 @@
             </section>
             <section class="d-flex horizontal-center"> <!--Aqui os botoes-->
                 <a href="/dashboard" class="btn-font button btn-border-green mr-20">Voltar</a>
-                <input class="btn-font button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
                 <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Próximo</a>
             </section>
         </section>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
+        {{ progress_bar() | safe }}
     </main>
 </div>
 {% include 'blades/footer.html' %}

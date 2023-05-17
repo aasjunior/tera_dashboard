@@ -20,3 +20,6 @@ def render_daily_record(name):
 
 def render_header_title(titulo_da_pag=False):
     return render_template("components/header-title.html", titulo_da_pag=titulo_da_pag)
+
+def render_progress_bar():
+    return render_template("components/progress-bar.html")
