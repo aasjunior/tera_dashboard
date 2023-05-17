@@ -1,3 +1,10 @@
+/**
+ * Criar novos elementos dentro do ouvinte de evento 'DOMContentLoaded'
+ * Na declaração das variaveis que recebem o elemento, adicionar o operador de coalescência nula (??), pra caso o elemnto não exista na pagina, ser aplicado valor nulo 
+ * Ao adicionar evento ao elemento, ou executar uma função aplicar dentro da condicional if(--elemento-- != null){}
+ *
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // SIDEBAR
