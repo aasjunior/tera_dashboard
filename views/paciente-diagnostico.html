@@ -38,28 +38,24 @@
                 <section class="row horizontal-center"> <!--Parte de baixo-->
                     <article class="aside-meds mt-20 mr-20"> <!--Lembretes de Medicações-->
                         <h3 class="lbl-white fs-16 fs-normal text-rgt">Medicações Prescritas</h3>
-                        <form class="row" action="">
-                            <div>
+                        <form class="col" action="">
                                 <div class="d-flex vertical-center mt-20">
                                     <div class="col mr-20">
                                         <label class="lbl-green fs-14 ml-10" for="">Medicamento</label>
-                                        <div class="row">
-                                            <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
                                             <input class="input_med" type="text" name="medicamento-prescrito">
-                                        </div>
-                                
                                     </div>
                                     <div class="col">
                                         <label for=""  class="lbl-green fs-14 ml-10">Qtde</label>
                                         <input class="input_n_med" type="number" name="qtde-medicamento">
                                     </div>
+                                    <img class="icon-add" onclick='removerParagrafo(this.parentNode)' src="{{ url_for('static', filename='imgs/icons/delete.svg') }}" alt="Icone Deletar">
                                 </div>
-                                <div class="row">
-                                    <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
-                                    <label class="lbl-green fs-14 ml-10 fs-normal align-self" for="">Adicionar Medicação</label>
-                                </div>
-                            </div>
+                                <div id="novo-medicamento"></div>
                         </form>
+                        <div id="add-medicamento" class="row">
+                            <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
+                            <label class="lbl-green fs-14 ml-10 fs-normal align-self" for="">Adicionar Medicação</label>
+                        </div>
                     </article>
 
                     <article class="aside-meds mt-20"> <!--Adicionar Lembretes de Medicações-->
@@ -68,22 +64,24 @@
                             <div class="d-flex mt-20">
                                 <div class="col mr-20">
                                     <label class="lbl-green fs-14 ml-10" for="">Hora</label>
-                                    <input class="hr" type="time" name="hora-lembrete">
+                                    <input class="hr" type="time" name="hora-lembrete[]">
                                 </div>
                                 <div id="select-medicamento" class="col">
                                     <label class="lbl-green fs-14 ml-10" for=""> Medicamento </label> <!--Select dos medicamentos-->
-                                    <select id="" class="input_med lbl-white" name="lembrete-medicamento">
+                                    <select id="" class="input_med lbl-white" name="lembrete-medicamento[]">
                                         <option class="lbl-green" value="op1">Puxar remédio add acima</option>
                                         <option class="lbl-green" value="op2">Puxar remédio add acima</option>
                                         <option class="lbl-green" value="op3">Puxar remédio add acima</option>
                                     </select>
                                 </div>
+                                <img class="icon-add" onclick='removerParagrafo(this.parentNode)' src="{{ url_for('static', filename='imgs/icons/delete.svg') }}" alt="Icone Deletar">
                             </div>
-                            <div class="row">
-                                <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
-                                <label class="lbl-green fs-14 ml-10 fs-normal align-self" for="">Adicionar Medicação</label>
-                            </div>
+                            <div id="novo-lembrete"></div>
                         </form>
+                        <div class="row" id="add-lembrete">
+                            <img class="icon-add" src="{{ url_for('static', filename='imgs/icons/add-green-icon.svg') }}" alt="Icone Adicionar">
+                            <label class="lbl-green fs-14 ml-10 fs-normal align-self" for="">Adicionar Lembrete</label>
+                        </div>
                     </article>
                 </section>
             </section>
