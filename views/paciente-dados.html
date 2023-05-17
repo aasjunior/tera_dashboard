@@ -2,15 +2,10 @@
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
     <main class="container w-auto">
-        <header class="header row space-between w-auto">
-            <h1 class="title">Cadastro do Paciente</h1>
-            <form action="">
-                <input type="search">
-            </form>
-        </header>
+        {{ header_title('Cadastro do Paciente') | safe }}
         {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
-            <section class="d-flex">
+            <section class="d-flex horizontal-center">
                 {{ upload_image(False) | safe }}
                 <section class="section-form"> <!--Aqui o forms-->
                     <form action="" class="side-left-grid">
