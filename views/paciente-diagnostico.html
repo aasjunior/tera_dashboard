@@ -1,0 +1,82 @@
+{% include 'blades/header.html' %}
+<div class="wrapper row">
+    {{ sidebar('User', 'user.png') | safe }}
+    <main class="container w-auto">
+        {{ header_title('Cadastro do Paciente') | safe }}
+        {{ welcome_card('User', False, '2 - Dados Médicos do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
+        <section>
+            <section> <!--Formularios vao aqui-->
+
+                <section class="d-flex horizontal-center"> <!--Parte de cima-->
+                    <section class="section-form"> 
+                        <form action="" class="col">
+                            <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                            <div id="nome-grid" class="col">
+                                <label class="lbl-green" for=""> Título do Diagnóstico </label>
+                                <input class="input_blue width-600" type="text" name="diagnostico-paciente">
+                            </div>
+                            <div id="obs-grid" class="col mt-10" name="obs-paciente">
+                                <label class="lbl-green" for=""> Descrição do Laudo </label>
+                                <textarea class="textarea width-600" rows="8"></textarea>
+                            </div>
+                        </form>
+                    </section>
+                    <aside class="aside-data mt-30 ml-20"> <!--Datas-->
+                        <form action="">
+                            <div class="col">
+                                <label class="lbl-green" for="">Admissão</label>
+                                <input type="date">
+                            </div>
+                            <div class="col mt-20">
+                                <label class="lbl-green" for="">Alta</label>
+                                <input type="date">
+                            </div>
+                        </form>
+                    </aside>
+                </section>
+
+                <section class="row horizontal-center"> <!--Parte de baixo-->
+                    <article class="aside-meds mt-30 mr-20"> <!--Lembretes de Medicações-->
+                        <h2 class="lbl-white fs-14">Lembretes de Medicações</h2>
+                        <form action="">
+                            <div>
+                                <label for="">Medicamento</label>
+                            </div>
+                            <div>
+                                <label for="">Qtde</label>
+                            </div>
+                        </form>
+                    </article>
+
+                    <article class="aside-meds mt-30"> <!--Adicionar Lembretes de Medicações-->
+                        <h2 class="lbl-white fs-14">Adicionar Lembretes de Medicações</h2>
+                        <form action="">
+                            <div>
+                                <label for="">Hora</label>
+                                <input type="time">
+                            </div>
+                            <div id="select-medicamento" class="col">
+                                <label class="lbl-green" for=""> Medicamento </label> <!--Select dos medicamentos-->
+                                <select id="" class="input_blue" name="medicamento">
+                                    <option class="op-color" value="op1">Puxar remédio add acima</option>
+                                    <option class="op-color" value="op2">Puxar remédio add acima</option>
+                                    <option class="op-color" value="op3">Puxar remédio add acima</option>
+                                </select>
+                            </div>
+                        </form>
+                    </article>
+                </section>
+            </section>
+
+            <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
+                <a href="/paciente-dados" class="btn-font button btn-border-green mr-20">Voltar</a>
+                <input class="btn-font button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+                <a href="/paciente-familiar" class="btn-font button btn-border-green mr-20">Próximo</a>
+            </section>
+        </section>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </main>
+</div>
+{% include 'blades/footer.html' %}

@@ -24,3 +24,33 @@ def init_app(app):
             'welcome_card': render_welcome_card,
         }
         return render_template("pacientes.html", **components)
+    
+    @app.route("/paciente-dados")
+    def paciente_dados():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'upload_image': render_upload_image,
+            'header_title' : render_header_title,
+        }
+        return render_template("paciente-dados.html", **components)
+    
+    @app.route("/paciente-diagnostico")
+    def paciente_diagnostico():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'upload_image': render_upload_image,
+            'header_title' : render_header_title,
+        }
+        return render_template("paciente-diagnostico.html", **components)
+    
+    @app.route("/paciente-familiar")
+    def paciente_familiar():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'upload_image': render_upload_image,
+            'header_title' : render_header_title,
+        }
+        return render_template("paciente-familiar.html", **components)
