@@ -17,3 +17,6 @@ def render_upload_image(pag=False):
 
 def render_daily_record(name):
     return render_template("components/daily-record.html", name=name)
+
+def render_header_title(titulo_da_pag=False):
+    return render_template("components/header-title.html", titulo_da_pag=titulo_da_pag)
