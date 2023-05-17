@@ -32,3 +32,5 @@ def init_app(app):
             'upload_image': render_upload_image,
         }
         return render_template("paciente-dados.html", **components)
+    
+    

@@ -1,5 +1,6 @@
 from flask import render_template
 from .components import *
+from PIL import Image
 
 def render_sidebar(name, image):
     user = {
@@ -17,3 +18,8 @@ def render_upload_image(pag=False):
 
 def render_daily_record(name):
     return render_template("components/daily-record.html", name=name)
+
+def rotate_image(image_path, degrees):
+    image = Image.open(image_path)
+    rotated_image = image.rotate(degrees, expand=True)
+    rotated_image.save(image_path)
