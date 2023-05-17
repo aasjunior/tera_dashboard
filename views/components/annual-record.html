@@ -1,7 +1,24 @@
 <section id="annual-record" class="card">
-    <h2 class="title">Registros de Humor Anual</h2>
+    <h2 class="title">Filtro de Dados</h2>
+    <div class="labels">
+        <button onclick="filterChart('Mal')">Mal</button>
+        <button onclick="filterChart('Bom')">Bom</button>
+        <button onclick="filterChart('Sem resposta')">Sem resposta</button>
+    </div>
     <div id="g-annual" class="graph"></div>
     <script>
+        // Dados para cada label
+        var dataMal = [30, 40, 45, 50, 49, 60, 70, 91, 125, 130, 150, 180];
+        var dataBom = [90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35];
+        var dataSemResposta = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65];
+
+        // Cores para cada label
+        var colors = {
+            'Mal': '#023047',          // Vermelho
+            'Bom': '#45C4B0',          // Verde
+            'Sem resposta': '#8195A8'   // Azul
+        };
+
         // Obtém o mês atual
         var mesAtual = new Date().getMonth();
         var mesesAno = [
@@ -23,12 +40,16 @@
             max: new Date().getFullYear() + '-' + (mesAtual + 1) + '-01'
         };
 
-        var annual_options = {
+        // Dados iniciais do gráfico
+        var initialData = dataMal;
+        var initialColor = colors['Mal'];
+
+        var line_options = {
             series: [{
-                data: [30, 40, 45, 50, 49, 60, 70, 91, 125, 130, 150, 180]
+                data: initialData
             }],
             chart: {
-                id: 'realtime',
+                id: 'line-chart',
                 height: 350,
                 type: 'line',
                 animations: {
@@ -49,7 +70,8 @@
                 enabled: false
             },
             stroke: {
-                curve: 'smooth'
+                curve: 'smooth',
+                colors: [initialColor]
             },
             markers: {
                 size: 0
@@ -65,9 +87,30 @@
                 show: false
             }
         };
+        var line_chart = new ApexCharts(document.querySelector("#g-annual"), line_options);
+        line_chart.render();
 
-        var annual_chart = new ApexCharts(document.querySelector("#g-annual"), annual_options);
-        annual_chart.render();
+        // Filtrar o gráfico com base na label selecionada
+        function filterChart(label) {
+            var newData, newColor;
 
+            if (label === 'Mal') {
+                newData = dataMal;
+                newColor = colors['Mal'];
+            } else if (label === 'Bom') {
+                newData = dataBom;
+                newColor = colors['Bom'];
+            } else if (label === 'Sem resposta') {
+                newData = dataSemResposta;
+                newColor = colors['Sem resposta'];
+            }
+
+            line_chart.updateOptions({
+                stroke: {
+                    colors: [newColor]
+                }
+            });
+            line_chart.updateSeries([{ data: newData }]);
+        }
     </script>
 </section>
