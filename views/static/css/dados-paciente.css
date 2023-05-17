@@ -1,0 +1,166 @@
+#preview {
+    border: solid 3px var(--color-green);
+    width: 150px;
+    height: 150px;
+    left: 332px;
+    top: 263px;
+    background: url(../imgs/figures/imagem-padrao.jpg);
+    background-size: cover cover;
+    border-radius: 50%;
+}
+
+.input_blue{
+    border: none;
+    background: var(--color-light-blue);
+    border-radius: 100px;
+    color: var(--color-white);
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input_dark_blue{
+    border: none;
+    background: var(--bg-primary);
+    border-radius: 100px;
+    color: var(--color-green);
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: min-content;
+    /* width: 300px; */
+    height: 40px;
+    margin-top: 10px;
+}
+
+.op-color{
+    background-color: #333 !important;
+}
+
+#upload-picture{
+    display: none;
+}
+
+.lbl-upload-picture{
+    height: 100px;
+    color: var(--color-white);
+    border: 1px solid #45C4B0;
+    border-radius: 100px;
+    background-color: var(--bg-primary);
+    width: 158px;
+    height: 50px;
+    padding: auto;
+    padding-top: 15px;
+    align-content: center;
+    display: flex;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.lbl-upload-picture:hover{
+    /* box-shadow: solid #45C4B0 5px; */
+    background-color: var(--color-green);
+    cursor: pointer;
+}
+
+.form-upload-picture{
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.aside-profile{
+    /* border: solid 10px #000000; */
+    margin-top: 30px;
+    padding: 20px;
+    width: 338px;
+    height: 550px;
+    left: 238px;
+    background-color: var(--color-light-blue);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-form{
+    padding: 20px;
+}
+
+.side-left-grid{
+    position: relative;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(7, 1fr);
+    grid-template-areas:
+    "nome-grid nome-grid nome-grid data-grid data-grid"
+    "cpf-grid cpf-grid cpf-grid rg-grid rg-grid" 
+    "cel-grid cel-grid email-grid email-grid email-grid"
+    "endereco-grid endereco-grid endereco-grid endereco-grid numero-grid"
+    "cep-grid cep-grid cidade-grid cidade-grid estado-grid"
+    "obs-grid obs-grid obs-grid obs-grid obs-grid"
+    "obs-grid obs-grid obs-grid obs-grid obs-grid";
+}
+
+.textarea{
+    resize: none;
+    border: none;
+    background: var(--color-light-blue);
+    border-radius: 30px;
+    color: var(--color-white);
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#nome-grid{
+    grid-area: nome-grid;
+}
+
+#data-grid{
+    grid-area: data-grid;
+}
+
+#obs-grid{
+    grid-area: obs-grid;
+}
+
+#estado-grid{
+    grid-area: estado-grid;
+}
+
+#cidade-grid{
+    grid-area: cidade-grid;
+}
+
+#cep-grid{
+    grid-area: cep-grid;
+}
+
+#numero-grid{
+    grid-area: numero-grid;
+}
+
+#endereco-grid{
+    grid-area: endereco-grid;
+}
+
+#email-grid{
+    grid-area: email-grid;
+}
+
+#cel-grid{
+    grid-area: cel-grid;
+}
+
+#rg-grid{
+    grid-area: rg-grid;
+}
+
+#cpf-grid{
+    grid-area: cpf-grid;
+}
+

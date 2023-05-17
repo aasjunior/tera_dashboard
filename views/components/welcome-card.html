@@ -1,5 +1,5 @@
 <section class="welcome-card row space-between vertical-center">
-    {% if fig==True %}
+    {% if pag=="dashboard" %}
     <div class="col">
         <h2 class="title">Bem vindo, <em>{{ name }}!</em></h2>
         <p class="subtitle">Aqui estão alguns dados gerais sobre seus pacientes.</p>
@@ -8,13 +8,19 @@
     <div>
         <img src="{{ url_for('static', filename='imgs/figures/meditate.svg') }}" alt="Meditate" class="meditateFig">
     </div>
-    {% else %}
+
+    {% elif pag=="pacientes" %}
     <div class="col">
         <h2 class="title">Bem vindo, <em>{{ name }}!</em></h2>
         <p class="subtitle">Aqui estão alguns dados gerais sobre seus pacientes.</p>
     </div>
     <div>
         <a class="welcome-card_link" href="#">Saiba mais sobre o Dashboard Overview &nbsp;&gt;</a>
+    </div>
+
+    {% else %}
+    <div class="col">
+        <h2 class="subtitle">{{ titulo }}</h2>
     </div>
     {% endif %}
 </section>

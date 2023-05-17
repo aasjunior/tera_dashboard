@@ -36,10 +36,6 @@
     /* background-color: blueviolet; */
 }
 
-.lbl-green{
-    color: var(--color-green);
-}
-
 .form-login{
     display: grid;
     gap: 20px;
@@ -60,7 +56,6 @@
 }
 
 .txt-login{
-    margin-top: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
     width: 300px;
