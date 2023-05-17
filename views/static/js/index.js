@@ -1,14 +1,49 @@
-const btnSidebarCollapse = document.querySelector(".sidebar-collapse");
-const btnSidebarExpand = document.querySelector(".sidebar-expand");
-const sidebarCollapsed = document.querySelector("#sidebar-collapsed");
-const sidebarExpanded = document.querySelector("#sidebar-expanded");
+document.addEventListener('DOMContentLoaded', function() {
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // SIDEBAR
+  const btnSidebarCollapse = document.querySelector(".sidebar-collapse") ?? null;
+  const btnSidebarExpand = document.querySelector(".sidebar-expand") ?? null;
+  const sidebarCollapsed = document.querySelector("#sidebar-collapsed") ?? null;
+  const sidebarExpanded = document.querySelector("#sidebar-expanded") ?? null;
+  
+  btnSidebarCollapse.addEventListener('click', function () {
+    toggleElements(sidebarCollapsed, sidebarExpanded);
+  });
 
+  btnSidebarExpand.addEventListener('click', function () {
+      toggleElements(sidebarCollapsed, sidebarExpanded);
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  const progressBar = document.querySelector('.progress') ?? null;
+  if(progressBar!=null){
+    updateProgressBar(progressBar);
+  }
+  
+  const uploadPicture = document.getElementById("upload-picture") ?? null;
+  if(uploadPicture!=null){
+    uploadPicture.addEventListener("change", function(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        
+        reader.onload = function() {
+          var dataURL = reader.result;
+          var preview = document.getElementById("preview");
+          preview.src = dataURL;
+        };
+        
+        if(input.files && input.files[0]) {
+          reader.readAsDataURL(input.files[0]);
+        }
+    });
+  }
+});
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // TESTE PROGRESS BAR
 // script.js
-const progressBar = document.querySelector('.progress');
 
-function updateProgressBar() {
+function updateProgressBar(progressBar) {
   const currentPage = window.location.pathname.split('/').pop();
   let progress;
 
@@ -27,33 +62,8 @@ function updateProgressBar() {
   console.log(currentPage)
 }
 
-updateProgressBar();
-
-btnSidebarCollapse.addEventListener('click', function () {
-    toggleElements(sidebarCollapsed, sidebarExpanded);
-});
-
-btnSidebarExpand.addEventListener('click', function () {
-    toggleElements(sidebarCollapsed, sidebarExpanded);
-});
-
 function toggleElements(...elements) {
-    elements.forEach((element) => {
-        element.classList.toggle('d-none');
-    });
-} 
-
-document.getElementById("upload-picture").addEventListener("change", function(event) {
-    var input = event.target;
-    var reader = new FileReader();
-    
-    reader.onload = function() {
-      var dataURL = reader.result;
-      var preview = document.getElementById("preview");
-      preview.src = dataURL;
-    };
-    
-    if(input.files && input.files[0]) {
-      reader.readAsDataURL(input.files[0]);
-    }
+  elements.forEach((element) => {
+      element.classList.toggle('d-none');
   });
+}
