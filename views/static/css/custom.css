@@ -19,7 +19,7 @@
 }
 
 #sidebar-collapsed{
-    width: 92px;
+    width: 70px;
     align-items: center;
 }
 
@@ -145,6 +145,12 @@
 
 #daily-record{
     grid-area: daily-record;
+    padding: var(--dashboard-gap);
+}
+
+.graph{
+    width: 100%;
+    max-height: 80%;
 }
 
 #annual-record{
