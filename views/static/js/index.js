@@ -29,11 +29,11 @@ function updateProgressBar() {
 
 updateProgressBar();
 
-btnSidebarCollapse.addEventListener('click', function(){
-   toggleElements(sidebarCollapsed, sidebarExpanded);
+btnSidebarCollapse.addEventListener('click', function () {
+    toggleElements(sidebarCollapsed, sidebarExpanded);
 });
 
-btnSidebarExpand.addEventListener('click', function(){
+btnSidebarExpand.addEventListener('click', function () {
     toggleElements(sidebarCollapsed, sidebarExpanded);
 });
 
@@ -57,8 +57,3 @@ document.getElementById("upload-picture").addEventListener("change", function(ev
       reader.readAsDataURL(input.files[0]);
     }
   });
-
-
-
-
-
