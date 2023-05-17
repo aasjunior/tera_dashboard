@@ -6,7 +6,6 @@ def render_sidebar(name, image):
         'name': name,
         'image': image,
     }
-
     return render_template("components/sidebar.html", **user)
 
 def render_welcome_card(name, pag=False, titulo=False):
@@ -14,9 +13,22 @@ def render_welcome_card(name, pag=False, titulo=False):
 
 def render_upload_image(pag=False):
     return render_template("components/upload-image.html", pag=pag)
+  
+def render_daily_record(mal, bom, sem_resposta):
+    dados = {
+        'mal': mal,
+        'bom': bom,
+        'sem_resposta': sem_resposta,
+    }
+    return render_template("components/daily-record.html", **dados)
 
-def render_daily_record(name):
-    return render_template("components/daily-record.html", name=name)
+def render_annual_record(mal, bom, sem_resposta):
+    dados = {
+        'mal': mal,
+        'bom': bom,
+        'sem_resposta': sem_resposta,
+    }
+    return render_template("components/annual-record.html", **dados)
 
 def render_header_title(titulo_da_pag=False):
     return render_template("components/header-title.html", titulo_da_pag=titulo_da_pag)
