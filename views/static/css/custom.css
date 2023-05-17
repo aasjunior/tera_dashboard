@@ -180,7 +180,7 @@
 /*Card de Bem-vindo*/
 .welcome-card{
     grid-area: welcome;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     color: var(--color-gray);
 
     background: var(--welcome-card-bg);
@@ -196,6 +196,7 @@
 .welcome-card .subtitle{
     line-height: 19px;
     font-size: 13px;
+    max-width: 80%;
 }
 
 .subtitle:has(+ .welcome-card_link){
