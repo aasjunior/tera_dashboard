@@ -26,24 +26,23 @@
                             name: {
                                 fontSize: '24px',
                                 color: '#888',
-                                offsetY: -5,
+                                offsetY: -50,
                             },
                             value: {
                                 fontSize: '24px',
                                 color: '#111',
-                                offsetY: 16,
+                                offsetY: -10,
                             },
                             total: {
                                 show: true,
                                 fontSize: '16px',
                                 color: '#888',
-                                label: 'Total',
                                 formatter: function (w) {
                                     return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
                                 },
                             },
                         },
-                        size: '70%', // Define a largura das fatias como 70% do raio do gráfico
+                        size: '60%', // Define a largura das fatias como 70% do raio do gráfico
                         strokeWidth: 0,
                     },
                 },

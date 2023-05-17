@@ -1,0 +1,41 @@
+:is(#SvgjsText1013, #SvgjsText1026, #SvgjsText1039){
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    fill: #596787;
+}
+
+#SvgjsText1013{
+    position: relative;
+    transform: translateY(-15%);
+    transform: translateX(10%);
+}
+
+#SvgjsText1013::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 20px; /* ajuste o tamanho da linha conforme necessário */
+    height: 1px; /* ajuste a espessura da linha conforme necessário */
+    background-color: black; /* ajuste a cor da linha conforme necessário */
+    transform: translateY(-50%) rotate(45deg); /* ajuste o ângulo de rotação conforme necessário */
+}
+
+#SvgjsG1012{
+    
+}
+
+#SvgjsG1049{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#SvgjsText1050{
+    display: none;
+}
+/* [id^='SvgjsText']{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+} */
