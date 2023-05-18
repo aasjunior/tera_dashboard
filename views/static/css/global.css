@@ -18,6 +18,7 @@
     --welcome-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #284F63 50%);
 
     --dashboard-gap: 1.5rem;
+    --padding-container: 2.3rem;
 }
 
 *{
@@ -40,7 +41,7 @@ body{
     width: 100vw;
     max-width: 100%;
     height: 100vh;
-    font-family: 'Poppin', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 500;
     background-color: var(--bg-primary);
@@ -56,7 +57,7 @@ body{
 }
 
 .container{
-    padding: 2.3rem;
+    padding: var(--padding-container);
 }
 
 .title{
@@ -177,6 +178,8 @@ a{
     text-decoration: none;
 }
 
+/* Classes criadas */
+
 .btn-border-green{
     border: 1px solid #71DDB1;
     border-radius: 100px;
@@ -189,6 +192,7 @@ a{
 
 .btn-border-green:hover{
     background-color: var(--color-green);
+    color: var(--bg-primary);
 }
 
 .btn-green{
@@ -213,12 +217,42 @@ a{
     color: var(--color-white);
 }
 
+.btn-font-blue{
+    font-size: 16px;
+    font-weight: bolder;
+    color: var(--bg-primary);
+}
+
+.mr-10{
+    margin-right: 10px;
+}
+
 .mr-20{
     margin-right: 20px;
 }
 
+.mr-30{
+    margin-right: 30px;
+}
+
+.ml-10{
+    margin-left: 10px;
+}
+
+.ml-20{
+    margin-left: 20px;
+}
+
 .mt-10{
     margin-top: 10px;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mt-30{
+    margin-top: 30px;
 }
 
 .lbl-green{
@@ -226,7 +260,7 @@ a{
 }
 
 .lbl-white{
-    color: var(--color-white);
+    color: var(--color-white) !important;
 }
 
 .fs-20{
@@ -245,6 +279,26 @@ a{
     font-size: 10px;
 }
 
+.text-rgt{
+    align-self: flex-start;
+}
 
+.fs-normal{
+    font-weight: normal;
+}
 
+.fs-bold{
+    font-weight: bold;
+}
 
+.fs-medium{
+    font-weight: medium;
+}
+
+.align-self{
+    align-self: center;
+}
+
+.p-inline-20{
+    padding-inline: 20px;
+}

@@ -1,0 +1,27 @@
+#g-daily .apexcharts-inner.apexcharts-graphical{
+    width: 60%;
+    border: 1px solid #000;
+}
+
+#annual-record .labels{
+    
+    width: 40%;
+    border: 1px solid #000;
+}
+
+.filterChart_mal{
+    background-color: var(--bg-primary);
+}
+.filterChart_bom{
+    background-color: var(--color-green);
+}
+.filterChart_sem{
+    background-color: var(--color-gray);
+}
+
+[class^='filterChart']{
+    border: none;
+    color: var(--color-white);
+    text-align: center;
+
+}

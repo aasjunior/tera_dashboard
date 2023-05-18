@@ -1,0 +1,149 @@
+{% include 'blades/header.html' %}
+<div class="wrapper row">
+    {{ sidebar('User', 'user.png') | safe }}
+    <main class="container w-auto">
+        {{ header_title('Cadastro do Paciente') | safe }}
+        {{ welcome_card('User', False, '3 - Dados do Familiar Responsável') | safe }} <!--Aqui é o titulo da etapa-->
+        <section class="d-flex horizontal-center">
+            <section>
+                <article class="d-flex horizontal-center">
+                    <aside class="aside-profile"> <!--Aqui será o profile-->
+                        <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
+                            {{ upload_image(False) | safe }}
+                            <div class="mt-30">
+                                <div id="" class="col">
+                                    <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
+                                    <select id="" class="input_dark_blue" name="sangue-familiar">
+                                        <option class="op-color" value="A+">A+</option>
+                                        <option class="op-color" value="A-">A-</option>
+                                        <option class="op-color" value="B+">B+</option>
+                                        <option class="op-color" value="B-">B-</option>
+                                        <option class="op-color" value="AB+">AB+</option>
+                                        <option class="op-color" value="AB-">AB-</option>
+                                        <option class="op-color" value="O+">O+</option>
+                                        <option class="op-color" value="O-">O-</option>
+                                    </select>
+                                </div>
+                                <div id="" class="col">
+                                    <label class="lbl-white fs-14 mt-10" for=""> Parentesco </label>
+                                    <select id="" class="input_dark_blue" name="parentesco">
+                                        <option class="op-color" value="mae">Mãe</option>
+                                        <option class="op-color" value="pai">Pai</option>
+                                        <option class="op-color" value="irmao">Irmã(o)</option>
+                                        <option class="op-color" value="tio">Tia(o)</option>
+                                        <option class="op-color" value="avo">Avó(ô)</option>
+                                        <option class="op-color" value="conjuge">Conjuge</option>
+                                        <option class="op-color" value="amigo">Amiga(o)</option>
+                                        <option class="op-color" value="outro">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+                    <section class="section-form"> <!--Aqui o forms-->
+                        <form action="" class="side-left-grid">
+                            <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                            <div id="nome-grid" class="col">
+                                <label class="lbl-green" for=""> Nome </label>
+                                <input class="input_blue" type="text" name="nome-familiar">
+                            </div>
+                            <div id="data-grid" class="col">
+                                <label class="lbl-green" for=""> Data de nascimento </label>
+                                <input class="input_blue" type="date" name="data-nasc-familiar">
+                            </div>
+                            <div id="cpf-grid" class="col">
+                                <label class="lbl-green" for=""> CPF </label>
+                                <input class="input_blue" type="text" name="cpf-familiar">
+                            </div>
+                            <div id="rg-grid" class="col">
+                                <label class="lbl-green" for=""> RG </label>
+                                <input class="input_blue" type="text" name="rg-familiar">
+                            </div>
+                            <div id="cel-grid" class="col">
+                                <label class="lbl-green" for=""> Celular </label>
+                                <input class="input_blue" type="tel" name="cel-familiar">
+                            </div>
+                            <div id="email-grid" class="col">
+                                <label class="lbl-green" for=""> Email </label>
+                                <input class="input_blue" type="email" name="email-familiar">
+                            </div>
+                            <div id="endereco-grid" class="col">
+                                <label class="lbl-green" for=""> Endereço </label>
+                                <input class="input_blue" type="text" name="endereco-familiar">
+                            </div>
+                            <div id="numero-grid" class="col">
+                                <label class="lbl-green" for=""> Nº </label>
+                                <input class="input_blue" type="text" name="numero-endereco-familiar">
+                            </div>
+                            <div id="cep-grid" class="col">
+                                <label class="lbl-green" for=""> CEP </label>
+                                <input class="input_blue" type="text" name="cep-familiar">
+                            </div>
+                            <div id="cidade-grid" class="col">
+                                <label class="lbl-green" for=""> Cidade </label>
+                                <input class="input_blue" type="text" name="cidade-familiar">
+                            </div>
+                            <div id="estado-grid" class="col">
+                                <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
+                                <select id="" class="input_blue" name="estado-familiar">
+                                    <option class="op-color" value="AC">AC</option>
+                                    <option class="op-color" value="AL">AL</option>
+                                    <option class="op-color" value="AP">AP</option>
+                                    <option class="op-color" value="AM">AM</option>
+                                    <option class="op-color" value="BA">BA</option>
+                                    <option class="op-color" value="CE">CE</option>
+                                    <option class="op-color" value="DF">DF</option>
+                                    <option class="op-color" value="ES">ES</option>
+                                    <option class="op-color" value="GO">GO</option>
+                                    <option class="op-color" value="MA">MA</option>
+                                    <option class="op-color" value="MT">MT</option>
+                                    <option class="op-color" value="MS">MS</option>
+                                    <option class="op-color" value="MG">MG</option>
+                                    <option class="op-color" value="PA">PA</option>
+                                    <option class="op-color" value="PB">PB</option>
+                                    <option class="op-color" value="PR">PR</option>
+                                    <option class="op-color" value="PE">PE</option>
+                                    <option class="op-color" value="PI">PI</option>
+                                    <option class="op-color" value="RJ">RJ</option>
+                                    <option class="op-color" value="RN">RN</option>
+                                    <option class="op-color" value="RS">RS</option>
+                                    <option class="op-color" value="RO">RO</option>
+                                    <option class="op-color" value="RR">RR</option>
+                                    <option class="op-color" value="SC">SC</option>
+                                    <option class="op-color" value="SP">SP</option>
+                                    <option class="op-color" value="SE">SE</option>
+                                    <option class="op-color" value="TO">TO</option>
+                                </select>
+                            </div>
+                    
+                        </form>
+                    </section>
+                </article>
+                <article class="article-contato mt-20">
+                    <h3 class="lbl-white fs-16 text-rgt fs-normal">Contato Reserva</h3>
+                    <div class="row mt-10">
+                        <div class="col mr-20">
+                            <label class="lbl-green" for="">Nome</label>
+                            <input class="input_dark_blue w-300" type="text" name="nome-contato-reserva" id="">
+                        </div>
+                        <div class="col mr-20">
+                            <label class="lbl-green" for="">Celular</label>
+                            <input class="input_dark_blue w-150" type="tel" name="cel-contato-reserva" id="">
+                        </div>
+                        <div class="col mr-20">
+                            <label class="lbl-green" for="">Email</label>
+                            <input class="input_dark_blue w-300" type="email" name="email-contato-reserva" id="">
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </section>
+        <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
+            <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
+            <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+            <a href="/dashboard" class="btn-font button btn-border-green mr-20">Próximo</a>
+        </section>
+        {{ progress_bar() | safe }}
+    </main>
+</div>
+{% include 'blades/footer.html' %}

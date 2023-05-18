@@ -2,85 +2,63 @@
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
     <main class="container w-auto">
-        {{ header_title('Cadastro do Paciente') | safe }}
-        {{ welcome_card('User', False, '1 - Dados do Paciente') | safe }} <!--Aqui é o titulo da etapa-->
+        {{ header_title('Cadastro da clínica') | safe }}
+        {{ welcome_card('User', False, 'Dados da clínica') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
-            <section class="d-flex horizontal-center">
+            <section class="d-flex horizontal-center mt-20">
                 <aside class="aside-profile"> <!--Aqui será o profile-->
                     <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
-                        {{ upload_image(False) | safe }}
-                        <div class="mt-30">
+                        <div class="">
                             <div id="" class="col">
-                                <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
-                                <select id="" class="input_dark_blue" name="sangue-paciente">
-                                    <option class="op-color" value="A+">A+</option>
-                                    <option class="op-color" value="A-">A-</option>
-                                    <option class="op-color" value="B+">B+</option>
-                                    <option class="op-color" value="B-">B-</option>
-                                    <option class="op-color" value="AB+">AB+</option>
-                                    <option class="op-color" value="AB-">AB-</option>
-                                    <option class="op-color" value="O+">O+</option>
-                                    <option class="op-color" value="O-">O-</option>
-                                </select>
+                                <label class="lbl-white fs-14" for=""> Login do usuário</label>
+                                <input id="" class="input_dark_blue" name="login-clinica">    
                             </div>
                             <div id="" class="col">
-                                <label class="lbl-white fs-14 mt-10" for=""> Altura </label>
-                                <input class="input_dark_blue" type="text" name="altura-paciente">
-                            </div>
-                            <div id="" class="col">
-                                <label class="lbl-white fs-14 mt-10" for=""> Peso </label>
-                                <input class="input_dark_blue" type="text" name="peso-paciente">
+                                <label class="lbl-white fs-14 mt-10" for=""> Senha </label>
+                                <input class="input_dark_blue" type="text" name="senha-clinica">
                             </div>
                         </div>
                     </form>
                 </aside>
 
                 <section class="section-form"> <!--Aqui o forms-->
-                    <form action="" class="side-left-grid">
+                    <form action="" class="clinica-grid">
                         <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
                         <div id="nome-grid" class="col">
-                            <label class="lbl-green" for=""> Nome </label>
-                            <input class="input_blue" type="text" name="nome-paciente">
+                            <label class="lbl-green" for=""> Razão social </label>
+                            <input class="input_blue" type="text" name="razao-social">
                         </div>
                         <div id="data-grid" class="col">
-                            <label class="lbl-green" for=""> Data de nascimento </label>
-                            <input class="input_blue" type="date" name="data-nasc-paciente">
+                            <label class="lbl-green" for=""> CNPJ </label>
+                            <input class="input_blue" type="text" name="cnpj">
                         </div>
                         <div id="cpf-grid" class="col">
-                            <label class="lbl-green" for=""> CPF </label>
-                            <input class="input_blue" type="text" name="cpf-paciente">
+                            <label class="lbl-green" for=""> Nome Fantasia </label>
+                            <input class="input_blue" type="text" name="nome-clinica">
                         </div>
                         <div id="rg-grid" class="col">
-                            <label class="lbl-green" for=""> RG </label>
-                            <input class="input_blue" type="text" name="rg-paciente">
-                        </div>
-                        <div id="cel-grid" class="col">
-                            <label class="lbl-green" for=""> Celular </label>
-                            <input class="input_blue" type="tel" name="cel-paciente">
-                        </div>
-                        <div id="email-grid" class="col">
-                            <label class="lbl-green" for=""> Email </label>
-                            <input class="input_blue" type="email" name="email-paciente">
+                            <label class="lbl-green" for=""> Telefone </label>
+                            <input class="input_blue" type="tel" name="tel-clinica">
                         </div>
                         <div id="endereco-grid" class="col">
                             <label class="lbl-green" for=""> Endereço </label>
-                            <input class="input_blue" type="text" name="endereco-paciente">
+                            <input class="input_blue" type="text" name="endereco-clinica">
                         </div>
                         <div id="numero-grid" class="col">
                             <label class="lbl-green" for=""> Nº </label>
-                            <input class="input_blue" type="text" name="numero-endereco-paciente">
+                            <input class="input_blue" type="text" name="numero-endereco-clinica">
                         </div>
                         <div id="cep-grid" class="col">
                             <label class="lbl-green" for=""> CEP </label>
-                            <input class="input_blue" type="text" name="cep-paciente">
+                            <input class="input_blue" type="text" name="cep-clinica">
                         </div>
                         <div id="cidade-grid" class="col">
                             <label class="lbl-green" for=""> Cidade </label>
-                            <input class="input_blue" type="text" name="cidade-paciente">
+                            <input class="input_blue" type="text" name="cidade-clinica">
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado-paciente">
+                            <select id="" class="input_blue" name="estado-clinica">
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>
@@ -110,18 +88,12 @@
                                 <option class="op-color" value="TO">TO</option>
                             </select>
                         </div>
-                        <div id="obs-grid" class="col" name="obs-paciente">
-                            <label class="lbl-green" for=""> Observações </label>
-                            <textarea class="textarea" rows="8"></textarea>
-                        </div>
 
                     </form>
                 </section>
             </section>
-            <section class="d-flex horizontal-center"> <!--Aqui os botoes-->
-                <a href="/dashboard" class="btn-font button btn-border-green mr-20">Voltar</a>
+            <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
                 <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
-                <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Próximo</a>
             </section>
         </section>
         {{ progress_bar() | safe }}

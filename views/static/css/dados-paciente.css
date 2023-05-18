@@ -5,8 +5,9 @@
     left: 332px;
     top: 263px;
     background: url(../imgs/figures/imagem-padrao.jpg);
-    background-size: contain;
-    border-radius: 100px;
+    background-size: 100%;
+    border-radius: 50%;
+    margin: 20px;
 }
 
 .input_blue{
@@ -16,8 +17,6 @@
     color: var(--color-white);
     padding-left: 20px;
     padding-right: 20px;
-    /* min-width: min-content; */
-    /* width: 300px; */
     height: 40px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -31,7 +30,6 @@
     padding-left: 20px;
     padding-right: 20px;
     min-width: min-content;
-    /* width: 300px; */
     height: 40px;
     margin-top: 10px;
 }
@@ -50,10 +48,9 @@
     border: 1px solid #45C4B0;
     border-radius: 100px;
     background-color: var(--bg-primary);
-    width: 158px;
+    width: 200px;
     height: 50px;
-    padding: auto;
-    padding-top: 15px;
+    padding: 15px;
     align-content: center;
     display: flex;
     text-align: center;
@@ -73,16 +70,11 @@
     justify-content: center;
 }
 
-.mt-30{
-    margin-top: 30px;
-}
-
 .aside-profile{
-    /* border: solid 10px #000000; */
     margin-top: 30px;
-    padding: 20px;
     width: 338px;
-    height: 550px;
+    height: max-content;
+    padding-bottom: 30px;
     left: 238px;
     background-color: var(--color-light-blue);
     border-radius: 20px;
@@ -100,7 +92,7 @@
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(5, 100px);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-template-areas:
     "nome-grid nome-grid nome-grid data-grid data-grid"
     "cpf-grid cpf-grid cpf-grid rg-grid rg-grid" 
