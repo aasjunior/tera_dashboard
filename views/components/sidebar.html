@@ -1,4 +1,4 @@
-<aside id="sidebar-expanded" class="sidebar d-flex col">
+<aside id="sidebar-expanded" class="sidebar d-flex col d-none">
     <div class="sidebar-header d-flex row vertical-center">
         <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
         <div class="d-flex col horizontal-start">
@@ -53,7 +53,7 @@
     <button class="sidebar-collapse">&lt;</button>
 </aside>
 
-<aside id="sidebar-collapsed" class="sidebar d-flex col d-none">
+<aside id="sidebar-collapsed" class="sidebar d-flex col">
     <div class="sidebar-header d-flex row vertical-center">
         <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
         <button class="sidebar-expand">&gt;</button>

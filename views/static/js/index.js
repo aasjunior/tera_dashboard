@@ -45,10 +45,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
   }
+  //add medicamento
+  
+  const add_medicamento = document.querySelector("#add-medicamento")  ?? null;
+  const novo_medicamento = document.querySelector("#novo-medicamento") ?? null;
+  
+  if(add_medicamento!=null){
+    add_medicamento.addEventListener("click", function() {
+      novo_medicamento.innerHTML += "<div class='d-flex vertical-center mt-20'>" +
+        "<div class='col mr-20'>" +
+        "<label class='lbl-green fs-14 ml-10' for=''>Medicamento</label>" +
+        "<input class='input_med' type='text' name='medicamento-prescrito[]'>" +
+        "</div>" +
+        "<div class='col'>" +
+        "<label for='' class='lbl-green fs-14 ml-10'>Qtde</label>" +
+        "<input class='input_n_med' type='number' name='qtde-medicamento[]'>" +
+        "</div>" +
+        "<img class='icon-add' onclick='removerParagrafo(this.parentNode)' src='static/imgs/icons/delete.svg' alt='Icone Deletar'>" +
+        "</div>";
+    });
+  }
+  
+  // adicionando lembrete
+  const add_lembrete = document.querySelector("#add-lembrete") ?? null; 
+  const novo_lembrete = document.querySelector("#novo-lembrete") ?? null;
+  
+  if(add_lembrete!=null){
+    add_lembrete.addEventListener("click", function() {
+      novo_lembrete.innerHTML += "<div class='d-flex mt-20'>" +
+        "<div class='col mr-20'>" +
+        "<label class='lbl-green fs-14 ml-10' for=''>Hora</label>" +
+        "<input class='hr' type='time' name='hora-lembrete[]'>" +
+        "</div>" +
+        "<div id='select-medicamento' class='col'>" +
+        "<label class='lbl-green fs-14 ml-10' for=''> Medicamento </label>" +
+        "<select id='' class='input_med lbl-white' name='lembrete-medicamento[]'>" +
+        "<option class='lbl-green' value='op1'>Puxar remédio add acima</option>" +
+        "<option class='lbl-green' value='op2'>Puxar remédio add acima</option>" +
+        "<option class='lbl-green' value='op3'>Puxar remédio add acima</option>" +
+        "</select>" +
+        "</div>" +
+        "<img class='icon-add' onclick='removerParagrafo(this.parentNode)' src='static/imgs/icons/delete.svg' alt='Icone Deletar'>" +
+        "</div>";
+    });  
+  }
 });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // TESTE PROGRESS BAR
-// script.js
+
+// TESTE PROGRESS BAR
 
 function updateProgressBar(progressBar) {
   const currentPage = window.location.pathname.split('/').pop();
@@ -74,49 +117,6 @@ function toggleElements(...elements) {
       element.classList.toggle('d-none');
   });
 }
-
-////////////////////////////////////////////////
-// adicionando medicamento
-const add_medicamento = document.querySelector("#add-medicamento"); 
-const novo_medicamento = document.querySelector("#novo-medicamento"); 
-
-add_medicamento.addEventListener("click", function() {
-  novo_medicamento.innerHTML += "<div class='d-flex vertical-center mt-20'>" +
-    "<div class='col mr-20'>" +
-    "<label class='lbl-green fs-14 ml-10' for=''>Medicamento</label>" +
-    "<input class='input_med' type='text' name='medicamento-prescrito[]'>" +
-    "</div>" +
-    "<div class='col'>" +
-    "<label for='' class='lbl-green fs-14 ml-10'>Qtde</label>" +
-    "<input class='input_n_med' type='number' name='qtde-medicamento[]'>" +
-    "</div>" +
-    "<img class='icon-add' onclick='removerParagrafo(this.parentNode)' src='static/imgs/icons/delete.svg' alt='Icone Deletar'>" +
-    "</div>";
-});
-
-
-// adicionando lembrete
-const add_lembrete = document.querySelector("#add-lembrete"); 
-const novo_lembrete = document.querySelector("#novo-lembrete"); 
-
-add_lembrete.addEventListener("click", function() {
-  novo_lembrete.innerHTML += "<div class='d-flex mt-20'>" +
-    "<div class='col mr-20'>" +
-    "<label class='lbl-green fs-14 ml-10' for=''>Hora</label>" +
-    "<input class='hr' type='time' name='hora-lembrete[]'>" +
-    "</div>" +
-    "<div id='select-medicamento' class='col'>" +
-    "<label class='lbl-green fs-14 ml-10' for=''> Medicamento </label>" +
-    "<select id='' class='input_med lbl-white' name='lembrete-medicamento[]'>" +
-    "<option class='lbl-green' value='op1'>Puxar remédio add acima</option>" +
-    "<option class='lbl-green' value='op2'>Puxar remédio add acima</option>" +
-    "<option class='lbl-green' value='op3'>Puxar remédio add acima</option>" +
-    "</select>" +
-    "</div>" +
-    "<img class='icon-add' onclick='removerParagrafo(this.parentNode)' src='static/imgs/icons/delete.svg' alt='Icone Deletar'>" +
-    "</div>";
-});
-
 
 
 function removerParagrafo(paragrafo) {

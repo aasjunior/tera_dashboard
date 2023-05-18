@@ -14,6 +14,7 @@ def init_app(app):
             'welcome_card': render_welcome_card,
             'daily_record': render_daily_record,
             'annual_record': render_annual_record,
+            'header_title' : render_header_title,
         }
         return render_template("dashboard.html", **components)
     
@@ -22,6 +23,7 @@ def init_app(app):
         components = {
             'sidebar': render_sidebar,
             'welcome_card': render_welcome_card,
+            'header_title' : render_header_title,
         }
         return render_template("pacientes.html", **components)
     
