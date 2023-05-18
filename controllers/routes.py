@@ -37,7 +37,7 @@ def init_app(app):
             'progress_bar' : render_progress_bar,
         }
         return render_template("paciente-dados.html", **components)
-    
+      
     @app.route("/paciente-diagnostico")
     def paciente_diagnostico():
         components = {
