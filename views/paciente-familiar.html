@@ -4,8 +4,8 @@
     <main class="container w-auto">
         {{ header_title('Cadastro do Paciente') | safe }}
         {{ welcome_card('User', False, '3 - Dados do Familiar Responsável') | safe }} <!--Aqui é o titulo da etapa-->
-        <section>
-            <section >
+        <section class="d-flex horizontal-center">
+            <section>
                 <article class="d-flex horizontal-center">
                     <aside class="aside-profile"> <!--Aqui será o profile-->
                         <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
@@ -137,12 +137,11 @@
                     </div>
                 </article>
             </section>
-            
-            <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
-                <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
-                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
-                <a href="/dashboard" class="btn-font button btn-border-green mr-20">Próximo</a>
-            </section>
+        </section>
+        <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
+            <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
+            <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+            <a href="/dashboard" class="btn-font button btn-border-green mr-20">Próximo</a>
         </section>
         {{ progress_bar() | safe }}
     </main>
