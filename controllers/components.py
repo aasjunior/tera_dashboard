@@ -35,3 +35,9 @@ def render_header_title(titulo_da_pag=False):
 
 def render_progress_bar():
     return render_template("components/progress-bar.html")
+
+def render_crisis_patient_card():
+    return render_template("components/crisis-patient-card.html")
+
+def render_offline_patient_card():
+    return render_template("components/offline-patient-card.html")

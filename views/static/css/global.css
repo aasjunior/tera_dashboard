@@ -8,6 +8,7 @@
     --color-gray: #CED5DC;
     --color-green: #71DDB1;
     --color-light-blue: rgba(255, 255, 255, 0.1);
+    --color-red: #DD0000;
 
     --sidebar-bg: #161A23;
     --sidebar-item:  rgba(255, 255, 255, 0.5);
@@ -223,8 +224,16 @@ a{
     color: var(--bg-primary);
 }
 
+.mr-5{
+    margin-right: 5px;
+}
+
 .mr-10{
     margin-right: 10px;
+}
+
+.mr-15{
+    margin-right: 15px;
 }
 
 .mr-20{
@@ -275,6 +284,10 @@ a{
     font-size: 14px;
 }
 
+.fs-12{
+    font-size: 12px;
+}
+
 .fs-10{
     font-size: 10px;
 }
@@ -301,4 +314,12 @@ a{
 
 .p-inline-20{
     padding-inline: 20px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.p-5{
+    padding: 5px;
 }

@@ -6,6 +6,24 @@
         <section id="patient-overview">
             {{ welcome_card('User', "pacientes") | safe }}
         </section>
+
+        <section class="section-risco mt-30">
+            <h2 class="lbl-white fs-normal fs-16">Pacientes em <span class="bold">Risco</span></h2>
+
+            <section class="mt-20 d-flex"> <!--frame de pacientes-->
+                {{ crisis_patient_card() | safe }}
+            </section>
+
+        </section>
+
+        <section class="section-risco mt-30">
+            <h2 class="lbl-white fs-normal fs-16">Pacientes <span class="bold">Offline há 1 dia</span></h2>
+
+            <section class="mt-10 d-flex"><!--frame de pacientes-->
+                {{ offline_patient_card() | safe }}
+            </section>
+
+        </section>
     </main>
 </div>
 {% include 'blades/footer.html' %}
