@@ -2,12 +2,7 @@
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
     <main class="container w-auto">
-        <header class="header row space-between w-auto">
-            <h1 class="title">Dashboard Overview</h1>
-            <form action="">
-                <input type="search">
-            </form>
-        </header>
+        {{ header_title('Dashboard Overview') | safe }}
         <section class="dashboard">
             {{ daily_record(50, 180, 20) | safe }}
             {{ welcome_card('User', 'dashboard') | safe }}

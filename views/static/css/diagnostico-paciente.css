@@ -107,3 +107,25 @@
     "endereco-grid endereco-grid endereco-grid endereco-grid numero-grid"
     "cep-grid cep-grid cidade-grid cidade-grid estado-grid";
 }
+
+/* SEARCH */
+
+textarea:focus, input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+.search{
+    width: 250px;
+    height: 45px;
+    background: none;
+    border: none;
+    padding-left: 20px;
+}
+
+.busca{
+    display: flex;
+    padding-inline: 20px;
+    border-radius: 7px;
+    background: var(--color-light-blue);
+}
+

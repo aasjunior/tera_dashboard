@@ -298,3 +298,7 @@ a{
 .align-self{
     align-self: center;
 }
+
+.p-inline-20{
+    padding-inline: 20px;
+}
