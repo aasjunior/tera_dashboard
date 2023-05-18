@@ -1,6 +1,6 @@
-<section id="daily-record" class="card col center">
+<section id="daily-record" class="card col">
     <h2 class="title">Registro Diário</h2>
-    <div id="g-daily"></div>
+    <div id="g-daily" class="graph"></div>
     <input type="hidden" id="mal" value="{{ mal }}">
     <input type="hidden" id="bom" value="{{ bom }}">
     <input type="hidden" id="sem_resposta" value="{{ sem_resposta }}">
@@ -21,6 +21,7 @@
             plotOptions: {
                 pie: {
                     donut: {
+                        size: '80%',
                         labels: {
                             show: true,
                             name: {
