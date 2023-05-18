@@ -10,6 +10,9 @@
     --color-light-blue: rgba(255, 255, 255, 0.1);
     --color-red: #DD0000;
 
+    --color-teal: #358385;
+    --color-dark-teal: #284F63;
+
     --sidebar-bg: #161A23;
     --sidebar-item:  rgba(255, 255, 255, 0.5);
     --sidebar-item-light: rgba(255, 255, 255, 0.8);
@@ -49,7 +52,7 @@ body{
 }
 
 .header{
-    margin-bottom: calc(2 * var(--dashboard-gap));
+    margin-bottom: 20px;
 }
 
 .wrapper{
@@ -115,6 +118,46 @@ body{
     background-image: url(../imgs/icons/logoutIcon.svg);
 }
 
+.formIcon{
+    background-image: url(../imgs/icons/formIcon.svg);
+}
+
+.checkIcon{
+    background-image: url(../imgs/icons/checkIcon.svg);
+}
+
+.cautionIcon{
+    background-image: url(../imgs/icons/cautionIcon.svg);
+}
+
+.newUsersIcon{
+    background-image: url(../imgs/icons/newUsersIcon.svg);
+}
+
+.dashboard .icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: 24px 24px;
+
+}
+
+.dashboard .formIcon{
+    background-color: var(--color-green);
+}
+
+.dashboard .checkIcon{
+    background-color: var(--color-green);
+}
+
+.dashboard .newUserIcon{
+    background-color: var(--color-teal);
+}
+
+.dashboard .cautionIcon{
+    background-color: var(--color-dark-teal);
+}
 
 /*Classes Globais*/
 .d-none{
@@ -160,15 +203,18 @@ body{
     justify-content: space-between;
 }
 
+.space-around{
+    justify-content: space-around;
+}
+
+.space-evenly{
+    justify-content: space-evenly;
+}
+
 .center{
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.w-auto{
-    flex-grow: 1;
-    flex-shrink: 0;
 }
 
 .border{
@@ -322,4 +368,17 @@ a{
 
 .p-5{
     padding: 5px;
+}
+
+.w-auto{
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.w-80{
+    width: 80%;
 }

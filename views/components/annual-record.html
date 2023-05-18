@@ -2,9 +2,9 @@
     <div class="row vertical-center space-between">
         <h2 class="title">Registro de Humor Anual</h2>
         <div class="labels">
-            <button class="filterChart_mal" onclick="filterChart('Mal')">Mal</button>
-            <button class="filterChart_bom" onclick="filterChart('Bom')">Bom</button>
-            <button class="filterChart_sem" onclick="filterChart('Sem resposta')">Sem resposta</button>
+            <span class="filterChart_bom" onclick="filterChart('Bom')">Bom</span>
+            <span class="filterChart_mal" onclick="filterChart('Mal')">Mal</span>
+            <span class="filterChart_sem" onclick="filterChart('Sem resposta')">Sem resposta</span>
         </div>
     </div>
     <div id="g-annual" class="graph"></div>
@@ -16,16 +16,16 @@
 
         // Cores para cada label
         var colors = {
-            'Mal': '#023047',          // Vermelho
-            'Bom': '#45C4B0',          // Verde
-            'Sem resposta': '#8195A8'   // Azul
+            'Mal': '#023047',
+            'Bom': '#45C4B0',
+            'Sem resposta': '#8195A8'
         };
 
         // Obtém o mês atual
         var mesAtual = new Date().getMonth();
         var mesesAno = [
-            'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-            'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
         ];
 
         // Cria um array com os nomes dos meses do ano
@@ -33,7 +33,7 @@
 
         for (var i = mesAtual - 11; i <= mesAtual; i++) {
             var mes = (i < 0 ? 12 + i : i) % 12; // Ajusta o índice para garantir um valor entre 0 e 11
-            meses.push(mesesAno[mes]);
+            meses.push(mesesAno[mes].substr(0, 3));
         }
 
         // Define o intervalo do eixo X para exibir os meses do ano

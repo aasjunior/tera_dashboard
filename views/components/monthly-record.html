@@ -1,0 +1,69 @@
+<section id="monthly-record" class="card">
+    <div class="row space-between">
+        <h2 class="title">Registro de Humor Mensal</h2>
+        <div class="row">
+            <h2 class="title mr-20">Filtrar por:</h2>
+            <select name="lbl_mes" id="lbl_mes"></select>
+        </div>
+    </div>
+    <div id="g-monthly" class="graph mt-30"></div>
+    <input type="hidden" id="mal" value="{{ mal }}">
+    <input type="hidden" id="bom" value="{{ bom }}">
+    <input type="hidden" id="sem_resposta" value="{{ sem_resposta }}">
+    <script>
+        mesesAno.forEach(element => {
+            document.querySelector('#lbl_mes').innerHTML += `<option value='${element}'>${element}</option>`;
+        });
+
+        // Dados para cada label
+        var dataMal = [30, 40, 45, 50, 49, 60, 70];
+        var dataBom = [90, 85, 80, 75, 70, 65, 60];
+        var dataSemResposta = [10, 15, 20, 25, 30, 35, 40];
+        var dataTime = ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"];
+        // Cores para cada label
+        var colors = {
+            'Mal': '#023047',
+            'Bom': '#45C4B0',
+            'Sem resposta': '#8195A8'
+        };
+        var g_monthly_options = {
+            series: [
+                {
+                name: 'Humor: Bom',
+                data: dataBom
+            }, 
+            {
+                name: 'Humor: Mal',
+                data: dataMal
+            },
+            {
+                name: 'Sem Resposta',
+                data: dataSemResposta
+            }
+        ],
+            chart: {
+                height: 350,
+                type: 'area'
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: dataTime
+            },
+            tooltip: {
+                x: {
+                    format: 'dd/MM/yy HH:mm'
+                },
+            },
+            colors: ['#023047', '#45C4B0', '#8195A8'],
+        };
+
+        var g_monthly_chart = new ApexCharts(document.querySelector("#g-monthly"), g_monthly_options);
+        g_monthly_chart.render();
+    </script>
+</section>
