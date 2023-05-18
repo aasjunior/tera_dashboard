@@ -1,4 +1,4 @@
-<aside id="sidebar-expanded" class="sidebar d-flex col">
+<aside id="sidebar-expanded" class="sidebar d-flex col d-none">
     <div class="sidebar-header d-flex row vertical-center">
         <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
         <div class="d-flex col horizontal-start">
@@ -17,7 +17,7 @@
             <span class="icon patientIcon"></span>
             <h3>Pacientes Overview</h3>
         </a>
-        <a href="#" class="sidebar-link d-flex row vertical-center">
+        <a href="/paciente-dados" class="sidebar-link d-flex row vertical-center">
             <span class="icon newPatientIcon"></span>
             <h3>Cadastrar Paciente</h3>
         </a>
@@ -53,7 +53,7 @@
     <button class="sidebar-collapse">&lt;</button>
 </aside>
 
-<aside id="sidebar-collapsed" class="sidebar d-flex col d-none">
+<aside id="sidebar-collapsed" class="sidebar d-flex col">
     <div class="sidebar-header d-flex row vertical-center">
         <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
         <button class="sidebar-expand">&gt;</button>
@@ -67,7 +67,7 @@
         <a href="/pacientes" class="sidebar-link d-flex">
             <span class="icon patientIcon"></span>
         </a>
-        <a href="#" class="sidebar-link d-flex">
+        <a href="/paciente-dados" class="sidebar-link d-flex">
             <span class="icon newPatientIcon"></span>
         </a>
         <a href="#" class="sidebar-link d-flex">

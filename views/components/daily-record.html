@@ -1,3 +1,57 @@
-<section id="daily-record" class="card col center">
+<section id="daily-record" class="card col">
     <h2 class="title">Registro Diário</h2>
+    <div id="g-daily" class="graph"></div>
+    <input type="hidden" id="mal" value="{{ mal }}">
+    <input type="hidden" id="bom" value="{{ bom }}">
+    <input type="hidden" id="sem_resposta" value="{{ sem_resposta }}">
+    <script>
+        const mal = document.getElementById('mal').value;
+        const bom = document.getElementById('bom').value;
+        const sem_resposta = document.getElementById('sem_resposta').value;
+        const options = {
+            chart: {
+                type: 'donut',
+            },
+            series: [44, 55, 41],
+            colors: ['#023047', '#45C4B0', '#8195A8'],
+            labels: ['Humor: Mal', 'Humor: Bom', 'Sem resposta'],
+            legend: {
+                position: 'right',
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '80%',
+                        labels: {
+                            show: true,
+                            name: {
+                                fontSize: '24px',
+                                color: '#888',
+                                offsetY: -5,
+                            },
+                            value: {
+                                fontSize: '24px',
+                                color: '#111',
+                                offsetY: 16,
+                            },
+                            total: {
+                                show: true,
+                                fontSize: '16px',
+                                color: '#888',
+                                label: 'Total',
+                                formatter: function (w) {
+                                    return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                                },
+                            },
+                        },
+                        size: '60%', // Define a largura das fatias como 70% do raio do gráfico
+                        strokeWidth: 0,
+                    },
+                },
+            },
+        };
+
+        const chart = new ApexCharts(document.querySelector('#g-daily'), options);
+        chart.render();
+    </script>
 </section>
