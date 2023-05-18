@@ -83,3 +83,24 @@ def init_app(app):
             'progress_bar' : render_progress_bar,
         }
         return render_template("cadastro-clinica.html", **components)
+    
+    @app.route("/upload-imagem", methods=["GET", "POST"])
+    def upload_imagem():
+        if request.method == "POST":
+            # Salvar a imagem e fazer qualquer processamento necessário
+            # Aqui, você pode usar bibliotecas como Pillow para rotacionar a imagem
+            
+            # Após salvar a imagem, redirecionar de volta para a tela anterior
+            return redirect(url_for("paciente_dados"))
+    
+        # Se o método for GET, renderizar a tela de upload de imagem
+        return render_template("upload-imagem.html", **components)
+
+    @app.route("/overlay.html")
+    def overlay():
+        return render_template("overlay.html")
+
+    @app.route("/static/<path:filename>")
+    def static_files(filename):
+        return send_from_directory("static", filename)
+    
