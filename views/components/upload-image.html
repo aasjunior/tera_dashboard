@@ -1,114 +1,26 @@
-<aside class="aside-profile">
-    <!--Aqui será o profile-->
-    <img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil">
+<div class="col horizontal-center">
+    <label class="align-self" for=""><img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil"></label>
+    <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem
+        <input class="" type="file" id="upload-picture" name="foto" accept="image/*" onchange="openOverlay(event)">
+    </label>
+</div>
 
-    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
-        <div class="d-flex horizontal-center">
-            <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem
-                <input class="" type="file" id="upload-picture" name="foto" accept="image/*" onchange="previewImage(event)">
-            </label>
-        </div>
-        <!-- Div para exibir a prévia da imagem -->
-        <div id="image-preview" class="image-preview"></div>
-        <div class="mt-30">
-            <div id="" class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
-                <select id="" class="input_dark_blue" name="sangue">
-                    <option class="op-color" value="A+">A+</option>
-                    <option class="op-color" value="A-">A-</option>
-                    <option class="op-color" value="B+">B+</option>
-                    <option class="op-color" value="B-">B-</option>
-                    <option class="op-color" value="AB+">AB+</option>
-                    <option class="op-color" value="AB-">AB-</option>
-                    <option class="op-color" value="O+">O+</option>
-                    <option class="op-color" value="O-">O-</option>
-                </select>
-            </div>
-            <div id="" class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Altura </label>
-                <input class="input_dark_blue" type="text">
-            </div>
-            <div id="" class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Peso </label>
-                <input class="input_dark_blue" type="text">
-            </div>
-            <div id="" class="col">
-                <label class="lbl-white fs-14 mt-10" for=""> Ângulo de Rotação </label>
-                <input class="input_dark_blue" type="range" min="0" max="360" value="0" step="1" id="rotation-range" onchange="rotateImage(event)">
-                <span id="rotation-value">0</span>
-            </div>
-        </div>
-    </form>
-</aside>
-
-<!-- Estilo para a tela sobreposta -->
-<style>
-    .image-preview {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .image-preview img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-    .form-upload-picture {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .form-upload-picture .col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .form-upload-picture .col input[type="range"] {
-        width: 200px;
-    }
-</style>
-
-<!-- Restante do código HTML -->
-
-<!-- Script para exibir a prévia da imagem e controlar a rotação -->
 <script>
+    // Função para exibir a prévia da imagem antes de fazer o upload
     function previewImage(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var imagePreview = document.getElementById('image-preview');
-                imagePreview.innerHTML = '<img id="preview-image" src="' + e.target.result + '">';
-                imagePreview.style.display = 'flex';
-                resetRotation(); // Redefine a rotação para 0 quando uma nova imagem é carregada
-            };
-            reader.readAsDataURL(input.files[0]);
+        var reader = new FileReader();
+        reader.onload = function() {
+            var preview = document.getElementById("preview");
+            preview.src = reader.result;
         }
+        reader.readAsDataURL(event.target.files[0]);
     }
 
-    function rotateImage(event) {
-        var rotationRange = event.target;
-        var rotationValue = document.getElementById('rotation-value');
-        var previewImage = document.getElementById('preview-image');
-        var rotationAngle = rotationRange.value;
-        rotationValue.textContent = rotationAngle;
-        previewImage.style.transform = 'rotate(' + rotationAngle + 'deg)';
-    }
-
-    function resetRotation() {
-        var rotationRange = document.getElementById('rotation-range');
-        var rotationValue = document.getElementById('rotation-value');
-        var previewImage = document.getElementById('preview-image');
-        rotationRange.value = 0;
-        rotationValue.textContent = 0;
-        previewImage.style.transform = 'rotate(0deg)';
+    // Função para abrir a tela sobreposta em uma nova janela
+    function openOverlay(event) {
+        event.preventDefault();
+        var image = document.getElementById("preview").src;
+        var url = "overlay.html?image=" + encodeURIComponent(image);
+        window.open(url, "overlayWindow", "width=400,height=400");
     }
 </script>
