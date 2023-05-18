@@ -39,10 +39,6 @@
     transform: scale(1.1);
 }
 
-.sidebar-expand{
-    margin-left: -2px;
-}
-
 :is(.sidebar-header, .sidebar-content, .sidebar-footer){
     width: 100%;
 }
@@ -53,8 +49,12 @@
     align-content: center;
 }
 
+.sidebar-expand{
+    margin-left: -9px;
+}
+
 #sidebar-collapsed > .sidebar-content > .sidebar-title{
-    margin: auto;
+    margin: -4px;
 }
 
 .sidebar-title{
@@ -92,6 +92,11 @@
 
 #sidebar-collapsed .icon{
     margin: auto;
+}
+
+#sidebar-collapsed .user_image{
+    position: relative;
+    margin-left: -9px;
 }
 
 .sidebar-link{
@@ -136,6 +141,7 @@
     background-color: var(--color-white);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+    padding: var(--dashboard-gap);
 }
 
 .card .title{
