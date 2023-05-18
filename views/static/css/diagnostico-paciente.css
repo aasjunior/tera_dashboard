@@ -129,3 +129,6 @@ textarea:focus, input:focus {
     background: var(--color-light-blue);
 }
 
+.search-icon:hover, .icon-micro:hover{
+    transform: scale(1.3    );
+}
