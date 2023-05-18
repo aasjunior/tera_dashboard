@@ -1,3 +1,5 @@
+<!-- overlay.html -->
+
 <div class="overlay-content">
     <div class="image-container">
         <img id="overlay-image" src="" alt="Imagem">
@@ -40,6 +42,7 @@
     }
 </style>
 
+
 <script>
     // Obter o parâmetro da imagem passado na URL
     var urlParams = new URLSearchParams(window.location.search);
@@ -49,7 +52,7 @@
 
     // Evento de clique no botão de salvar na tela sobreposta
     var saveButton = document.getElementById("save-button");
-    saveButton.addEventListener("click", function () {
+    saveButton.addEventListener("click", function() {
         // Aqui você pode adicionar a lógica para salvar a imagem
         // e enviar os dados para o servidor
 
@@ -59,8 +62,8 @@
         // Obtenha a referência da imagem na página principal
         var mainProfileImage = window.opener.document.getElementById("preview");
 
-// Atualize o atributo src da imagem principal com a nova imagem
-mainProfileImage.src = overlayImage.src;
+        // Atualize o atributo src da imagem principal com a nova imagem
+        mainProfileImage.src = overlayImage.src;
 
     });
 
