@@ -1,0 +1,127 @@
+.borda-verm{
+    border: solid 3px var(--color-red);
+    border-radius: 50%;
+    width: 155px;
+    height: 155px;
+    position: relative;
+    margin: 10px;
+}
+
+.foto-paciente-risco{
+    position: absolute;
+    margin: 5px;
+    width: 140px;
+    height: 140px;
+    background: url(../imgs/figures/imagem-padrao.jpg);
+    background-size: 100%;
+    border-radius: 50%;
+}
+
+.section-risco{
+    padding: 30px;
+    max-width: max-content;
+    height: max-content;
+    background-color: var(--color-light-blue);
+    border-radius: 20px; 
+}
+
+.article-risco{
+    padding-bottom: 30px;
+    padding-inline: 30px;
+    max-width: max-content;
+    height: max-content;
+    background-color: var(--color-white);
+    border-radius: 20px;
+    align-items: center;
+    position: relative; 
+    color: var(--bg-primary);   
+}
+
+.off-3-dias{
+    background-color: #ECEBEB;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    color: #5a5a5a;
+    position: relative;
+    top: -10px;
+}
+
+.bolinha-verm{
+    background-color: var(--color-red);
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 100%;
+}
+
+.bolinha-green-1{
+    background-color: #2E9585;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 100%;
+}
+
+.bolinha-green-2{
+    background-color: #297577;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 100%;
+}
+
+.bolinha-green-3{
+    background-color: #71DDB1;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 100%;
+}
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: rgb(240, 240, 240);
+    width: 100px;
+}
+
+.foto-paciente{
+    position: absolute;
+    margin: 3px;
+    width: 90px;
+    height: 90px;
+    background: url(../imgs/figures/imagem-padrao.jpg);
+    background-size: 100%;
+    border-radius: 50%;
+}
+
+.borda-amar{
+    border: solid 2px #FFCC4D;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 5px;
+}
+
+.article-offline{
+    padding: 15px;
+    max-width: max-content;
+    height: max-content;
+    background-color: var(--color-white);
+    border-radius: 20px;
+    color: var(--bg-primary);   
+}
+
+.off-1-dia{
+    background-color: #FFCC4D;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    width: 100px;
+}
