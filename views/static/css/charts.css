@@ -4,24 +4,36 @@
 }
 
 #annual-record .labels{
-    
-    width: 40%;
-    border: 1px solid #000;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 348px;
 }
 
+.filterChart_bom{
+    border-radius: 10px 0px 0px 10px;
+    background-color: var(--color-green);
+}
 .filterChart_mal{
     background-color: var(--bg-primary);
 }
-.filterChart_bom{
-    background-color: var(--color-green);
-}
 .filterChart_sem{
-    background-color: var(--color-gray);
+    border-radius: 0px 10px 10px 0px;
+    background-color: #6C95A0;
 }
 
 [class^='filterChart']{
-    border: none;
-    color: var(--color-white);
-    text-align: center;
+    display: flex;
+    width: 116px;
+    height: 28px;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
 
+    cursor: pointer;
+    color: var(--color-white);
+}
+
+[class^='filterChart']:hover{
+    transform: scale(1.1);
+    transition: 0.5s ease;
 }

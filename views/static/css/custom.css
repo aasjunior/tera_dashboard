@@ -152,11 +152,12 @@
 #daily-record{
     grid-area: daily-record;
     padding: var(--dashboard-gap);
+    padding-bottom: 0;
 }
 
 .graph{
     width: 100%;
-    max-height: 80%;
+    max-width: ;
 }
 
 #annual-record{
@@ -169,18 +170,33 @@
 
 #form-answers{
     grid-area: form-answers;
+    color: var(--bg-primary);
+}
+
+#form-answers .title{
+    font-weight: 700;
+}
+
+:is(#form-answers, #patients-active) .subtitle{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+#form-answers .amount{
+    font-weight: 700;
+    font-size: 50px;
 }
 
 #patients-crisis{
     grid-area: patients-crisis;
 }
 
-#patients-crisis{
+#patients-active{
     grid-area: patients-active;
 }
 
-#patients-crisis{
-    grid-area: patients-active;
+#patients-new{
+    grid-area: patients-new;
 }
 
 /*Card de Bem-vindo*/

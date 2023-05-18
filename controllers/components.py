@@ -31,6 +31,14 @@ def render_annual_record(mal, bom, sem_resposta):
     }
     return render_template("components/annual-record.html", **dados)
 
+def render_monthly_record(mal, bom, sem_resposta):
+    dados = {
+        'mal': mal,
+        'bom': bom,
+        'sem_resposta': sem_resposta,
+    }
+    return render_template("components/monthly-record.html", **dados)
+
 def render_header_title(titulo_da_pag=False):
     return render_template("components/header-title.html", titulo_da_pag=titulo_da_pag)
 

@@ -7,10 +7,40 @@
             {{ daily_record(50, 180, 20) | safe }}
             {{ welcome_card('User', 'dashboard') | safe }}
             {{ annual_record(50, 180, 20) | safe }}
-            <section id="monthly-record" class="card"></section>
-            <section id="form-answers" class="card"></section>
+            {{ monthly_record(50, 180, 20) | safe }}
+            <section id="form-answers" class="card">
+                <div class="row w-auto space-between">
+                    <h2 class="title">Respostas do Formulário</h2>
+                    <span class="formIcon icon"></span>
+                </div>
+                <div class="row w-auto space-evenly w-80">
+                    <div class="col center">
+                        <h2 class="subtitle">
+                            Responderam
+                        </h2>
+                        <p id="amountAnswers" class="amount">231</p>
+                    </div>
+                    <div class="col center">
+                        <h2 class="subtitle">
+                            Sem Resposta
+                        </h2>
+                        <p id="no-reply" class="amount">29</p>
+                    </div>
+                </div>
+            </section>
+            <section id="patients-active" class="card">
+                <div class="row w-auto space-between">
+                    <h2 class="title">Pacientes Ativos</h2>
+                    <span class="checkIcon icon"></span>
+                </div>
+                <div class="row w-auto w-80">
+                    <div class="col center">
+                        <p id="amountPatientsActive" class="amount">250</p>
+                        <p class="subtitle">nesta semana</p>
+                    </div>
+                </div>
+            </section>
             <section id="patients-crisis" class="card"></section>
-            <section id="patients-active" class="card"></section>
             <section id="patients-new" class="card"></section>
         </section>
     </main>

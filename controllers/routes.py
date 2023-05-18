@@ -14,6 +14,7 @@ def init_app(app):
             'welcome_card': render_welcome_card,
             'daily_record': render_daily_record,
             'annual_record': render_annual_record,
+            'monthly_record': render_monthly_record,
             'header_title' : render_header_title,
         }
         return render_template("dashboard.html", **components)
