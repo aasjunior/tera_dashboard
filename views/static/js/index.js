@@ -123,5 +123,21 @@ function removerParagrafo(paragrafo) {
   paragrafo.remove();
 }
 
+//funcao para mostrar senha
+$(document).ready(function() {
+  var senha = $('#senha');
+  var olho = $("#olho");
 
+  olho.click(function() {
+    if (senha.attr("type") === "password") {
+      senha.attr("type", "text");
+    } else {
+      senha.attr("type", "password");
+    }
+  });
+
+  olho.mouseleave(function() {
+    senha.attr("type", "password");
+  });
+});
 

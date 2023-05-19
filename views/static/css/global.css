@@ -270,6 +270,10 @@ a{
     color: var(--bg-primary);
 }
 
+.m-30{
+    margin-inline: 30px;
+}
+
 .mr-5{
     margin-right: 5px;
 }
