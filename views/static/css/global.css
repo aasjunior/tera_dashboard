@@ -21,7 +21,7 @@
 
     --welcome-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #284F63 50%);
 
-    --dashboard-gap: 1.5rem;
+    --dashboard-gap: 20px;
     --padding-container: 2.3rem;
 }
 
@@ -81,7 +81,6 @@ body{
 .icon{
     width: 20px;
     height: 20px;
-    margin-right: 14px;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -151,7 +150,7 @@ body{
     background-color: var(--color-green);
 }
 
-.dashboard .newUserIcon{
+.dashboard .newUsersIcon{
     background-color: var(--color-teal);
 }
 

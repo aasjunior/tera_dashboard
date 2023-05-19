@@ -1,6 +1,6 @@
 /*Sidebar*/
 
-.sidebar{
+.sidebar {
     position: sticky;
     top: 0;
     height: 100vh;
@@ -14,16 +14,20 @@
     letter-spacing: 0.4px;
 }
 
-#sidebar-expanded{
+#sidebar-expanded {
     width: 256px;
 }
 
-#sidebar-collapsed{
+:is(#sidebar-expanded) .icon{
+    margin-right: 14px;
+}
+
+#sidebar-collapsed {
     width: 70px;
     align-items: center;
 }
 
-:is(.sidebar-expand, .sidebar-collapse){
+:is(.sidebar-expand, .sidebar-collapse) {
     width: 28px;
     min-width: 28px;
     height: 28px;
@@ -34,55 +38,57 @@
     color: var(--sidebar-item-light);
 }
 
-:is(.sidebar-expand:hover, .sidebar-collapse:hover){
+:is(.sidebar-expand:hover, .sidebar-collapse:hover) {
     background-color: var(--sidebar-item-hover);
     transform: scale(1.1);
 }
 
-:is(.sidebar-header, .sidebar-content, .sidebar-footer){
+:is(.sidebar-header, .sidebar-content, .sidebar-footer) {
     width: 100%;
 }
 
-#sidebar-collapsed:is(.sidebar-header, .sidebar-content, .sidebar-footer), .sidebar-config, .sidebar-bottom{
+#sidebar-collapsed:is(.sidebar-header, .sidebar-content, .sidebar-footer),
+.sidebar-config,
+.sidebar-bottom {
     align-items: center;
     justify-content: center;
     align-content: center;
 }
 
-.sidebar-expand{
+.sidebar-expand {
     margin-left: -9px;
 }
 
-#sidebar-collapsed > .sidebar-content > .sidebar-title{
+#sidebar-collapsed>.sidebar-content>.sidebar-title {
     margin: -4px;
 }
 
-.sidebar-title{
+.sidebar-title {
     margin: 2px 0;
     font-size: 10px;
 }
 
-.user_image{
+.user_image {
     width: 44px;
     height: 44px;
     margin-right: 12px;
     border-radius: 50%;
 }
 
-.user_name{
+.user_name {
     margin: 2px 0;
     font-size: 14px;
     color: var(--sidebar-item-light);
 }
 
-.sidebar-line{
+.sidebar-line {
     width: 100%;
     height: 1px;
     margin: 24px 0;
     border: 1px solid var(--sidebar-item);
 }
 
-#sidebar-collapsed .sidebar-link{
+#sidebar-collapsed .sidebar-link {
     height: 44px;
     width: 44px;
     padding: 0;
@@ -90,133 +96,130 @@
     align-self: center;
 }
 
-#sidebar-collapsed .icon{
+#sidebar-collapsed .icon {
     margin: auto;
 }
 
-#sidebar-collapsed .user_image{
+#sidebar-collapsed .user_image {
     position: relative;
     margin-left: -9px;
 }
 
-.sidebar-link{
+.sidebar-link {
     padding: 10px 12px;
     border-radius: 4px;
 }
 
-.sidebar-link:nth-child(2){
+.sidebar-link:nth-child(2) {
     margin-top: 10px;
 }
 
-.sidebar-link:hover{
+.sidebar-link:hover {
     background-color: var(--sidebar-item-hover);
 }
 
-.sidebar-foot{ 
+.sidebar-foot {
     flex-grow: 1;
     flex-shrink: 0;
     margin-bottom: 20px;
 }
 
-.sidebar-link:has(#logoutIcon){
+.sidebar-link:has(#logoutIcon) {
     margin: 0;
     color: var(--sidebar-color-logout);
 }
 
 /*Sidebar - Fim*/
-.dashboard{
+.dashboard {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: auto;
-    grid-template-areas: 
+    grid-template-areas:
         "daily-record daily-record welcome welcome welcome"
         "daily-record daily-record annual-record annual-record annual-record"
-        "form-answers form-answers annual-record annual-record annual-record"
-        "patients-active patients-crisis monthly-record monthly-record monthly-record"
-        "patients-new patients-crisis monthly-record monthly-record monthly-record";
+        "single-cards single-cards monthly-record monthly-record monthly-record";
+    gap: var(--dashboard-gap);
+    align-items: start;
+}
+
+.single-cards{
+    margin-top: -320px;
+    grid-area: single-cards;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 200px);
+    grid-template-areas: 
+        "form-answers form-answers"
+        "patients-active patients-crisis"
+        "patients-new patients-crisis";
     gap: var(--dashboard-gap);
 }
 
-.card{
+.card {
     background-color: var(--color-white);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     padding: var(--dashboard-gap);
 }
 
-.card .title{
+.card .title {
     font-size: 16px;
     color: var(--bg-primary);
 }
 
-#daily-record{
+#daily-record {
+    height: 340px;
     grid-area: daily-record;
     padding: var(--dashboard-gap);
-    padding-bottom: 0;
-    height: 350px;
 }
 
-:is(#g-daily) .apexcharts-canvas, .apexcharts-svg, foreignObject{
-    position: static;
-    max-width: 100%;
-    max-height: 100% !important;
-    min-height: 100% !important;
-}
-
-.graph{
-    position: relative;
-    max-width: 100%;
-    max-height: min-content;
-}
-
-.apexcharts-inner.apexcharts-graphical{
-    background-color: black;
-
-}
-
-#annual-record{
+#annual-record {
+    height: 440px;
     grid-area: annual-record;
 }
 
-#monthly-record{
+#monthly-record {
     grid-area: monthly-record;
 }
 
-#form-answers{
+#form-answers {
     grid-area: form-answers;
     position: relative;
+}
+
+#form-answers, #patients-active, #patients-new, #patients-crisis{
     color: var(--bg-primary);
 }
 
-:is(#form-answers, #patients-active) .title{
+:is(#form-answers, #patients-active, #patients-new, #patients-crisis) .title {
     font-weight: 700;
 }
 
-:is(#form-answers, #patients-active) .subtitle{
+:is(#form-answers, #patients-active, #patients-new, #patients-crisis) .subtitle{
     font-size: 15px;
     font-weight: 400;
 }
 
-#form-answers .amount{
+:is(#form-answers, #patients-active, #patients-new, #patients-crisis) .amount {
     font-weight: 700;
-    font-size: 50px;
+    font-size: 44px;
 }
 
-#patients-crisis{
+#patients-crisis {
     grid-area: patients-crisis;
 }
 
-#patients-active{
+#patients-active {
     padding: 1rem;
     grid-area: patients-active;
 }
 
-#patients-new{
+#patients-new {
     grid-area: patients-new;
 }
 
 /*Card de Bem-vindo*/
-.welcome-card{
+.welcome-card {
     grid-area: welcome;
     padding: 1rem 1rem;
     color: var(--color-gray);
@@ -225,38 +228,39 @@
     border-radius: 10px;
 }
 
-.welcome-card .title{
+.welcome-card .title {
     font-size: 23px;
     margin-bottom: 0.5rem;
     color: inherit;
 }
 
-.welcome-card .subtitle{
+.welcome-card .subtitle {
     line-height: 19px;
     font-size: 13px;
 }
 
-.mx-80{
+.mx-80 {
     max-width: 80%;
 }
-.subtitle:has(+ .welcome-card_link){
+
+.subtitle:has(+ .welcome-card_link) {
     margin-bottom: 2.5rem;
 }
 
-:is(.subtitle + .welcome-card_link){
+:is(.subtitle + .welcome-card_link) {
     color: var(--color-green);
 }
 
-.welcome-card em{
+.welcome-card em {
     font-style: normal;
     color: var(--color-white);
 }
 
-.welcome-card_link{
+.welcome-card_link {
     font-size: 10px;
     color: var(--color-white);
 }
 
-.welcome-card_link:hover{
+.welcome-card_link:hover {
     color: var(--color-green);
 }
