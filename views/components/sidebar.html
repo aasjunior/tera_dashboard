@@ -1,10 +1,6 @@
 <aside id="sidebar-expanded" class="sidebar d-flex col d-none">
     <div class="sidebar-header d-flex row vertical-center">
-        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
-        <div class="d-flex col horizontal-start">
-            <h2 class="sidebar-title">MONITOR</h2>
-            <h3 class="user_name">{{ name }}</h3>
-        </div>
+        <img class="logo_image" src="{{ url_for('static', filename='imgs/icons/logo-tera-sem-slogan.svg') }}" alt="Foto do usuário">
     </div>
     <hr class="sidebar-line">
     <div class="sidebar-content d-flex col">
@@ -50,30 +46,41 @@
             </a>
         </div>
     </div>
+    <hr class="sidebar-line">
+    <div class="sidebar-header d-flex row vertical-center">
+        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        <div class="d-flex col horizontal-start">
+            <h2 class="sidebar-title">MONITOR</h2>
+            <h3 class="user_name">{{ name }}</h3>
+        </div>
+    </div>
+    <br>    
     <button class="sidebar-collapse">&lt;</button>
 </aside>
 
+<!-- COLLAPSED -->
+
 <aside id="sidebar-collapsed" class="sidebar d-flex col">
-    <div class="sidebar-header d-flex row vertical-center">
-        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+    <div class="sidebar-header d-flex row vertical-center horizontal-center ml-10">
+        <img class="logo_image" src="{{ url_for('static', filename='imgs/icons/logo-tera-sem-slogan.svg') }}" alt="Foto do usuário">
         <button class="sidebar-expand">&gt;</button>
     </div>
     <hr class="sidebar-line">
-    <div class="sidebar-content d-flex col">
+    <div class="sidebar-content d-flex col horizontal-center vertical-center">
         <h2 class="sidebar-title">MENU</h2>
-        <a href="/dashboard" class="sidebar-link d-flex">
+        <a href="/dashboard" class="sidebar-link d-flex center">
             <span class="icon homeIcon"></span>
         </a>
-        <a href="/pacientes" class="sidebar-link d-flex">
+        <a href="/pacientes" class="sidebar-link d-flex center">
             <span class="icon patientIcon"></span>
         </a>
-        <a href="/paciente-dados" class="sidebar-link d-flex">
+        <a href="/paciente-dados" class="sidebar-link d-flex center">
             <span class="icon newPatientIcon"></span>
         </a>
-        <a href="#" class="sidebar-link d-flex">
+        <a href="#" class="sidebar-link d-flex center">
             <span class="icon notificationIcon"></span>
         </a>
-        <a href="#" class="sidebar-link d-flex">
+        <a href="#" class="sidebar-link d-flex center">
             <span class="icon chatIcon"></span>
         </a>
     </div>
@@ -81,17 +88,21 @@
     <div class="sidebar-foot d-flex col space-between">
         <div class="sidebar-config d-flex col">
             <h2 class="sidebar-title">CONFIG.</h2>
-            <a href="#" class="sidebar-link d-flex">
+            <a href="#" class="sidebar-link d-flex center">
                 <span class="icon configIcon"></span>
             </a>
         </div>
         <div class="sidebar-bottom d-flex col">
-            <a href="#" class="sidebar-link d-flex">
+            <a href="#" class="sidebar-link d-flex center">
                 <span class="icon helpIcon"></span>
             </a>
-            <a href="#" class="sidebar-link d-flex">
+            <a href="#" class="sidebar-link d-flex center">
                 <span class="icon logoutIcon"></span>
             </a>
         </div>
+    </div>  
+    <hr class="sidebar-line">
+    <div class="sidebar-header d-flex row vertical-center">
+        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
     </div>
 </aside>

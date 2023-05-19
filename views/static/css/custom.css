@@ -68,10 +68,19 @@
     font-size: 10px;
 }
 
-.user_image {
+.user_image{
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    border-radius: 50%;
+    
+    margin-bottom: 20px;
+}
+
+.logo_image{
     width: 44px;
     height: 44px;
-    margin-right: 12px;
+    margin-inline: 12px;
     border-radius: 50%;
 }
 
@@ -96,8 +105,9 @@
     align-self: center;
 }
 
-#sidebar-collapsed .icon {
-    margin: auto;
+
+#sidebar-collapsed .icon{
+    margin: 5px;
 }
 
 #sidebar-collapsed .user_image {
@@ -121,7 +131,6 @@
 .sidebar-foot {
     flex-grow: 1;
     flex-shrink: 0;
-    margin-bottom: 20px;
 }
 
 .sidebar-link:has(#logoutIcon) {
@@ -263,4 +272,8 @@
 
 .welcome-card_link:hover {
     color: var(--color-green);
+}
+
+.hr-none{
+    margin: 0px;
 }

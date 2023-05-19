@@ -42,13 +42,15 @@
     }
 </style>
 
-
 <script>
     // Obter o parâmetro da imagem passado na URL
     var urlParams = new URLSearchParams(window.location.search);
     var image = urlParams.get('image');
     var overlayImage = document.getElementById('overlay-image');
     overlayImage.src = image;
+
+    // Variável para armazenar o ângulo de rotação
+    var rotationAngle = 0;
 
     // Evento de clique no botão de salvar na tela sobreposta
     var saveButton = document.getElementById("save-button");
@@ -62,9 +64,8 @@
         // Obtenha a referência da imagem na página principal
         var mainProfileImage = window.opener.document.getElementById("preview");
 
-        // Atualize o atributo src da imagem principal com a nova imagem
-        mainProfileImage.src = overlayImage.src;
-
+        // Aplicar a rotação na imagem principal antes de fazer o upload
+        mainProfileImage.style.transform = "rotate(" + rotationAngle + "deg)";
     });
 
     // Evento de alteração no range de rotação
@@ -74,8 +75,8 @@
     // Função para atualizar a imagem na tela sobreposta com base no ângulo de rotação
     function updateOverlayImageRotation() {
         var range = document.getElementById("rotation-range");
-        var angle = range.value;
+        rotationAngle = range.value;
         var image = document.getElementById("overlay-image");
-        image.style.transform = "rotate(" + angle + "deg)";
+        image.style.transform = "rotate(" + rotationAngle + "deg)";
     }
 </script>
