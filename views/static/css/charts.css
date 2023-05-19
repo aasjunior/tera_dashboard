@@ -37,3 +37,22 @@
     transform: scale(1.1);
     transition: 0.5s ease;
 }
+
+[class^='panel_'] hgroup{
+    margin: 10px 0;
+}
+
+:is([class^='panel_']) .progress-bar, .progress{
+    height: 10px;
+    border-radius: 100px;
+}
+
+:is([class^='panel_']) .progress-bar{
+    background-color: var(--color-gray);
+    margin: 10px;
+}
+
+:is([class^='panel_']) .title, .subtitle{
+    text-align: left;
+    font-size: 14px !important;
+}

@@ -21,7 +21,6 @@
             plotOptions: {
                 pie: {
                     donut: {
-                        size: '80%',
                         labels: {
                             show: true,
                             name: {
@@ -44,7 +43,7 @@
                                 },
                             },
                         },
-                        size: '60%', // Define a largura das fatias como 70% do raio do gráfico
+                        size: '60px', // Define a largura das fatias como 70% do raio do gráfico
                         strokeWidth: 0,
                     },
                 },
@@ -53,5 +52,28 @@
 
         const chart = new ApexCharts(document.querySelector('#g-daily'), options);
         chart.render();
+
+        // Ajusta o tamanho do gráfico ao carregar a página e redimensionar a janela
+        function resizeChart() {
+            const graphElement = document.querySelector('#g-daily > .apexcharts-canvas');
+            const containerElement = document.querySelector('#g-daily');
+            const containerWidth = containerElement.offsetWidth;
+            const containerHeight = containerElement.offsetHeight;
+
+            // Ajusta o tamanho do gráfico
+            graphElement.style.width = containerWidth + 'px';
+            graphElement.style.height = containerHeight + 'px';
+
+            // Atualiza o gráfico
+            chart.updateOptions({
+                chart: {
+                    width: containerWidth,
+                    height: containerHeight,
+                },
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', resizeChart);
+        window.addEventListener('resize', resizeChart);
     </script>
 </section>
