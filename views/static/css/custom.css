@@ -127,7 +127,7 @@
 .dashboard{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 0.5fr);
+    grid-auto-rows: auto;
     grid-template-areas: 
         "daily-record daily-record welcome welcome welcome"
         "daily-record daily-record annual-record annual-record annual-record"
@@ -153,11 +153,25 @@
     grid-area: daily-record;
     padding: var(--dashboard-gap);
     padding-bottom: 0;
+    height: 350px;
+}
+
+:is(#g-daily) .apexcharts-canvas, .apexcharts-svg, foreignObject{
+    position: static;
+    max-width: 100%;
+    max-height: 100% !important;
+    min-height: 100% !important;
 }
 
 .graph{
-    width: 100%;
-    max-width: ;
+    position: relative;
+    max-width: 100%;
+    max-height: min-content;
+}
+
+.apexcharts-inner.apexcharts-graphical{
+    background-color: black;
+
 }
 
 #annual-record{
@@ -170,10 +184,11 @@
 
 #form-answers{
     grid-area: form-answers;
+    position: relative;
     color: var(--bg-primary);
 }
 
-#form-answers .title{
+:is(#form-answers, #patients-active) .title{
     font-weight: 700;
 }
 
@@ -192,6 +207,7 @@
 }
 
 #patients-active{
+    padding: 1rem;
     grid-area: patients-active;
 }
 
