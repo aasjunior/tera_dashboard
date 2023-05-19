@@ -8,40 +8,93 @@
             {{ welcome_card('User', 'dashboard') | safe }}
             {{ annual_record(50, 180, 20) | safe }}
             {{ monthly_record(50, 180, 20) | safe }}
-            <section id="form-answers" class="card">
-                <div class="row w-auto space-between">
-                    <h2 class="title">Respostas do Formulário</h2>
-                    <span class="formIcon icon"></span>
-                </div>
-                <div class="row w-auto space-evenly w-80">
-                    <div class="col center">
-                        <h2 class="subtitle">
-                            Responderam
-                        </h2>
-                        <p id="amountAnswers" class="amount">231</p>
+            <section class="single-cards">
+                <section id="form-answers" class="card">
+                    <div class="row w-auto space-between">
+                        <h2 class="title">Respostas do Formulário</h2>
+                        <span class="formIcon icon"></span>
                     </div>
-                    <div class="col center">
-                        <h2 class="subtitle">
-                            Sem Resposta
-                        </h2>
-                        <p id="no-reply" class="amount">29</p>
+                    <div class="row w-auto space-evenly w-80">
+                        <div class="col center">
+                            <h2 class="subtitle">
+                                Responderam
+                            </h2>
+                            <p id="amountAnswers" class="amount">231</p>
+                        </div>
+                        <div class="col center">
+                            <h2 class="subtitle">
+                                Sem Resposta
+                            </h2>
+                            <p id="no-reply" class="amount">29</p>
+                        </div>
                     </div>
-                </div>
+                </section>
+                <section id="patients-active" class="card">
+                    <div class="row w-100 space-between">
+                        <h2 class="title">Pacientes Ativos</h2>
+                        <span class="checkIcon icon"></span>
+                    </div>
+                    <div class="row w-auto w-80">
+                        <div class="col center">
+                            <p id="amountPatientsActive" class="amount">250</p>
+                            <p class="subtitle">nesta semana</p>
+                        </div>
+                    </div>
+                </section>
+                <section id="patients-new" class="card">
+                    <div class="row w-100 space-between">
+                        <h2 class="title">Pacientes Novos</h2>
+                        <span class="newUsersIcon icon"></span>
+                    </div>
+                    <div class="row w-auto w-80">
+                        <div class="col center">
+                            <p id="amountPatientsActive" class="amount">3</p>
+                            <p class="subtitle">nesta semana</p>
+                        </div>
+                    </div>
+                </section>
+                <section id="patients-crisis" class="card center">
+                    <div class="header center">
+                        <div class="row space-between">
+                            <h2 class="title">Pacientes em Crise</h2>
+                            <span class="cautionIcon icon"></span>
+                        </div>
+                        <div class="row w-100 space-between">
+                            <div class="col w-80 center">
+                                <p id="amountPatientsActive" class="amount">2</p>
+                                <p class="subtitle">hoje</p>
+                            </div>
+                            <button id="accordion">a</button>
+                        </div>
+                    </div>
+                    <div class="panel_resolvidas">
+                        <div class="row space-between">
+                            <hgroup>
+                                <h2 class="title">Crises resolvidas</h2>
+                                <h3 class="subtitle">nesta semana</h3>
+                            </hgroup>
+                            <p class="amount">3</p>
+                        </div>
+                        <div class="row">
+                            <p>65%</p>
+                            <input type="range" name="" id="">
+                        </div>
+                    </div>
+                    <div class="panel_pendentes">
+                        <div class="row space-between">
+                            <hgroup>
+                                <h2 class="title">Pendentes</h2>
+                                <h3 class="subtitle">pacientes ainda em crise</h3>
+                            </hgroup>
+                            <p class="amount">5</p>
+                        </div>
+                        <div class="row">
+                            <p>65%</p>
+                            <input type="range" name="" id="">
+                        </div>
+                    </div>
+                </section>
             </section>
-            <section id="patients-active" class="card">
-                <div class="row w-100 space-between">
-                    <h2 class="title">Pacientes Ativos</h2>
-                    <span class="checkIcon icon"></span>
-                </div>
-                <div class="row w-auto w-80">
-                    <div class="col center">
-                        <p id="amountPatientsActive" class="amount">250</p>
-                        <p class="subtitle">nesta semana</p>
-                    </div>
-                </div>
-            </section>
-            <section id="patients-crisis" class="card"></section>
-            <section id="patients-new" class="card"></section>
         </section>
     </main>
 </div>
