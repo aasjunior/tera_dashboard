@@ -1,7 +1,7 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
-    <main class="container w-auto">
+    <main class="w-auto">
         {{ header_title('Cadastro da clínica') | safe }}
         {{ welcome_card('User', False, 'Dados da clínica') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
@@ -11,50 +11,53 @@
                         <div class="">
                             <div id="" class="col">
                                 <label class="lbl-white fs-14" for=""> Login do usuário</label>
-                                <input id="" class="input_dark_blue" name="login-clinica">    
+                                <input id="" class="input_dark_blue" name="login-clinica" required>    
                             </div>
                             <div id="" class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Senha </label>
-                                <input class="input_dark_blue" type="text" name="senha-clinica">
+                                <div class="section-senha">
+                                    <input id="senha" class="senha lbl-green" type="password" name="senha-clinica" required>
+                                    <img id="olho" class="eye align-self" src="{{ url_for('static', filename='imgs/icons/eye-open.svg') }}" alt="Olho aberto">
+                                </div>
                             </div>
                         </div>
                     </form>
                 </aside>
 
-                <section class="section-form"> <!--Aqui o forms-->
+                <section class="section-form ml-20"> <!--Aqui o forms-->
                     <form action="" class="clinica-grid">
                         <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
                         <div id="nome-grid" class="col">
                             <label class="lbl-green" for=""> Razão social </label>
-                            <input class="input_blue" type="text" name="razao-social">
+                            <input class="input_blue" type="text" name="razao-social" required>
                         </div>
                         <div id="data-grid" class="col">
                             <label class="lbl-green" for=""> CNPJ </label>
-                            <input class="input_blue" type="text" name="cnpj">
+                            <input class="input_blue" type="text" name="cnpj" required>
                         </div>
                         <div id="cpf-grid" class="col">
                             <label class="lbl-green" for=""> Nome Fantasia </label>
-                            <input class="input_blue" type="text" name="nome-clinica">
+                            <input class="input_blue" type="text" name="nome-clinica" required>
                         </div>
                         <div id="rg-grid" class="col">
                             <label class="lbl-green" for=""> Telefone </label>
-                            <input class="input_blue" type="tel" name="tel-clinica">
+                            <input class="input_blue" type="tel" name="tel-clinica" required>
                         </div>
                         <div id="endereco-grid" class="col">
                             <label class="lbl-green" for=""> Endereço </label>
-                            <input class="input_blue" type="text" name="endereco-clinica">
+                            <input class="input_blue" type="text" name="endereco-clinica" required>
                         </div>
                         <div id="numero-grid" class="col">
                             <label class="lbl-green" for=""> Nº </label>
-                            <input class="input_blue" type="text" name="numero-endereco-clinica">
+                            <input class="input_blue" type="text" name="numero-endereco-clinica" required>
                         </div>
                         <div id="cep-grid" class="col">
                             <label class="lbl-green" for=""> CEP </label>
-                            <input class="input_blue" type="text" name="cep-clinica">
+                            <input class="input_blue" type="text" name="cep-clinica" required>
                         </div>
                         <div id="cidade-grid" class="col">
                             <label class="lbl-green" for=""> Cidade </label>
-                            <input class="input_blue" type="text" name="cidade-clinica">
+                            <input class="input_blue" type="text" name="cidade-clinica" required>
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
@@ -93,7 +96,7 @@
                 </section>
             </section>
             <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
-                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar" required>
             </section>
         </section>
         {{ progress_bar() | safe }}
