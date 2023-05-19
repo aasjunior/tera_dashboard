@@ -37,3 +37,11 @@
     transform: scale(1.1);
     transition: 0.5s ease;
 }
+
+[class^='panel_'] .progress-bar{
+    height: 10px;
+    border-radius: 100px;
+    background-color: var(--color-gray);
+    border: 1px solid #000;
+    margin: 10px;
+}
