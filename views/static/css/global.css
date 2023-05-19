@@ -269,6 +269,10 @@ a{
     color: var(--bg-primary);
 }
 
+.m-30{
+    margin-inline: 30px;
+}
+
 .mr-5{
     margin-right: 5px;
 }
@@ -287,6 +291,10 @@ a{
 
 .mr-30{
     margin-right: 30px;
+}
+
+.ml-5{
+    margin-left: 5px;
 }
 
 .ml-10{

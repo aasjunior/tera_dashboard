@@ -1,7 +1,7 @@
 <div class="col horizontal-center">
     <label class="align-self" for=""><img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil"></label>
-    <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem
-        <input class="" type="file" id="upload-picture" name="foto" accept="image/*" onchange="openOverlay(event)">
+    <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem 
+        <input class="" type="file" id="upload-picture" name="foto" accept="image/*" onchange="previewImage(event)">
     </label>
 </div>
 
@@ -12,6 +12,8 @@
         reader.onload = function() {
             var preview = document.getElementById("preview");
             preview.src = reader.result;
+
+            openOverlay(event); // Chamada movida para dentro do onload
         }
         reader.readAsDataURL(event.target.files[0]);
     }

@@ -1,7 +1,7 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
-    <main class="container w-auto">
+    <main class="w-auto">
         {{ header_title('Cadastro do monitor') | safe }}
         {{ welcome_card('User', False, 'Dados do monitor') | safe }} <!--Aqui é o titulo da etapa-->
         <section>
@@ -11,63 +11,66 @@
                         {{ upload_image(False) | safe }}
                         <div class="mt-30">
                             <div id="" class="col">
-                                <label class="lbl-white fs-14 mt-10" for=""> Login do usuário</label>
-                                <input id="" class="input_dark_blue" name="login-monitor">    
+                                <label class="lbl-white fs-14 mt-10" for=""> Login do usuário </label>
+                                <input id="" class="input_dark_blue lbl-green" name="login-monitor" type="text" required>
                             </div>
                             <div id="" class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Senha </label>
-                                <input class="input_dark_blue" type="text" name="senha-monitor">
+                                <div class="section-senha">
+                                    <input id="senha" class="senha lbl-green" type="password" name="senha-monitor" required>
+                                    <img id="olho" class="eye align-self" src="{{ url_for('static', filename='imgs/icons/eye-open.svg') }}" alt="Olho aberto">
+                                </div>
                             </div>
                         </div>
                     </form>
                 </aside>
 
-                <section class="section-form"> <!--Aqui o forms-->
+                <section class="section-form ml-20"> <!--Aqui o forms-->
                     <form action="" class="side-left-grid">
-                        <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                        <input type="hidden" id="id-paciente" required> <!--INPUT HIDDEN CODIGO PACIENTE-->
                         <div id="nome-grid" class="col">
                             <label class="lbl-green" for=""> Nome </label>
-                            <input class="input_blue" type="text" name="nome-monitor">
+                            <input class="input_blue" type="text" name="nome-monitor" required>
                         </div>
                         <div id="data-grid" class="col">
                             <label class="lbl-green" for=""> Data de nascimento </label>
-                            <input class="input_blue" type="date" name="data-nasc-monitor">
+                            <input class="input_blue" type="date" name="data-nasc-monitor" required>
                         </div>
                         <div id="cpf-grid" class="col">
                             <label class="lbl-green" for=""> CPF </label>
-                            <input class="input_blue" type="text" name="cpf-monitor">
+                            <input class="input_blue" type="text" name="cpf-monitor" required>
                         </div>
                         <div id="rg-grid" class="col">
                             <label class="lbl-green" for=""> RG </label>
-                            <input class="input_blue" type="text" name="rg-monitor">
+                            <input class="input_blue" type="text" name="rg-monitor" required>
                         </div>
                         <div id="cel-grid" class="col">
                             <label class="lbl-green" for=""> Celular </label>
-                            <input class="input_blue" type="tel" name="cel-monitor">
+                            <input class="input_blue" type="tel" name="cel-monitor" required>
                         </div>
                         <div id="email-grid" class="col">
                             <label class="lbl-green" for=""> Email </label>
-                            <input class="input_blue" type="email" name="email-monitor">
+                            <input class="input_blue" type="email" name="email-monitor" required>
                         </div>
                         <div id="endereco-grid" class="col">
                             <label class="lbl-green" for=""> Endereço </label>
-                            <input class="input_blue" type="text" name="endereco-monitor">
+                            <input class="input_blue" type="text" name="endereco-monitor" required>
                         </div>
                         <div id="numero-grid" class="col">
                             <label class="lbl-green" for=""> Nº </label>
-                            <input class="input_blue" type="text" name="numero-endereco-monitor">
+                            <input class="input_blue" type="text" name="numero-endereco-monitor" required>
                         </div>
                         <div id="cep-grid" class="col">
                             <label class="lbl-green" for=""> CEP </label>
-                            <input class="input_blue" type="text" name="cep-monitor">
+                            <input class="input_blue" type="text" name="cep-monitor" required>
                         </div>
                         <div id="cidade-grid" class="col">
                             <label class="lbl-green" for=""> Cidade </label>
-                            <input class="input_blue" type="text" name="cidade-monitor">
+                            <input class="input_blue" type="text" name="cidade-monitor" required>
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado-monitor">
+                            <select id="" class="input_blue" name="estado-monitor" required>
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>
@@ -103,7 +106,7 @@
             </section>
             <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
                 <a href="/dashboard" class="btn-font button btn-border-green mr-20">Voltar</a>
-                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar" required>
                 <a href="/" class="btn-font button btn-border-green mr-20">Próximo</a> <!--redirecionar para consulta de monitores cadastrados-->
             </section>
         </section>

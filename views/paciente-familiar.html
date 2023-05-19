@@ -1,7 +1,7 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
-    <main class="container w-auto">
+    <main class="w-auto">
         {{ header_title('Cadastro do Paciente') | safe }}
         {{ welcome_card('User', False, '3 - Dados do Familiar Responsável') | safe }} <!--Aqui é o titulo da etapa-->
         <section class="d-flex horizontal-center">
@@ -40,7 +40,7 @@
                             </div>
                         </form>
                     </aside>
-                    <section class="section-form"> <!--Aqui o forms-->
+                    <section class="section-form ml-20"> <!--Aqui o forms-->
                         <form action="" class="side-left-grid">
                             <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
                             <div id="nome-grid" class="col">
