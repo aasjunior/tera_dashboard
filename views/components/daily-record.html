@@ -1,6 +1,6 @@
 <section id="daily-record" class="card col">
     <h2 class="title">Registro Diário</h2>
-    <div id="g-daily" class="graph mt-30"></div>
+    <div id="g-daily" class="mt-30"></div>
     <input type="hidden" id="mal" value="{{ mal }}">
     <input type="hidden" id="bom" value="{{ bom }}">
     <input type="hidden" id="sem_resposta" value="{{ sem_resposta }}">
@@ -16,7 +16,6 @@
             colors: ['#023047', '#45C4B0', '#8195A8'],
             labels: ['Humor: Mal', 'Humor: Bom', 'Sem resposta'],
             legend: {
-                position: 'right',
             },
             plotOptions: {
                 pie: {
@@ -43,7 +42,7 @@
                                 },
                             },
                         },
-                        size: '60px', // Define a largura das fatias como 70% do raio do gráfico
+                        size: '60%', // Define a largura das fatias como 70% do raio do gráfico
                         strokeWidth: 0,
                     },
                 },
@@ -71,7 +70,13 @@
                     height: containerHeight,
                 },
             });
+
+            // Reorganiza a legenda responsiva
+            const legendContainer = document.querySelector('.legend-container');
+            legendContainer.style.width = containerWidth + 'px';
+            legendContainer.style.height = containerHeight + 'px';
         }
+
 
         window.addEventListener('DOMContentLoaded', resizeChart);
         window.addEventListener('resize', resizeChart);
