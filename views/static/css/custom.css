@@ -4,7 +4,8 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    min-height: 556px;
+    min-height: 100vh;
+    max-height: 100vh;
     padding: 24px;
     background-color: var(--sidebar-bg);
     color: var(--sidebar-item);
@@ -28,10 +29,10 @@
 }
 
 :is(.sidebar-expand, .sidebar-collapse) {
-    width: 28px;
-    min-width: 28px;
-    height: 28px;
-    min-height: 28px;
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
     border: 1px solid var(--sidebar-item);
     border-radius: 8px;
     background-color: var(--sidebar-bg);
@@ -93,13 +94,13 @@
 .sidebar-line {
     width: 100%;
     height: 1px;
-    margin: 24px 0;
+    margin: 18px 0;
     border: 1px solid var(--sidebar-item);
 }
 
 #sidebar-collapsed .sidebar-link {
-    height: 44px;
-    width: 44px;
+    height: 35px;
+    width: 35px;
     padding: 0;
     justify-self: center;
     align-self: center;
@@ -116,7 +117,7 @@
 }
 
 .sidebar-link {
-    padding: 10px 12px;
+    height: 35px;
     border-radius: 4px;
 }
 

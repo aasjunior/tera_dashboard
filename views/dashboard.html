@@ -1,9 +1,9 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
-    <main class="container w-100">
+    <main class="w-100">
         {{ header_title('Dashboard Overview') | safe }}
-        <section class="dashboard">
+        <section class="dashboard m-30 mb-30">
             {{ daily_record(50, 180, 20) | safe }}
             {{ welcome_card('User', 'dashboard') | safe }}
             {{ annual_record(50, 180, 20) | safe }}
