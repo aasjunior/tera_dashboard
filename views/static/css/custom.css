@@ -217,6 +217,12 @@
 
 #patients-crisis {
     grid-area: patients-crisis;
+    height: 200px;
+}
+
+.accordion-content{
+    overflow: hidden; 
+    transition: max-height 0.3s ease-in-out;
 }
 
 #patients-active {

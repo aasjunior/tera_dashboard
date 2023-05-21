@@ -133,6 +133,11 @@ body{
     background-image: url(../imgs/icons/newUsersIcon.svg);
 }
 
+.arrowIcon{
+    background-image: url(../imgs/icons/arrowIcon.svg);
+    background-repeat: no-repeat;
+}
+
 .dashboard .icon{
     width: 50px;
     height: 50px;
@@ -217,7 +222,7 @@ body{
 }
 
 .border{
-    border: 1px solid var(--sidebar-item-light);
+    border: 2px solid #000;
 }
 
 a{
@@ -392,4 +397,20 @@ a{
 
 .w-80{
     width: 80%;
+}
+
+.h-100{
+    height: 100% !important;
+}
+
+.relative{
+    position: relative;
+}
+
+.deg-90{
+    transform: rotate(-90deg);
+}
+
+.deg-180{
+    transform: rotate(-180deg);
 }
