@@ -1,0 +1,22 @@
+{% include 'blades/header.html' %}
+<div class="wrapper row">
+    {{ sidebar('User', 'user.png') | safe }}
+    <main class="container w-auto">
+        {{ header_title('Visualização Individual do Paciente') | safe }}
+        <section class="card-principal row">
+            <article>
+                <div>
+                    <div class="off-3-dias p-5">
+                        <div class="bolinha-verm"></div>
+                        <p>Offline há 3 dia(s)</p>
+                    </div>
+                    <div class="borda-verm">
+                        <img class="foto-paciente-risco" src="{{ url_for('static', filename='imgs/figures/imagem-padrao.jpg') }}" alt="Foto paciente">
+                    </div>
+                    <h3>Junior Alves Silva</h3>
+                </div>
+            </article>
+        </section>
+    </main>
+</div>
+{% include 'blades/footer.html' %}

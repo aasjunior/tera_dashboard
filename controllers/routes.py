@@ -105,3 +105,6 @@ def init_app(app):
     def static_files(filename):
         return send_from_directory("static", filename)
     
+    @app.route("/paciente")
+    def paciente():
+        return render_template("paciente.html")

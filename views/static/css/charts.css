@@ -3,10 +3,14 @@
     flex-wrap: nowrap;
     width: 348px;
 }
+#daily-record{
+    overflow: hidden;
+}
 #g-daily {
     position: relative;
     padding: 0;
     margin: auto 0;
+    overflow: hidden;
 }
 
 #g-daily .apexcharts-svg {
@@ -26,6 +30,7 @@
 
 #g-daily foreignObject {
     width: 100% !important;
+    height: 100% !important;
 }
 
 #g-daily .apexcharts-pie {
