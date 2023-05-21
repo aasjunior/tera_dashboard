@@ -6,6 +6,15 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+  var dashboard = document.querySelector('.dashboard');
+  var dashboardWidth = dashboard.offsetWidth;
+
+  if (dashboardWidth <= 930) {
+    dashboard.classList.add('responsive');
+  } else {
+    dashboard.classList.remove('responsive');
+  }
+  
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // SIDEBAR
   const btnSidebarCollapse = document.querySelector(".sidebar-collapse") ?? null;
@@ -139,3 +148,13 @@ $(document).ready(function() {
   });
 });
 
+window.addEventListener('resize', function() {
+  var dashboard = document.querySelector('.dashboard');
+  var dashboardWidth = dashboard.offsetWidth;
+
+  if (dashboardWidth <= 930) {
+    dashboard.classList.add('responsive');
+  } else {
+    dashboard.classList.remove('responsive');
+  }
+});

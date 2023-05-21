@@ -178,6 +178,7 @@
 }
 
 #daily-record {
+    position: relative;
     height: 340px;
     grid-area: daily-record;
     padding: var(--dashboard-gap);

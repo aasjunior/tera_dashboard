@@ -15,8 +15,7 @@
             series: [44, 55, 41],
             colors: ['#023047', '#45C4B0', '#8195A8'],
             labels: ['Humor: Mal', 'Humor: Bom', 'Sem resposta'],
-            legend: {
-            },
+            legend: {},
             plotOptions: {
                 pie: {
                     donut: {
@@ -42,7 +41,7 @@
                                 },
                             },
                         },
-                        size: '60%', // Define a largura das fatias como 70% do raio do gráfico
+                        size: '60%',
                         strokeWidth: 0,
                     },
                 },
@@ -52,31 +51,15 @@
         const chart = new ApexCharts(document.querySelector('#g-daily'), options);
         chart.render();
 
-        // Ajusta o tamanho do gráfico ao carregar a página e redimensionar a janela
         function resizeChart() {
-            const graphElement = document.querySelector('#g-daily > .apexcharts-canvas');
-            const containerElement = document.querySelector('#g-daily');
-            const containerWidth = containerElement.offsetWidth;
-            const containerHeight = containerElement.offsetHeight;
-
-            // Ajusta o tamanho do gráfico
-            graphElement.style.width = containerWidth + 'px';
-            graphElement.style.height = containerHeight + 'px';
-
-            // Atualiza o gráfico
             chart.updateOptions({
                 chart: {
-                    width: containerWidth,
-                    height: containerHeight,
+                    width: '100%',
+                    height: '100%',
                 },
             });
-
-            // Reorganiza a legenda responsiva
-            const legendContainer = document.querySelector('.legend-container');
-            legendContainer.style.width = containerWidth + 'px';
-            legendContainer.style.height = containerHeight + 'px';
+            chart.render();
         }
-
 
         window.addEventListener('DOMContentLoaded', resizeChart);
         window.addEventListener('resize', resizeChart);

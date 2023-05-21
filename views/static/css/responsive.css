@@ -1,0 +1,14 @@
+.dashboard.responsive {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "welcome welcome"
+      "daily-record daily-record"
+      "single-cards single-cards"
+      "annual-record annual-record"
+      "monthly-record monthly-record";
+}
+
+:is(.dashboard.responsive) .single-cards{
+    position: relative;
+    margin: 0;
+}
