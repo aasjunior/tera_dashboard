@@ -103,8 +103,6 @@ function updateProgressBar(progressBar) {
       progress = 66.66;
   } else if (currentPage === 'paciente-familiar') {
       progress = 100;
-  } else {
-      progress = 100;
   }
 
   progressBar.style.width = `${progress}%`;
