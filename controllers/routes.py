@@ -107,4 +107,9 @@ def init_app(app):
     
     @app.route("/paciente")
     def paciente():
-        return render_template("paciente.html")
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'header_title' : render_header_title,
+        }
+        return render_template("paciente.html", **components)

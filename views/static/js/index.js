@@ -6,13 +6,13 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  var dashboard = document.querySelector('.dashboard');
-  var dashboardWidth = dashboard.offsetWidth;
+  
+  if(document.querySelector('.dashboard')){
+    resizeDashboard();
 
-  if (dashboardWidth <= 930) {
-    dashboard.classList.add('responsive');
-  } else {
-    dashboard.classList.remove('responsive');
+    window.addEventListener('resize', function() {
+      resizeDashboard();
+    });
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,13 +148,13 @@ $(document).ready(function() {
   });
 });
 
-window.addEventListener('resize', function() {
-  var dashboard = document.querySelector('.dashboard');
-  var dashboardWidth = dashboard.offsetWidth;
+function resizeDashboard(){
+  let dashboard = document.querySelector('.dashboard') ?? null;
+  let dashboardWidth = dashboard.offsetWidth ?? null;
 
-  if (dashboardWidth <= 930) {
+  if(dashboardWidth <= 930){
     dashboard.classList.add('responsive');
-  } else {
+  }else{
     dashboard.classList.remove('responsive');
   }
-});
+}

@@ -285,3 +285,92 @@
 .hr-none{
     margin: 0px;
 }
+
+/*/paciente*/
+.patient-card_main{
+    background-color: var(--color-light-blue);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    color: var(--bg-primary);
+}
+
+.patient-card_data{
+    background-color: var(--color-white);
+    width: 75%;
+    border-radius: 20px;
+    padding: var(--padding-container);
+}
+
+.patient-card_article{
+    width: 250px;
+}
+
+.patient_hgroup{
+    padding: 0;
+    width: 80%;
+    margin-top: 10px;
+    color: var(--color-green);
+}
+
+.patient-card_main .vertical-line{
+    background: var(--color-green);
+    width: 1px;
+    border: 1px solid var(--color-green);
+    height: 15px;
+    align-self: center;
+}
+
+.patient-card_main .horizontal-line{
+    background: var(--color-green);
+    width: 100%;
+    min-width: 220px;
+    border: 1px solid rgba(113, 221, 177, 0.4);
+    height: 0px;
+    align-self: center;
+}
+
+.patient-card_main table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 30px;
+    align-self: center;
+  }
+
+:is(.patient-card_main)  th, td {
+    text-align: center;
+  }
+
+:is(.patient-card_main)  td{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-green);
+    padding-top: 10px;
+  }
+
+:is(.patient-card_main) td:not(:last-child), th:not(:last-child) {
+    border-right: 1px solid var(--color-green);
+    padding-right: 15px;
+  }
+
+:is(.patient-card_main) td:not(:first-child), th:not(:first-child) {
+    padding-left: 15px;
+  }
+
+:is(.patient-card_data) .title{
+    font-size: 15px;
+    color: var(--bg-primary);
+    font-weight: 700;
+}
+
+:is(.patient-card_data) .subtitle{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#dt_admissao, #dt_alta{
+    color: var(--color-green);
+}
+
+.agenda{
+    color: var(--color-white);
+}
