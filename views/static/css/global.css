@@ -70,7 +70,6 @@ body{
     color: var(--color-white);
 }
 
-
 /*figures*/
 .meditateFig{
     position: relative;
@@ -136,6 +135,20 @@ body{
 .arrowIcon{
     background-image: url(../imgs/icons/arrowIcon.svg);
     background-repeat: no-repeat;
+}
+
+.bellIcon{
+    background-image: url(../imgs/icons/bellIcon.svg);
+}
+
+.agenda .bellIcon{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(113, 221, 177, 0.11);
+    border-radius: 8px;
 }
 
 .dashboard .icon{
@@ -358,6 +371,10 @@ a{
     align-self: flex-start;
 }
 
+.fw-300{
+    font-weight: 300;
+}
+
 .fs-normal{
     font-weight: normal;
 }
@@ -386,6 +403,10 @@ a{
     padding: 5px;
 }
 
+.p-10{
+    padding: 10px;
+}
+
 .w-auto{
     flex-grow: 1;
     flex-shrink: 0;
@@ -401,6 +422,10 @@ a{
 
 .h-100{
     height: 100% !important;
+}
+
+.h-60{
+    height: 60% !important;
 }
 
 .relative{

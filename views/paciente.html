@@ -1,21 +1,82 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
     {{ sidebar('User', 'user.png') | safe }}
-    <main class="container w-auto">
+    <main class="w-100">
         {{ header_title('Visualização Individual do Paciente') | safe }}
-        <section class="card-principal row">
-            <article>
-                <div>
-                    <div class="off-3-dias p-5">
-                        <div class="bolinha-verm"></div>
-                        <p>Offline há 3 dia(s)</p>
+        <section class="patient-card_main row m-30 mb-30">
+            <div class="patient-card_data row space-between">
+                <article class="patient-card_article col vertical-center">
+                    <div class="col vertical-center">
+                        <div class="off-3-dias p-5 w-80">
+                            <div class="bolinha-verm"></div>
+                            <p>Offline há 3 dia(s)</p>
+                        </div>
+                        <div class="borda-verm">
+                            <img class="foto-paciente-risco" src="{{ url_for('static', filename='imgs/figures/imagem-padrao.jpg') }}" alt="Foto paciente">
+                        </div>
+                        <h3>Junior Alves Silva</h3>
+                        <hgroup class="patient_hgroup row vertical-center space-between">
+                            <h4 class="fs-12 fs-normal">25 anos</h4>
+                            <hr class="vertical-line">
+                            <h4 class="fs-12 fs-normal"><i class="fas fa-map-marker-alt"></i> Registro, SP</h4>
+                        </hgroup>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sangue</th>
+                                    <th>Altura</th>
+                                    <th>Peso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>O+</td>
+                                    <td>186cm</td>
+                                    <td>90kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="borda-verm">
-                        <img class="foto-paciente-risco" src="{{ url_for('static', filename='imgs/figures/imagem-padrao.jpg') }}" alt="Foto paciente">
+                </article>
+                <hr class="vertical-line h-60 m-30">
+                <div class="col p-10">
+                    <div class="row vertical-end fs-12">
+                        <p class="mr-30">Admissão: <data id="dt_admissao">22/05/2022</data></p>
+                        <p>Alta: <data id="dt_alta">12/09/2022</data></p>
                     </div>
-                    <h3>Junior Alves Silva</h3>
+                    <div class="col mt-30">
+                        <h2 class="title">Diagnóstico:</h2>
+                        <p class="subtitle">Lorem ipsum dolor sit.</p>
+                    </div>
+                    <div class="col mt-30">
+                        <h2 class="title">Descrição do Laudo:</h2>
+                        <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, nostrum.</p>
+                    </div>
+                    <div class="col mt-30">
+                        <h2 class="title">Observações do Paciente:</h2>
+                        <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere illum quod similique.</p>
+                    </div>
                 </div>
-            </article>
+            </div>
+            <div class="agenda col vertical-center w-auto">
+                <div class="col">
+                    <div class="col mt-30">
+                        <h2 class="title fs-16 bold">Conversas Agendadas</h2>
+                        <div class="row mt-20 fs-12">
+                            <span class="bellIcon"></span>
+                            <p>14 de Março <br> Prevenção de recaída <br> <time class="fs-10 fw-300">09:20AM - 11:30</time></p>
+                        </div>
+                    </div>
+                    <hr class="horizontal-line w-100 mt-20">
+                    <div class="col mt-20">
+                        <h2 class="title fs-14 bold">Histórico</h2>
+                        <div class="row mt-20 fs-12">
+                            <span class="bellIcon"></span>
+                            <p>14 de Março <br> Prevenção de recaída <br> <time class="fs-10 fw-300">09:20AM - 11:30</time></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 </div>
