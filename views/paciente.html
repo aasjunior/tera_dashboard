@@ -3,7 +3,7 @@
     {{ sidebar('User', 'user.png') | safe }}
     <main class="w-100">
         {{ header_title('Visualização Individual do Paciente') | safe }}
-        <section class="patient-card_main row m-30 mb-30">
+        <section class="patient-card_main row m-30 mb-20">
             <div class="patient-card_data row space-between">
                 <article class="patient-card_article col vertical-center">
                     <div class="col vertical-center">
@@ -21,7 +21,7 @@
                             <h4 class="fs-12 fs-normal"><i class="fas fa-map-marker-alt"></i> Registro, SP</h4>
                         </hgroup>
                         <table>
-                            <thead>
+                            <thead class="fs-12">
                                 <tr>
                                     <th>Sangue</th>
                                     <th>Altura</th>
@@ -78,6 +78,90 @@
                 </div>
             </div>
         </section>
+        <section class="patient-card_dash mx-20 mb-30">
+            <div class="row">
+                <div class="row">
+                    <div class="col">
+                        <div class="card col horizontal-center">
+                            <div class="row space-between">
+                                <span class="feetIcon icon mr-10"></span>
+                                <p><span class="fs-20 bold">200<em>/3000</em></span><br>Passos percorridos hoje</p>
+                            </div>
+                        </div>
+                        <div class="card col horizontal-center">
+                            <div class="row space-between">
+                                <span class="heartIcon icon mr-10"></span>
+                                <p><span class="fs-20 bold">87<em> bpms</em></span><br>Média cardíaca de hoje</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card col horizontal-center">
+                            <div class="row space-between">
+                                <span class="calIcon icon mr-10"></span>
+                                <p><span class="fs-20 bold">408<em> kcal</em></span><br>Calorias queimadas hoje</p>
+                            </div>
+                        </div>
+                        <div class="card col space-between">
+                            <h2 class="title">Relatório</h2>
+                            <div class="row vertical-center">
+                                <div id="peso-chart" class="mr-20"></div>
+                                <p>Perda de peso<br><span class="fs-12 fw-300 color-green">10% a menos</span></p>
+                            </div>
+                            <div class="row vertical-center">
+                                <div id="health-chart" class="mr-20"></div>
+                                <p>Saúde em geral<br><span class="fs-12 fw-300 color-blue">78% qualidade</span></p>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+        </section>
     </main>
 </div>
+<script>
+    var peso_options = {
+          series: [90],
+          chart: {
+          height: 100,
+          type: 'radialBar',
+        },
+          colors: ['#2E9585'],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: '40%',
+            },
+            dataLabels: {
+                show: false,
+            },
+          },
+        }
+    };
+    var health_options = {
+          series: [78],
+          chart: {
+          height: 100,
+          type: 'radialBar',
+        },
+          colors: ['#3FBDF1'],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: '40%',
+            },
+            dataLabels: {
+                show: false,
+            },
+          },
+        }
+    };
+
+    var peso_chart = new ApexCharts(document.querySelector("#peso-chart"), peso_options);
+    peso_chart.render();
+    var health_chart = new ApexCharts(document.querySelector("#health-chart"), health_options);
+    health_chart.render();
+</script>
 {% include 'blades/footer.html' %}

@@ -7,11 +7,16 @@
     --color-black: #000000;
     --color-gray: #CED5DC;
     --color-green: #71DDB1;
+    --color-blue: #3FBDF1;
     --color-light-blue: rgba(255, 255, 255, 0.1);
     --color-red: #DD0000;
 
     --color-teal: #358385;
     --color-dark-teal: #284F63;
+    --color-sea-green: #2E9585;
+    --color-steel-blue: #30586e;
+    --color-light-steel-blue: #93B0C8;
+    --color-cadet-blue: #6C95A0;
 
     --sidebar-bg: #161A23;
     --sidebar-item:  rgba(255, 255, 255, 0.5);
@@ -49,6 +54,10 @@ body{
     font-style: normal;
     font-weight: 500;
     background-color: var(--bg-primary);
+}
+
+em{
+    font-style: normal;
 }
 
 .header{
@@ -141,6 +150,18 @@ body{
     background-image: url(../imgs/icons/bellIcon.svg);
 }
 
+.feetIcon{
+    background-image: url(../imgs/icons/feetIcon.svg);
+}
+
+.calIcon{
+    background-image: url(../imgs/icons/calIcon.svg);
+}
+
+.heartIcon{
+    background-image: url(../imgs/icons/heartIcon.svg);
+}
+
 .agenda .bellIcon{
     width: 35px;
     height: 35px;
@@ -175,6 +196,28 @@ body{
 .dashboard .cautionIcon{
     background-color: var(--color-dark-teal);
 }
+
+.patient-card_dash .icon{
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px 25px;
+    border-radius: 50%;
+}
+
+.patient-card_dash .feetIcon{
+    background-color: var(--color-sea-green);
+}
+
+.patient-card_dash .heartIcon{
+    background-color: var(--color-cadet-blue);
+}
+
+.patient-card_dash .calIcon{
+    background-color: var(--color-teal);
+}
+
 
 /*Classes Globais*/
 .d-none{
@@ -335,6 +378,9 @@ a{
     margin-top: 30px;
 }
 
+.mb-20{
+    margin-bottom: 20px;
+}
 .mb-30{
     margin-bottom: 30px;
 }
@@ -395,6 +441,20 @@ a{
     padding-inline: 20px;
 }
 
+.px-20{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.m-auto{
+    margin: auto;
+}
+
+.mx-20{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .bold{
     font-weight: bold;
 }
@@ -438,4 +498,12 @@ a{
 
 .deg-180{
     transform: rotate(-180deg);
+}
+
+.color-green{
+    color: var(--color-green);
+}
+
+.color-blue{
+    color: var(--color-blue);
 }
