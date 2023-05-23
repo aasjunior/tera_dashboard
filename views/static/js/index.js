@@ -100,8 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// TESTE PROGRESS BAR
-
+//PROGRESS BAR
 function updateProgressBar(progressBar) {
   const currentPage = window.location.pathname.split('/').pop();
   let progress;
@@ -138,13 +137,16 @@ $(document).ready(function() {
   olho.click(function() {
     if (senha.attr("type") === "password") {
       senha.attr("type", "text");
+      olho.attr("src", "static/imgs/icons/eye-closed.svg");
     } else {
       senha.attr("type", "password");
+      olho.attr("src", "static/imgs/icons/eye-open.svg");
     }
   });
 
   olho.mouseleave(function() {
     senha.attr("type", "password");
+    olho.attr("src", "static/imgs/icons/eye-open.svg");
   });
 });
 
