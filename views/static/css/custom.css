@@ -374,3 +374,27 @@
 .agenda{
     color: var(--color-white);
 }
+
+.patient-card_dash .card{
+    width: 250px;
+    min-height: 125px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: var(--color-light-blue);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-white);
+}
+
+.patient-card_dash em{
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--color-light-steel-blue);
+}
+
+.patient-card_dash .title{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-white);
+}
