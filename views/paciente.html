@@ -115,8 +115,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col"></div>
-                <div class="col"></div>
+                <div class="col">
+                    <div class="card vertical-center">
+                        <div class="row space-between vertical-center">
+                            <div id="sono_chart"></div>
+                            <p class="fs-16 bold">Horas de sono<br><span class="fs-14 fs-normal">5 horas e 33 min</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card vertical-center">
+                        <div class="col center">
+                            <h2 class="title">Relatório de Humor Mensal</h2>
+                            <div class="progress-bar">
+                                <div class="progress" style="width:72%;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -158,6 +175,58 @@
           },
         }
     };
+
+    var sono_options = {
+          series: [76],
+          chart: {
+          type: 'radialBar',
+          offsetY: 0,
+          sparkline: {
+            enabled: true
+          }
+        },
+        colors: ['#2E9585'],
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 135,
+            hollow: {
+                size: '40%',
+            },
+            track: {
+              background: "#6C95A0",
+              strokeWidth: '97%',
+            //   margin: 5, // margin is in pixels
+              dropShadow: {
+                enabled: false,
+                top: 2,
+                left: 0,
+                color: '#999',
+                opacity: 1,
+                blur: 2
+              }
+            },
+            dataLabels: {
+              name: {
+                show: false,
+              },
+              value: {
+                offsetY: -2,
+                fontSize: 0
+              }
+            }
+          }
+        },
+        grid: {
+          padding: {
+            top: -10
+          }
+        },
+        labels: [''],
+        };
+
+        var sono_chart = new ApexCharts(document.querySelector("#sono_chart"), sono_options);
+        sono_chart.render();
 
     var peso_chart = new ApexCharts(document.querySelector("#peso-chart"), peso_options);
     peso_chart.render();

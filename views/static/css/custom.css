@@ -378,8 +378,8 @@
 }
 
 .patient-card_dash .card{
-    width: 250px;
     min-height: 125px;
+    max-width: 320px;
     margin-bottom: 20px;
     margin-right: 20px;
     background-color: var(--color-light-blue);
