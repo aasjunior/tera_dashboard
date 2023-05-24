@@ -165,10 +165,18 @@
     opacity: 0.5;
   }
 
-:is(#peso-chart, #health-chart) foreignObject {
+:is(#peso-chart, #health-chart, #sono_chart) foreignObject {
     display: none !important;
 }
 
 :is(#peso-chart, #health-chart) svg {
     width: 50px !important;
+}
+
+:is(#sono-chart) svg {
+    width: 100px !important;
+}
+
+:is(#sono-chart) div, svg, g, path{
+    max-width: 140px !important;
 }
