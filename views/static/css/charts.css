@@ -177,6 +177,6 @@
     width: 100px !important;
 }
 
-:is(#sono-chart) div, svg, g, path{
+:is(#sono-chart) div svg g path{
     max-width: 140px !important;
 }
