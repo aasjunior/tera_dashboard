@@ -78,7 +78,7 @@
                 </div>
             </div>
         </section>
-        <section class="patient-card_dash mx-20 mb-30">
+        <section class="patient-card_dash mx-30 mb-30">
             <div class="row">
                 <div class="row">
                     <div class="col">
@@ -88,7 +88,7 @@
                                 <p><span class="fs-20 bold">200<em>/3000</em></span><br>Passos percorridos hoje</p>
                             </div>
                         </div>
-                        <div class="card col">
+                        <div class="card col horizontal-center">
                             <div class="row">
                                 <span class="heartIcon icon mr-10"></span>
                                 <p><span class="fs-20 bold">87<em> bpms</em></span><br>Média cardíaca de hoje</p>
@@ -116,22 +116,39 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card vertical-center">
-                        <div class="row space-between vertical-center">
+                    <div class="card vertical-center w-340">
+                        <div class="row space-evenly vertical-center">
                             <div id="sono_chart"></div>
-                            <p class="fs-16 bold">Horas de sono<br><span class="fs-14 fs-normal">5 horas e 33 min</span></p>
+                            <p class="fs-18 bold">Horas de sono<br><span class="fs-14 fs-normal">5 horas e 33 min</span></p>
+                        </div>
+                    </div>
+                    <div class="card vertical-center w-340">
+                        <div class="col center">
+                            <h2 class="title mb-20">Relatório de Humor Mensal</h2>
+                            <div class="progress-bar w-80">
+                                <div class="progress-bar_labels w-100 row space-between fs-18">
+                                    <span>28%</span>
+                                    <span class="color-primary">72%</span>
+                                </div>
+                                <div class="progress" style="width:72%;"></div>
+                            </div>
+                            <div class="row space-between p-5 w-80 fs-16">
+                                <h4 class="fs-normal">Bem</h4>
+                                <h4 class="fs-normal">Mal</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card vertical-center">
-                        <div class="col center">
-                            <h2 class="title">Relatório de Humor Mensal</h2>
-                            <div class="progress-bar">
-                                <div class="progress" style="width:72%;"></div>
+                    <div class="card w-340 center">
+                        <div class="col vertical-center px-20">
+                            <h2 class="title mb-20 text-rgt">Lembretes de Medicações</h2>
+                            <div class="row vertical-center space-between w-250">
+                                <span class="lembrete-hr col center">11h</span>
+                                <p class="text-left fs-14"><span class="fs-bold">Fluoxetina</span><br>1 comprimido</p>
                             </div>
+                            
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -145,9 +162,12 @@
           height: 100,
           type: 'radialBar',
         },
-          colors: ['#2E9585'],
+          colors: ['#71DDB1'],
         plotOptions: {
           radialBar: {
+            track: {
+              background: "#6C95A0",
+            },
             hollow: {
               size: '40%',
             },
@@ -166,6 +186,9 @@
           colors: ['#3FBDF1'],
         plotOptions: {
           radialBar: {
+            track: {
+              background: "#6C95A0",
+            },
             hollow: {
               size: '40%',
             },
@@ -181,37 +204,29 @@
           chart: {
           type: 'radialBar',
           offsetY: 0,
-          sparkline: {
-            enabled: true
-          }
+          width: "150px",
+          height: "180px",
         },
-        colors: ['#2E9585'],
+        colors: ['#71DDB1'],
         plotOptions: {
           radialBar: {
             startAngle: -135,
             endAngle: 135,
             hollow: {
-                size: '40%',
+                size: '50%',
             },
             track: {
               background: "#6C95A0",
-              strokeWidth: '97%',
+              strokeWidth: '87%',
             //   margin: 5, // margin is in pixels
-              dropShadow: {
-                enabled: false,
-                top: 2,
-                left: 0,
-                color: '#999',
-                opacity: 1,
-                blur: 2
-              }
+              
             },
             dataLabels: {
               name: {
                 show: false,
               },
               value: {
-                offsetY: -2,
+                offsetY: 0,
                 fontSize: 0
               }
             }

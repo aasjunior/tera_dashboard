@@ -173,10 +173,17 @@
     width: 50px !important;
 }
 
-:is(#sono-chart) svg {
+#sono-chart svg {
     width: 100px !important;
 }
 
-:is(#sono-chart) div svg g path{
-    max-width: 140px !important;
+#sono-chart div,
+#sono-chart .sapexcharts-svg,
+#sono-chart g,
+#sono-chart path{
+    max-width: 100px !important;
+}
+
+#sono-chart .apexcharts-inner.apexcharts-graphical{
+    transform: translate(0, -10) !important;
 }
