@@ -113,3 +113,21 @@ def init_app(app):
             'header_title' : render_header_title,
         }
         return render_template("paciente.html", **components)
+    
+    @app.route("/consulta-pacientes")
+    def consulta_pacientes():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'header_title' : render_header_title,
+        }
+        return render_template("consulta-pacientes.html", **components)
+    
+    @app.route("/consulta-monitores")
+    def consulta_monitores():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'header_title' : render_header_title,
+        }
+        return render_template("consulta-monitores.html", **components)

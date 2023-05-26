@@ -1,11 +1,58 @@
+<style>
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .overlay-content {
+        background-color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .overlay-image {
+        max-width: 500px;
+        max-height: 500px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        border: 3px solid red;
+        height: 200px;
+        width: 200px;
+    }
+</style>
+
 <div class="col horizontal-center">
     <label class="align-self" for=""><img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil"></label>
     <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem 
-        <input class="" type="file" id="upload-picture" name="foto" accept="image/*" onchange="previewImage(event)">
+        <input class="" type="file" id="upload-picture" name="foto" accept="image/*">
     </label>
 </div>
 
+<div class="overlay" id="imageOverlay">
+    <div class="overlay-content col">
+        <img id="modalImage" class="overlay-image" src="" alt="Imagem">
+        <input type="range" id="rotationRange" min="0" max="360" step="1" onchange="rotateImage()">
+        <button onclick="saveImage()">Salvar</button>
+    </div>
+</div>
+
 <script>
+    // Selecionar o elemento de input de arquivo
+    var inputElement = document.getElementById("upload-picture");
+    
+    // Adicionar um evento de mudança ao elemento de input de arquivo
+    inputElement.addEventListener("change", function(event) {
+        previewImage(event);
+    });
+
     // Função para exibir a prévia da imagem antes de fazer o upload
     function previewImage(event) {
         var reader = new FileReader();
@@ -13,16 +60,46 @@
             var preview = document.getElementById("preview");
             preview.src = reader.result;
 
-            openOverlay(event); // Chamada movida para dentro do onload
+            openOverlay();
         }
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    // Função para abrir a tela sobreposta em uma nova janela
-    function openOverlay(event) {
-        event.preventDefault();
-        var image = document.getElementById("preview").src;
-        var url = "overlay.html?image=" + encodeURIComponent(image);
-        window.open(url, "overlayWindow", "width=400,height=400");
+    // Função para abrir o overlay com a imagem e o controle de rotação
+    function openOverlay() {
+        var overlay = document.getElementById("imageOverlay");
+        overlay.style.display = "flex";
+        
+        var image = document.getElementById("preview");
+        var modalImage = document.getElementById("modalImage");
+        modalImage.src = image.src;
     }
+
+    // Função para fechar o overlay
+    function closeOverlay() {
+        var overlay = document.getElementById("imageOverlay");
+        overlay.style.display = "none";
+    }
+
+    // Função para rotacionar a imagem com base no valor do controle de rotação
+    function rotateImage() {
+        var rotationRange = document.getElementById("rotationRange");
+        var modalImage = document.getElementById("modalImage");
+        modalImage.style.transform = "rotate(" + rotationRange.value + "deg)";
+    }
+
+    // Função para salvar e atualizar a imagem na tela principal
+    function saveImage() {
+    var modalImage = document.getElementById("modalImage");
+    var preview = document.getElementById("preview");
+
+    // Obter o valor da rotação selecionada
+    var rotationRange = document.getElementById("rotationRange").value;
+
+    // Aplicar a rotação à imagem na tela principal
+    preview.style.transform = "rotate(" + rotationRange + "deg)";
+
+    closeOverlay();
+}
+
 </script>
