@@ -1,0 +1,14 @@
+{% include 'blades/header.html' %}
+<div class="wrapper row">
+    {{ sidebar('User', 'user.png') | safe }}
+    <main class="w-auto">
+        {{ header_title('Pacientes') | safe }}
+        {{ welcome_card('User', False, 'Cosultar e Adicionar Pacientes') | safe }} <!--Aqui é o titulo da etapa-->
+        <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
+            <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
+            <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
+            <a href="/dashboard" class="btn-font button btn-border-green mr-20">Próximo</a>
+        </section>
+    </main>
+</div>
+{% include 'blades/footer.html' %}
