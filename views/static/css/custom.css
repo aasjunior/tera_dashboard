@@ -316,7 +316,7 @@
 
 .patient-card_main .vertical-line{
     background: var(--color-medium-turquoise);
-    width: 1px;
+    width: 0px;
     border: 1px solid rgba(69, 196, 176, 0.5);
     height: 15px;
     align-self: center;
