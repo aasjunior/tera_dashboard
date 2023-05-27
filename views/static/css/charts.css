@@ -173,17 +173,12 @@
     width: 50px !important;
 }
 
-#sono-chart svg {
-    width: 100px !important;
+#sono_chart{
+    position: relative;
+    z-index: 9998;
 }
 
-#sono-chart div,
-#sono-chart .sapexcharts-svg,
-#sono-chart g,
-#sono-chart path{
-    max-width: 100px !important;
-}
-
-#sono-chart .apexcharts-inner.apexcharts-graphical{
-    transform: translate(0, -10) !important;
+.sono-chart_label{
+    position: absolute;
+    z-index: 9999;
 }
