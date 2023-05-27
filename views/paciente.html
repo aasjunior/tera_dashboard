@@ -232,8 +232,7 @@
                 show: false,
               },
               value: {
-                offsetY: 0,
-                fontSize: 0
+                show: false,
               }
             }
           }
@@ -242,8 +241,7 @@
           padding: {
             top: -10
           }
-        },
-        labels: [''],
+        }
         };
 
         var sono_chart = new ApexCharts(document.querySelector("#sono_chart"), sono_options);
@@ -253,11 +251,5 @@
     peso_chart.render();
     var health_chart = new ApexCharts(document.querySelector("#health-chart"), health_options);
     health_chart.render();
-
-    // const sonoChartCenter = document.querySelector("#sono_chart");
-    // sonoChartCenter.innerHTML += "<div class='sono-chart_label'>" +
-    //                                 "<h2>12%</h2>" +
-    //                                 "<p>A mais que ontem</p>" +
-    //                             "</div>";
 </script>
 {% include 'blades/footer.html' %}
