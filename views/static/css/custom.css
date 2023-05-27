@@ -311,19 +311,19 @@
     padding: 0;
     width: 80%;
     margin-top: 10px;
-    color: var(--color-green);
+    color: var(--color-medium-turquoise);
 }
 
 .patient-card_main .vertical-line{
-    background: var(--color-green);
+    background: var(--color-medium-turquoise);
     width: 1px;
-    border: 1px solid var(--color-green);
+    border: 1px solid var(--color-medium-turquoise);
     height: 15px;
     align-self: center;
 }
 
 .patient-card_main .horizontal-line{
-    background: var(--color-green);
+    background: var(--color-medium-turquoise);
     width: 100%;
     min-width: 220px;
     border: 1px solid rgba(113, 221, 177, 0.4);
@@ -345,12 +345,12 @@
 :is(.patient-card_main)  td{
     font-size: 16px;
     font-weight: 700;
-    color: var(--color-green);
+    color: var(--color-medium-turquoise);
     padding-top: 10px;
   }
 
 :is(.patient-card_main) td:not(:last-child), th:not(:last-child) {
-    border-right: 1px solid var(--color-green);
+    border-right: 1px solid var(--color-medium-turquoise);
     padding-right: 15px;
   }
 
@@ -370,7 +370,7 @@
 }
 
 #dt_admissao, #dt_alta{
-    color: var(--color-green);
+    color: var(--color-medium-turquoise);
 }
 
 .agenda{
