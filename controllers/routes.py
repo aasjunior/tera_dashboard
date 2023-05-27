@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, request, url_for, send_from_directory
 from .components import *
 
 def init_app(app):
@@ -95,7 +95,7 @@ def init_app(app):
             return redirect(url_for("paciente_dados"))
     
         # Se o método for GET, renderizar a tela de upload de imagem
-        return render_template("upload-imagem.html", **components)
+        return render_template("upload-imagem.html")
 
     @app.route("/overlay.html")
     def overlay():

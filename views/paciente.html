@@ -118,7 +118,13 @@
                 <div class="col">
                     <div class="card vertical-center w-340">
                         <div class="row space-evenly vertical-center">
-                            <div id="sono_chart"></div>
+                            <div class="relative col center">
+                                <div id="sono_chart"></div>
+                                <div class='sono-chart_label col center mt-10'>
+                                    <h2 class="fs-18">12%</h2>
+                                    <p class="fs-12 w-80">A mais que ontem</p>
+                                </div>
+                            </div>
                             <p class="fs-18 bold">Horas de sono<br><span class="fs-14 fs-normal">5 horas e 33 min</span></p>
                         </div>
                     </div>
@@ -204,8 +210,8 @@
           chart: {
           type: 'radialBar',
           offsetY: 0,
-          width: "150px",
-          height: "180px",
+          width: "140px",
+          height: "220px",
         },
         colors: ['#71DDB1'],
         plotOptions: {
@@ -247,5 +253,11 @@
     peso_chart.render();
     var health_chart = new ApexCharts(document.querySelector("#health-chart"), health_options);
     health_chart.render();
+
+    // const sonoChartCenter = document.querySelector("#sono_chart");
+    // sonoChartCenter.innerHTML += "<div class='sono-chart_label'>" +
+    //                                 "<h2>12%</h2>" +
+    //                                 "<p>A mais que ontem</p>" +
+    //                             "</div>";
 </script>
 {% include 'blades/footer.html' %}
