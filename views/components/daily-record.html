@@ -5,14 +5,14 @@
     <input type="hidden" id="bom" value="{{ bom }}">
     <input type="hidden" id="sem_resposta" value="{{ sem_resposta }}">
     <script>
-        const mal = document.getElementById('mal').value;
-        const bom = document.getElementById('bom').value;
-        const sem_resposta = document.getElementById('sem_resposta').value;
+        const mal = parseInt(document.getElementById('mal').value);
+        const bom = parseInt(document.getElementById('bom').value);
+        const sem_resposta = parseInt(document.getElementById('sem_resposta').value);
         const options = {
             chart: {
                 type: 'donut',
             },
-            series: [44, 55, 41],
+            series: [mal, bom, sem_resposta],
             colors: ['#023047', '#45C4B0', '#8195A8'],
             labels: ['Humor: Mal', 'Humor: Bom', 'Sem resposta'],
             legend: {},

@@ -5,6 +5,7 @@ def init_app(app):
 
     @app.route("/")
     def index():
+        minify_css()
         return render_template("login.html")
     
     @app.route("/dashboard")
