@@ -4,6 +4,30 @@
     <main class="w-auto">
         {{ header_title('Monitores') | safe }}
         {{ welcome_card('User', False, 'Consultar e Adicionar Monitores') | safe }} <!--Aqui é o titulo da etapa-->
+        
+        <section class="d-flex horizontal-center mt-30">
+            <table class="lbl-white">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Login</th>
+                        <th>Data de Cadastro</th>
+                        <th>CPF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.nome }}</td>
+                        <td>{{ registro.login }}</td>
+                        <td>{{ registro.data_cadastro }}</td>
+                        <td>{{ registro.cpf }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        
         <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
             <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
             <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">

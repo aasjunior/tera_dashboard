@@ -1,5 +1,8 @@
 from flask import render_template, redirect, request, url_for, send_from_directory
 from .components import *
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
 
 def init_app(app):
 
@@ -130,4 +133,12 @@ def init_app(app):
             'welcome_card': render_welcome_card,
             'header_title' : render_header_title,
         }
-        return render_template("consulta-monitores.html", **components)
+        # Acessa a coleção 'dados' no banco de dados 'monitor'
+        db = client['monitor']
+        collection = db['dados']
+        
+        # Obtém os últimos 10 registros em ordem decrescente
+        registros = collection.find().sort('_id', -1).limit(10)
+        
+        # Renderiza o template HTML passando os registros para exibição na tabela
+        return render_template("consulta-monitores.html", **components, registros=registros)
