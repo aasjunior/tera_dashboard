@@ -4,10 +4,10 @@
     <main class="w-auto">
         {{ header_title('Cadastro do monitor') | safe }}
         {{ welcome_card('User', False, 'Dados do monitor') | safe }} <!--Aqui é o titulo da etapa-->
-        <section>
+        <form action="/cadastro-monitor" method="POST" enctype="multipart/form-data">
             <section class="d-flex horizontal-center mt-20">
                 <aside class="aside-profile"> <!--Aqui será o profile-->
-                    <form class="form-upload-picture" action="/cadastro-monitor" method="POST" enctype="multipart/form-data">
+                    <div class="form-upload-picture">
                         {{ upload_image(False) | safe }}
                         <div class="mt-30">
                             <div id="" class="col">
@@ -22,11 +22,11 @@
                                 </div>
                             </div>                            
                         </div>
-                    </form>
+                    </div>
                 </aside>
 
                 <section class="section-form ml-20"> <!--Aqui o forms-->
-                    <form action="" class="side-left-grid">
+                    <div class="side-left-grid">
                         <input type="hidden" id="id-paciente" required> <!--INPUT HIDDEN CODIGO PACIENTE-->
                         <div id="nome-grid" class="col">
                             <label class="lbl-green" for=""> Nome </label>
@@ -101,7 +101,7 @@
                             </select>
                         </div>
 
-                    </form>
+                    </div>
                 </section>
             </section>
             <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
@@ -109,7 +109,7 @@
                 <button class="btn-font-blue button btn-green mr-20" type="submit" name="salvar">Salvar</button>
                 <a href="/" class="btn-font button btn-border-green mr-20">Próximo</a> <!--redirecionar para consulta de monitores cadastrados-->
             </section>
-        </section>
+        </form>
         {{ progress_bar() | safe }}
     </main>
 </div>
