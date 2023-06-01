@@ -150,6 +150,7 @@ $(document).ready(function() {
   });
 });
 
+//Dashboard responsible
 function resizeDashboard(){
   let dashboard = document.querySelector('.dashboard') ?? null;
   let dashboardWidth = dashboard.offsetWidth ?? null;
@@ -159,4 +160,10 @@ function resizeDashboard(){
   }else{
     dashboard.classList.remove('responsive');
   }
+}
+
+//pagination in consulta-monitores.html
+function loadNextPage(pageNum) {
+  var nextPage = parseInt(pageNum) + 1;
+  window.location.href = '/pagina/' + nextPage;
 }

@@ -28,11 +28,25 @@
             </table>
         </section>
         
-        <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
-            <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
+        <div id="pagination">
+            {% if registros|length == 10 %}
+            <button onclick="loadNextPage('{{ page_num|safe }}')">Próxima Página</button>
+            {% endif %}
+            <div>
+                {% if page_num > 1 %}
+                <a href="{{ url_for('pagina', page_num=page_num-1) }}">Página Anterior</a>
+                {% endif %}
+                {% for num in range(1, num_paginas+1) %}
+                <a href="{{ url_for('pagina', page_num=num) }}">{{ num }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- <section class="d-flex horizontal-center mt-30"> -->
+            <!-- <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
             <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
             <a href="/dashboard" class="btn-font button btn-border-green mr-20">Próximo</a>
-        </section>
+        </section> -->
     </main>
 </div>
 {% include 'blades/footer.html' %}
