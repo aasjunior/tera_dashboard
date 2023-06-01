@@ -4,6 +4,8 @@ from pymongo import MongoClient
 import math
 
 client = MongoClient('localhost', 27017)
+db = client['monitor']
+collection = db['dados']
 
 def init_app(app):
 
@@ -127,16 +129,13 @@ def init_app(app):
         }
         return render_template("consulta-pacientes.html", **components)
     
-    @app.route("/consulta-monitores")
+    @app.route('/consulta-monitores')
     def consulta_monitores():
         components = {
             'sidebar': render_sidebar,
             'welcome_card': render_welcome_card,
             'header_title' : render_header_title,
         }
-        # Acessa a coleção 'dados' no banco de dados 'monitor'
-        db = client['monitor']
-        collection = db['dados']
         
         total_registros = collection.count_documents({})
         num_paginas = math.ceil(total_registros / 10)  # Calcula o número total de páginas
@@ -152,10 +151,16 @@ def init_app(app):
     
     @app.route('/pagina/<int:page_num>')
     def pagina(page_num=1):
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'header_title' : render_header_title,
+        }
+
         total_registros = collection.count_documents({})
         num_paginas = math.ceil(total_registros / 10)  # Calcula o número total de páginas
 
         skip_num = (page_num - 1) * 10
         registros = list(collection.find().sort('_id', -1).skip(skip_num).limit(10))
 
-        return render_template('consulta-monitores.html', registros=registros, num_paginas=num_paginas, page_num=page_num)
+        return render_template('consulta-monitores.html', registros=registros, num_paginas=num_paginas, page_num=page_num, **components)
