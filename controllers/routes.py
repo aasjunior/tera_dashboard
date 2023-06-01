@@ -1,89 +1,74 @@
 from flask import render_template, redirect, request, url_for, send_from_directory
 from .components import *
+from pymongo import MongoClient
+from flask_bcrypt import Bcrypt, check_password_hash
 
-def init_app(app):
+client = MongoClient('localhost', 27017)
+db = client['clinica_0']
 
-    @app.route("/")
-    def index():
-        minify_css()
-        return render_template("login.html")
-    
-    @app.route("/dashboard")
-    def dashboard():
-        components = {
+components = {
             'sidebar': render_sidebar,
             'welcome_card': render_welcome_card,
             'daily_record': render_daily_record,
             'annual_record': render_annual_record,
             'monthly_record': render_monthly_record,
             'header_title' : render_header_title,
+            'crisis_patient_card' : render_crisis_patient_card,
+            'upload_image': render_upload_image,
+            'header_title' : render_header_title,
+            'progress_bar' : render_progress_bar,
         }
+
+def init_app(app, bcrypt):
+
+    @app.route("/", methods=['GET','POST'])
+    def index():
+        minify_css()
+        if request.method == 'POST':
+            username = request.form['user-login']
+            user = db.Usuarios.find_one({'login': username})
+            if user and check_password_hash(user['senha'], request.form['user-password']):
+                return redirect(url_for('cadastro_monitor'))
+            else:
+                return 'Usuário ou senha invalido'
+        return render_template("login.html")
+    
+    @app.route("/dashboard")
+    def dashboard():
         return render_template("dashboard.html", **components)
     
     @app.route("/pacientes")
     def pacientes():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'header_title' : render_header_title,
-            'crisis_patient_card' : render_crisis_patient_card,
-            'offline_patient_card' : render_offline_patient_card,
-        }
         return render_template("pacientes.html", **components)
     
     @app.route("/paciente-dados")
     def paciente_dados():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'upload_image': render_upload_image,
-            'header_title' : render_header_title,
-            'progress_bar' : render_progress_bar,
-        }
         return render_template("paciente-dados.html", **components)
       
     @app.route("/paciente-diagnostico")
     def paciente_diagnostico():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'upload_image': render_upload_image,
-            'header_title' : render_header_title,
-            'progress_bar' : render_progress_bar,
-        }
         return render_template("paciente-diagnostico.html", **components)
     
     @app.route("/paciente-familiar")
     def paciente_familiar():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'upload_image': render_upload_image,
-            'header_title' : render_header_title,
-            'progress_bar' : render_progress_bar,
-        }
         return render_template("paciente-familiar.html", **components)
     
-    @app.route("/cadastro-monitor")
+    @app.route("/cadastro-monitor", methods=['GET', 'POST'])
     def cadastro_monitor():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'upload_image': render_upload_image,
-            'header_title' : render_header_title,
-            'progress_bar' : render_progress_bar,
-        }
+        if request.method == 'POST':
+            password = request.form['senha-monitor']
+            password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+            monitor_login = {
+                'login': request.form['login-monitor'],
+                'senha': password_hash,
+                'nivel': 'normal',
+            }
+            db.Usuarios.insert_one(monitor_login)
+            return redirect(url_for('cadastro_monitor'))
         return render_template("cadastro-monitor.html", **components)
     
     @app.route("/cadastro-clinica")
     def cadastro_clinica():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'upload_image': render_upload_image,
-            'header_title' : render_header_title,
-            'progress_bar' : render_progress_bar,
-        }
         return render_template("cadastro-clinica.html", **components)
     
     @app.route("/upload-imagem", methods=["GET", "POST"])
@@ -108,27 +93,12 @@ def init_app(app):
     
     @app.route("/paciente")
     def paciente():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'header_title' : render_header_title,
-        }
         return render_template("paciente.html", **components)
     
     @app.route("/consulta-pacientes")
     def consulta_pacientes():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'header_title' : render_header_title,
-        }
         return render_template("consulta-pacientes.html", **components)
     
     @app.route("/consulta-monitores")
     def consulta_monitores():
-        components = {
-            'sidebar': render_sidebar,
-            'welcome_card': render_welcome_card,
-            'header_title' : render_header_title,
-        }
         return render_template("consulta-monitores.html", **components)

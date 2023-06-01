@@ -7,7 +7,7 @@
         <section>
             <section class="d-flex horizontal-center mt-20">
                 <aside class="aside-profile"> <!--Aqui será o profile-->
-                    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
+                    <form class="form-upload-picture" action="/cadastro-monitor" method="POST" enctype="multipart/form-data">
                         {{ upload_image(False) | safe }}
                         <div class="mt-30">
                             <div id="" class="col">
@@ -106,7 +106,7 @@
             </section>
             <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
                 <a href="/dashboard" class="btn-font button btn-border-green mr-20">Voltar</a>
-                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar" required>
+                <button class="btn-font-blue button btn-green mr-20" type="submit" name="salvar">Salvar</button>
                 <a href="/" class="btn-font button btn-border-green mr-20">Próximo</a> <!--redirecionar para consulta de monitores cadastrados-->
             </section>
         </section>

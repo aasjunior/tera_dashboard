@@ -3,9 +3,15 @@
     {{ sidebar('User', 'user.png') | safe }}
     <main class="w-100">
         {{ header_title('Dashboard Overview') | safe }}
-        <section class="dashboard m-30 mb-30">
-            {{ daily_record(50, 180, 20) | safe }}
+        <section class="dashboard m-30 mb-30">    
+            <input type="hidden" id="mal" value="44">
+            <input type="hidden" id="bom" value="55">
+            <input type="hidden" id="sem_resposta" value="27">
             {{ welcome_card('User', 'dashboard') | safe }}
+            <section id="daily-record" class="card col relative">
+                <h2 class="title">Registro Diário</h2>
+                <div id="g-daily" class="mt-30 relative"></div>
+            </section>
             {{ annual_record(50, 180, 20) | safe }}
             {{ monthly_record(50, 180, 20) | safe }}
             <section class="single-cards">
@@ -53,8 +59,8 @@
                         </div>
                     </div>
                 </section>
-                <section id="patients-crisis" class="card center">
-                    <div class="header center">
+                <section id="patients-crisis" class="card">
+                    <div class="header">
                         <div class="row space-between">
                             <h2 class="title">Pacientes em Crise</h2>
                             <span class="cautionIcon icon"></span>
@@ -115,4 +121,5 @@
         accordionButton.classList.toggle('deg-180')
     });
 </script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% include 'blades/footer.html' %}

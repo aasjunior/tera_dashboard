@@ -1,8 +1,10 @@
 from flask import Flask
 from controllers import routes
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__, template_folder="views", static_folder="views/static")
-routes.init_app(app)
+bcrypt = Bcrypt(app)
+routes.init_app(app, bcrypt)
 
 if __name__ == "__main__":
     app.run(debug=True)
