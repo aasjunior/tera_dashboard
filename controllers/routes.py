@@ -164,3 +164,12 @@ def init_app(app):
         registros = list(collection.find().sort('_id', -1).skip(skip_num).limit(10))
 
         return render_template('consulta-monitores.html', registros=registros, num_paginas=num_paginas, page_num=page_num, **components)
+    
+    @app.route("/acesso-recusado")
+    def acesso_recusado():
+        components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'header_title' : render_header_title,
+        }
+        return render_template("acesso-recusado.html", **components)

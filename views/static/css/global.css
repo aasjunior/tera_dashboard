@@ -274,6 +274,12 @@ em{
     justify-content: space-evenly;
 }
 
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
 .center{
     align-items: center;
     justify-content: center;
