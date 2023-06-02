@@ -39,7 +39,7 @@
 <div class="overlay" id="imageOverlay">
     <div class="overlay-content col">
         <img id="modalImage" class="overlay-image" src="" alt="Imagem">
-        <input type="range" id="rotationRange" min="0" max="360" step="1" onchange="rotateImage()">
+        <input type="range" name="angle" id="rotationRange" min="0" max="360" step="1" onchange="rotateImage()">
         <button type="button" onclick="saveImage()">Salvar</button>
     </div>
 </div>
@@ -59,7 +59,6 @@
         reader.onload = function() {
             var preview = document.getElementById("preview");
             preview.src = reader.result;
-
             openOverlay();
         }
         reader.readAsDataURL(event.target.files[0]);

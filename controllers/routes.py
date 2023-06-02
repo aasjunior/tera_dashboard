@@ -1,10 +1,14 @@
-from flask import render_template, redirect, request, url_for, send_from_directory
+from flask import render_template, redirect, request, url_for, send_from_directory, Response
+from flask_bcrypt import Bcrypt, check_password_hash
 from .components import *
 from pymongo import MongoClient
-from flask_bcrypt import Bcrypt, check_password_hash
+from gridfs import GridFS
+from PIL import Image
+from io import BytesIO
 
 client = MongoClient('localhost', 27017)
 db = client['clinica_0']
+fs = GridFS(db)
 
 components = {
             'sidebar': render_sidebar,
@@ -63,8 +67,50 @@ def init_app(app, bcrypt):
                 'senha': password_hash,
                 'nivel': 'normal',
             }
+            
+            image = request.files['foto']
+            angle = float(request.form['angle']) # obter o valor do ângulo de rotação do rotationRange
+
+            # ler a imagem em um objeto Image
+            img = Image.open(BytesIO(image.read()))
+
+            # detectar o formato da imagem original
+            format = img.format
+        
+            rotated_img = img.rotate(-angle)
+
+            output = BytesIO()
+            rotated_img.save(output, format=format)
+
+            # inserir a imagem rotacionada no banco de dados
+            image_id = fs.put(output.getvalue())
+            
+            monitor_dados = {
+                'nome': request.form['nome-monitor'],
+                'data-nascimento': request.form['data-nasc-monitor'],
+                'cpf': request.form['cpf-monitor'],
+                'rg': request.form['rg-monitor'],
+                'celular': request.form['cel-monitor'],
+                'email': request.form['email-monitor'],
+                'endereco': [
+                    {
+                        'logradouro': request.form['endereco-monitor'],
+                        'complemento': request.form['numero-endereco-monitor'],
+                        'cep': request.form['cep-monitor'],
+                        'cidade': request.form['cidade-monitor'],
+                        'uf': request.form['estado-monitor']
+                    }
+                ],
+                'image_id': image_id
+            }
             db.Usuarios.insert_one(monitor_login)
-            return redirect(url_for('cadastro_monitor'))
+            db.Monitores.insert_one(monitor_dados)
+            
+            # Capturar a imagem do banco de dados pelo id
+            image = fs.get(image_id)
+
+            # Renderizar imagem
+            return Response(image.read(), mimetype='image/jpeg')
         return render_template("cadastro-monitor.html", **components)
     
     @app.route("/cadastro-clinica")
