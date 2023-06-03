@@ -8,6 +8,7 @@ from io import BytesIO
 from cv2 import *
 from cv2 import imdecode, IMREAD_UNCHANGED, getRotationMatrix2D, warpAffine, imencode, cvtColor, COLOR_RGB2RGBA
 from numpy import *
+from uuid import *
 
 client = MongoClient('localhost', 27017)
 db = client['clinica_0']
@@ -89,6 +90,15 @@ def init_app(app, bcrypt):
         rotated_image = warpAffine(image, rotation_matrix, (new_width, new_height), borderValue=(0, 0, 0, 0))
         
         return rotated_image
+    
+    def generate_unique_filename(extension):
+        # gerar um UUID usando o algoritmo MD5
+        unique_id = uuid4()
+        # converter o UUID em uma string hexadecimal
+        unique_name = unique_id.hex
+        # adicionar a extensão do arquivo de imagem ao nome único
+        filename = unique_name + '.' + extension
+        return filename
 
     @app.route("/cadastro-monitor", methods=['GET', 'POST'])
     def cadastro_monitor():
@@ -105,11 +115,20 @@ def init_app(app, bcrypt):
             image = imdecode(fromstring(image_file.read(), uint8), IMREAD_UNCHANGED)
             angle = float(request.form['angle']) # obter o valor do ângulo de rotação do rotationRange
 
-            imageR = rotate_image(image, -angle)
+            rotated_image = rotate_image(image, -angle)
 
-            _, png_image = imencode('.png', imageR)
+            _, encoded_image = imencode('.png', rotated_image)
+
+            # gerar um nome de arquivo único para a imagem rotacionada
+            image_filename = generate_unique_filename('png')
+
+            # salvar a imagem rotacionada no MongoDB usando GridFS
+            image_id = fs.put(encoded_image.tostring(), filename=image_filename)
+
+            image_data = fs.get(image_id).read()
+
             # enviar a imagem como uma resposta HTTP
-            return Response(png_image.tostring(), mimetype='image/png')
+            return Response(image_data, mimetype='image/png')
 
         return render_template("cadastro-monitor.html", **components)
     
