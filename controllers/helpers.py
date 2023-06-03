@@ -1,12 +1,7 @@
-from flask import render_template, redirect, request, url_for, send_from_directory, Response, send_file
-from flask_bcrypt import Bcrypt, check_password_hash
-from pymongo import MongoClient
-from gridfs import GridFS
 from cv2 import imdecode, IMREAD_UNCHANGED, getRotationMatrix2D, warpAffine, imencode, cvtColor, COLOR_RGB2RGBA
 from numpy import *
 from cssmin import cssmin
 from uuid import *
-from datetime import datetime
 
 def minify_css():
     css_files = [
@@ -69,7 +64,7 @@ def encode_image(image_file, angle):
     image = imdecode(fromstring(image_file.read(), uint8), IMREAD_UNCHANGED)
     if angle != 0:
         rotated_image = rotate_image(image, -angle)
-        
+
         # A função imencode retorna uma tupla com dois valores, '_' indica é uma convensão em python para ignorar o primeiro valor (valor que indica se a codificação foi bem sucedida), enquanto o segundo valor é atribuido a variavel encoded_image
         _, encoded_image = imencode('.png', rotated_image)
     else:
@@ -84,33 +79,3 @@ def generate_unique_filename(extension):
     # adicionar a extensão do arquivo de imagem ao nome único
     filename = unique_name + '.' + extension
     return filename
-
-## CRUD
-
-def create_monitor_login(bcrypt, form):
-    password_hash = bcrypt.generate_password_hash(form['senha-monitor']).decode('utf-8')
-    return {
-        'login': form['login-monitor'],
-        'senha': password_hash,
-        'nivel': 'normal',
-        'data_cadastro': datetime.now()
-    }
-
-def create_monitor_dados(form, image_id, user_id):
-    return {
-        'nome': form['nome-monitor'],
-        'data-nascimento': form['data-nasc-monitor'],
-        'cpf': form['cpf-monitor'],
-        'rg': form['rg-monitor'],
-        'celular': form['cel-monitor'],
-        'email': form['email-monitor'],
-        'endereco': [{
-            'logradouro': form['endereco-monitor'],
-            'numero': form['numero-endereco-monitor'],
-            'cep': form['cep-monitor'],
-            'cidade': form['cidade-monitor'],
-            'uf': form['estado-monitor']
-        }],
-        'imagem_id': image_id,
-        'usuario_id': user_id
-    }

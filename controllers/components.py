@@ -1,6 +1,4 @@
 from flask import render_template
-from .components import *
-from PIL import Image
 
 def render_sidebar(name, image):
     user = {
@@ -41,11 +39,6 @@ def render_monthly_record(mal, bom, sem_resposta):
 
 def render_header_title(titulo_da_pag=False):
     return render_template("components/header-title.html", titulo_da_pag=titulo_da_pag)
-
-def rotate_image(image_path, degrees):
-    image = Image.open(image_path)
-    rotated_image = image.rotate(degrees, expand=True)
-    rotated_image.save(image_path)
 
 def render_progress_bar():
     return render_template("components/progress-bar.html")

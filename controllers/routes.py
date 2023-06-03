@@ -1,12 +1,10 @@
 from flask import render_template, redirect, request, url_for, send_from_directory, Response, send_file
 from flask_bcrypt import Bcrypt, check_password_hash
+from models.database import *
 from .components import *
 from .helpers import *
 from pymongo import MongoClient
 from gridfs import GridFS
-from cv2 import imdecode, IMREAD_UNCHANGED, getRotationMatrix2D, warpAffine, imencode, cvtColor, COLOR_RGB2RGBA
-from numpy import *
-
 
 client = MongoClient('localhost', 27017)
 db = client['clinica_0']
@@ -62,7 +60,7 @@ def init_app(app, bcrypt):
 
             monitor_dados = create_monitor_dados(form, image_id, user_id)
             db.Monitores.insert_one(monitor_dados)
-            
+
             image_data = fs.get(image_id).read()
 
             # enviar a imagem como uma resposta HTTP
@@ -73,22 +71,6 @@ def init_app(app, bcrypt):
     @app.route("/cadastro-clinica")
     def cadastro_clinica():
         return render_template("cadastro-clinica.html", **components)
-    
-    @app.route("/upload-imagem", methods=["GET", "POST"])
-    def upload_imagem():
-        if request.method == "POST":
-            # Salvar a imagem e fazer qualquer processamento necessário
-            # Aqui, você pode usar bibliotecas como Pillow para rotacionar a imagem
-            
-            # Após salvar a imagem, redirecionar de volta para a tela anterior
-            return redirect(url_for("paciente_dados"))
-    
-        # Se o método for GET, renderizar a tela de upload de imagem
-        return render_template("upload-imagem.html")
-
-    @app.route("/overlay.html")
-    def overlay():
-        return render_template("overlay.html")
 
     @app.route("/static/<path:filename>")
     def static_files(filename):
