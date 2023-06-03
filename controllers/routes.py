@@ -1,10 +1,12 @@
-from flask import render_template, redirect, request, url_for, send_from_directory, Response
+from flask import render_template, redirect, request, url_for, send_from_directory, Response, send_file
 from flask_bcrypt import Bcrypt, check_password_hash
 from .components import *
 from pymongo import MongoClient
 from gridfs import GridFS
 from PIL import Image
 from io import BytesIO
+import cv2
+import numpy as np
 
 client = MongoClient('localhost', 27017)
 db = client['clinica_0']
@@ -57,6 +59,31 @@ def init_app(app, bcrypt):
     def paciente_familiar():
         return render_template("paciente-familiar.html", **components)
     
+    def rotate_image(image, angle):
+        # Esta função recebe uma imagem e um ângulo como entrada e retorna uma nova imagem que é rotacionada pelo ângulo fornecido.
+
+        # obter a altura e a largura da imagem
+        height, width = image.shape[:2]
+        # obter o ponto central da imagem
+        center = (width / 2, height / 2)
+        # obter a matriz de rotação
+        rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
+        
+        # calcular o tamanho da nova imagem para acomodar a imagem rotacionada inteira
+        cos = np.abs(rotation_matrix[0, 0])
+        sin = np.abs(rotation_matrix[0, 1])
+        new_width = int((height * sin) + (width * cos))
+        new_height = int((height * cos) + (width * sin))
+        
+        # ajustar a matriz de rotação para levar em conta o deslocamento
+        rotation_matrix[0, 2] += (new_width / 2) - center[0]
+        rotation_matrix[1, 2] += (new_height / 2) - center[1]
+        
+        # rotacionar a imagem
+        rotated_image = cv2.warpAffine(image, rotation_matrix, (new_width, new_height), borderValue=(255, 255, 255))
+        
+        return rotated_image
+
     @app.route("/cadastro-monitor", methods=['GET', 'POST'])
     def cadastro_monitor():
         if request.method == 'POST':
@@ -67,50 +94,17 @@ def init_app(app, bcrypt):
                 'senha': password_hash,
                 'nivel': 'normal',
             }
-            
-            image = request.files['foto']
+
+            image_file = request.files['foto']
+            image = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
             angle = float(request.form['angle']) # obter o valor do ângulo de rotação do rotationRange
 
-            # ler a imagem em um objeto Image
-            img = Image.open(BytesIO(image.read()))
+            imageR = rotate_image(image, -angle)
 
-            # detectar o formato da imagem original
-            format = img.format
-        
-            rotated_img = img.rotate(-angle)
+            _, png_image = cv2.imencode('.png', imageR)
+            # enviar a imagem como uma resposta HTTP
+            return Response(png_image.tostring(), mimetype='image/png')
 
-            output = BytesIO()
-            rotated_img.save(output, format=format)
-
-            # inserir a imagem rotacionada no banco de dados
-            image_id = fs.put(output.getvalue())
-            
-            monitor_dados = {
-                'nome': request.form['nome-monitor'],
-                'data-nascimento': request.form['data-nasc-monitor'],
-                'cpf': request.form['cpf-monitor'],
-                'rg': request.form['rg-monitor'],
-                'celular': request.form['cel-monitor'],
-                'email': request.form['email-monitor'],
-                'endereco': [
-                    {
-                        'logradouro': request.form['endereco-monitor'],
-                        'complemento': request.form['numero-endereco-monitor'],
-                        'cep': request.form['cep-monitor'],
-                        'cidade': request.form['cidade-monitor'],
-                        'uf': request.form['estado-monitor']
-                    }
-                ],
-                'image_id': image_id
-            }
-            db.Usuarios.insert_one(monitor_login)
-            db.Monitores.insert_one(monitor_dados)
-            
-            # Capturar a imagem do banco de dados pelo id
-            image = fs.get(image_id)
-
-            # Renderizar imagem
-            return Response(image.read(), mimetype='image/jpeg')
         return render_template("cadastro-monitor.html", **components)
     
     @app.route("/cadastro-clinica")

@@ -39,7 +39,7 @@
 <div class="overlay" id="imageOverlay">
     <div class="overlay-content col">
         <img id="modalImage" class="overlay-image" src="" alt="Imagem">
-        <input type="range" name="angle" id="rotationRange" min="0" max="360" step="1" onchange="rotateImage()">
+        <input type="range" name="angle" id="rotationRange" min="0" max="360" step="1" onchange="rotateImage()" value="0">
         <button type="button" onclick="saveImage()">Salvar</button>
     </div>
 </div>
@@ -89,16 +89,16 @@
 
     // Função para salvar e atualizar a imagem na tela principal
     function saveImage() {
-    var modalImage = document.getElementById("modalImage");
-    var preview = document.getElementById("preview");
+        var modalImage = document.getElementById("modalImage");
+        var preview = document.getElementById("preview");
 
-    // Obter o valor da rotação selecionada
-    var rotationRange = document.getElementById("rotationRange").value;
+        // Obter o valor da rotação selecionada
+        var rotationRange = document.getElementById("rotationRange").value;
 
-    // Aplicar a rotação à imagem na tela principal
-    preview.style.transform = "rotate(" + rotationRange + "deg)";
+        // Aplicar a rotação à imagem na tela principal
+        preview.style.transform = "rotate(" + rotationRange + "deg)";
 
-    closeOverlay();
-}
+        closeOverlay();
+    }
 
 </script>
