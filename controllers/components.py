@@ -1,9 +1,6 @@
 from flask import render_template
 from .components import *
 from PIL import Image
-from cssmin import cssmin
-from glob import glob
-from os import listdir, path
 
 def render_sidebar(name, image):
     user = {
@@ -59,29 +56,16 @@ def render_crisis_patient_card():
 def render_offline_patient_card():
     return render_template("components/offline-patient-card.html")
 
-def minify_css():
-    css_files = [
-        'views/static/css/global.css',
-        'views/static/css/custom.css',
-        'views/static/css/charts.css',
-        'views/static/css/dados-paciente.css',
-        'views/static/css/diagnostico-paciente.css',
-        'views/static/css/login.css',
-        'views/static/css/pacientes-dash.css',
-        'views/static/css/progress-bar.css',
-        'views/static/css/responsive.css'
-    ]
-    combined_css = ''
-
-    for file in css_files:
-        with open(file, 'r') as f:
-            css_content = f.read()
-            combined_css += css_content
-
-
-    minified_css = cssmin(combined_css)
-    
-    output_file = 'views/static/css/styles.min.css'
-
-    with open(output_file, 'w') as f:
-        f.write(minified_css)
+components = {
+            'sidebar': render_sidebar,
+            'welcome_card': render_welcome_card,
+            'daily_record': render_daily_record,
+            'annual_record': render_annual_record,
+            'monthly_record': render_monthly_record,
+            'header_title' : render_header_title,
+            'crisis_patient_card' : render_crisis_patient_card,
+            'upload_image': render_upload_image,
+            'header_title' : render_header_title,
+            'progress_bar' : render_progress_bar,
+            'offline_patient_card': render_offline_patient_card,
+        }
