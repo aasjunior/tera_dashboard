@@ -5,8 +5,9 @@ from pymongo import MongoClient
 from gridfs import GridFS
 from PIL import Image
 from io import BytesIO
-import cv2
-import numpy as np
+from cv2 import *
+from cv2 import imdecode, IMREAD_UNCHANGED, getRotationMatrix2D, warpAffine, imencode, cvtColor, COLOR_RGB2RGBA
+from numpy import *
 
 client = MongoClient('localhost', 27017)
 db = client['clinica_0']
@@ -62,16 +63,21 @@ def init_app(app, bcrypt):
     def rotate_image(image, angle):
         # Esta função recebe uma imagem e um ângulo como entrada e retorna uma nova imagem que é rotacionada pelo ângulo fornecido.
 
+         # verificar se a imagem tem 3 canais (RGB)
+        if len(image.shape) == 3 and image.shape[2] == 3:
+            # converter a imagem para RGBA
+            image = cvtColor(image, COLOR_RGB2RGBA)
+
         # obter a altura e a largura da imagem
         height, width = image.shape[:2]
         # obter o ponto central da imagem
         center = (width / 2, height / 2)
         # obter a matriz de rotação
-        rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
+        rotation_matrix = getRotationMatrix2D(center, angle, 1.0)
         
         # calcular o tamanho da nova imagem para acomodar a imagem rotacionada inteira
-        cos = np.abs(rotation_matrix[0, 0])
-        sin = np.abs(rotation_matrix[0, 1])
+        cos = abs(rotation_matrix[0, 0])
+        sin = abs(rotation_matrix[0, 1])
         new_width = int((height * sin) + (width * cos))
         new_height = int((height * cos) + (width * sin))
         
@@ -80,7 +86,7 @@ def init_app(app, bcrypt):
         rotation_matrix[1, 2] += (new_height / 2) - center[1]
         
         # rotacionar a imagem
-        rotated_image = cv2.warpAffine(image, rotation_matrix, (new_width, new_height), borderValue=(255, 255, 255))
+        rotated_image = warpAffine(image, rotation_matrix, (new_width, new_height), borderValue=(0, 0, 0, 0))
         
         return rotated_image
 
@@ -96,12 +102,12 @@ def init_app(app, bcrypt):
             }
 
             image_file = request.files['foto']
-            image = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+            image = imdecode(fromstring(image_file.read(), uint8), IMREAD_UNCHANGED)
             angle = float(request.form['angle']) # obter o valor do ângulo de rotação do rotationRange
 
             imageR = rotate_image(image, -angle)
 
-            _, png_image = cv2.imencode('.png', imageR)
+            _, png_image = imencode('.png', imageR)
             # enviar a imagem como uma resposta HTTP
             return Response(png_image.tostring(), mimetype='image/png')
 
