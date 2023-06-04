@@ -1,4 +1,3 @@
-from flask_bcrypt import Bcrypt, check_password_hash
 from pymongo import MongoClient
 from gridfs import GridFS
 from datetime import datetime
@@ -11,12 +10,13 @@ def conn(host, port, db_name, username = None, password = None):
     client = MongoClient(uri)
     return client
 
-def create_monitor_login(bcrypt, form):
+def create_monitor_login(bcrypt, form, clinica_db):
     password_hash = bcrypt.generate_password_hash(form['senha-monitor']).decode('utf-8')
     return {
         'login': form['login-monitor'],
         'senha': password_hash,
         'nivel': 'normal',
+        'clinica_db': clinica_db,
         'data_cadastro': datetime.now()
     }
 

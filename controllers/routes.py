@@ -65,30 +65,6 @@ def init_app(app, bcrypt):
             return redirect(url_for('login'))
         else:
             username = session['username']
-            if request.method == 'POST':
-                client = conn('localhost', 27017, 'clinica_0')
-                
-                if client:
-                    db = client.get_default_database()
-                    form = request.form
-                    monitor_login = create_monitor_login(bcrypt, form)
-                    user_id = db.Usuarios.insert_one(monitor_login).inserted_id
-
-                    image_file = request.files['foto']
-                    angle = float(form['angle'])
-                    encoded_image = encode_image(image_file, angle)
-
-                    image_filename = generate_unique_filename('png')
-                    image_id = fs.put(encoded_image.tostring(), filename=image_filename, username=username)
-
-                    monitor_dados = create_monitor_dados(form, image_id, user_id)
-                    db.Monitores.insert_one(monitor_dados)
-
-                    image_data = fs.get(image_id).read()
-
-                    # enviar a imagem como uma resposta HTTP
-                    return Response(image_data, mimetype='image/png')
-
             return render_template("cadastro-monitor.html", **components, username=username)
     
     @app.route("/cadastro-clinica")
@@ -157,3 +133,39 @@ def init_app(app, bcrypt):
         session.clear()
         # Redireciona o usuário para a página de login
         return redirect(url_for('login'))
+    
+    ## CRUD
+    @app.route("/create-monitor", methods=['GET', 'POST'])
+    def create_monitor():
+        try:
+            tera = conn('localhost', 27017, 'tera')
+            tera_db = tera.get_default_database()
+
+            if request.method == 'POST':
+                form = request.form
+                monitor_login = create_monitor_login(bcrypt, form, session['clinica_db'])
+                user_id = tera_db.Usuarios.insert_one(monitor_login).inserted_id
+                tera.close()
+
+                client = conn('localhost', 27017, session['clinica_db'])
+                db = client.get_default_database()
+                fs = GridFS(db)
+
+                image_file = request.files['foto']
+                angle = float(form['angle'])
+                encoded_image = encode_image(image_file, angle)
+
+                image_filename = generate_unique_filename('png')
+                image_id = fs.put(encoded_image.tostring(), filename=image_filename)
+
+                monitor_dados = create_monitor_dados(form, image_id, user_id)
+                
+                if(db.Monitores.insert_one(monitor_dados).inserted_id):
+                    return f'Monitor cadastrado com sucesso'
+                else:
+                    return 'Erro ao tentar inserir os dados do monitor'
+                
+        except Exception as e:
+            # exibir a mensagem de erro
+            print(f'Erro: {e}')
+            return f'Erro: {e}'

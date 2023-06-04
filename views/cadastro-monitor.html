@@ -4,17 +4,17 @@
     <main class="w-auto">
         {{ header_title('Cadastro do monitor') | safe }}
         {{ welcome_card('User', False, 'Dados do monitor') | safe }} <!--Aqui é o titulo da etapa-->
-        <form action="/cadastro-monitor" method="POST" enctype="multipart/form-data">
+        <form id="form-cadastro-monitor" action="/create-monitor" method="POST" enctype="multipart/form-data">
             <section class="d-flex horizontal-center mt-20">
                 <aside class="aside-profile"> <!--Aqui será o profile-->
                     <div class="form-upload-picture">
                         {{ upload_image(False) | safe }}
                         <div class="mt-30">
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Login do usuário </label>
-                                <input id="" class="input_dark_blue lbl-green" name="login-monitor" type="text" required>
+                                <input class="input_dark_blue lbl-green" name="login-monitor" type="text" required>
                             </div>
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Senha </label>
                                 <div class="section-senha">
                                     <input id="senha" class="senha lbl-green" type="password" name="senha-monitor" required>
@@ -70,7 +70,7 @@
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado-monitor" required>
+                            <select class="input_blue" name="estado-monitor" required>
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>

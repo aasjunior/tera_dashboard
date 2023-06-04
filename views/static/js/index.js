@@ -166,11 +166,18 @@ function resizeDashboard(){
 
 function submitForm(event, route, formID){
   event.preventDefault();
-  var data = $(formID).serialize();
+  
+  // criar um objeto FormData
+  var data = new FormData($(formID)[0]);
+    
   $.ajax({
       url: route,
       type: 'POST',
       data: data,
+
+      // definir o contentType e o processData como false
+      contentType: false,
+      processData: false,
       success: function(response) {
           if(route == '/setsession' && response == 'success'){
             window.location.href = '/dashboard';
