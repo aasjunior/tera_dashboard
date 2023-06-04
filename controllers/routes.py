@@ -17,7 +17,7 @@ def init_app(app, bcrypt):
         
     @app.route("/login")
     def login():
-        return render_template("login.html")
+        return redirect(url_for('index'))
     
     @app.route("/dashboard")
     def dashboard():
@@ -150,3 +150,10 @@ def init_app(app, bcrypt):
                     return 'Usuário ou senha invalido'
             except PyMongoError as e:
                 return f'Ocorreu um erro com a tentativa de conexão: {e}'
+            
+    @app.route("/logout")
+    def logout():
+        # Limpa a sessão
+        session.clear()
+        # Redireciona o usuário para a página de login
+        return redirect(url_for('login'))
