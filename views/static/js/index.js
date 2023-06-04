@@ -179,7 +179,7 @@ function submitForm(event, route, formID){
       contentType: false,
       processData: false,
       success: function(response) {
-          if(route == '/setsession' && response == 'success'){
+          if(route == '/valida-login' && response == 'success'){
             window.location.href = '/dashboard';
           }else{
             showAlert(response);

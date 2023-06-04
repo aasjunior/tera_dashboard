@@ -35,6 +35,26 @@ def minify_css():
     with open(output_file, 'w') as f:
         f.write(minified_css)
 
+def setsession(user):
+    try:
+        client = conn('localhost', 27017, user['clinica_db'])
+        db = client.get_default_database()
+        session['name'] = db.Monitores.find_one({"usuario_id": str(user['_id'])}, {"nome":1, "_id":0})
+        session['fotoid'] = str(db.Monitores.find_one({"usuario_id": str(user['_id'])}, {"imagem_id":1, "_id":0}))
+        client.close()
+
+        session['username'] = user['login']
+        session['nivel'] = user['nivel']
+        session['clinica_db'] = user['clinica_db']
+        session['logado'] = True
+        session['userid'] = str(user['_id'])
+
+        return 'success'
+    
+    except Exception as e:
+        # exibe a mensagem de erro
+        print(f'Erro: {e}')
+        return f'Erro: {e}'
 
 ## Rotação imagem
 # Esta função recebe uma imagem e um ângulo como entrada e retorna uma nova imagem que é rotacionada pelo ângulo fornecido.

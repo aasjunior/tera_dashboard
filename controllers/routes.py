@@ -107,21 +107,17 @@ def init_app(app, bcrypt):
             username = session['username']
             return render_template("consulta-monitores.html", **components, username=username)
     
-    @app.route("/setsession", methods=['GET', 'POST'])
-    def setsession():
+    @app.route("/valida-login", methods=['GET', 'POST'])
+    def valida_login():
         if request.method == 'POST':
             try:
                 client = conn('localhost', 27017, 'tera')
                 db = client.get_default_database()
                 username = request.form['user-login']
                 user = db.Usuarios.find_one({'login': username})
+                client.close()
                 if user and check_password_hash(user['senha'], request.form['user-password']):
-                    session['username'] = username
-                    session['nivel'] = user['nivel']
-                    session['clinica_db'] = user['clinica_db']
-                    session['logado'] = True
-                    client.close()
-                    return 'success'
+                    return setsession(user)
                 else:
                     return 'Usuário ou senha invalido'
             except PyMongoError as e:
@@ -166,6 +162,6 @@ def init_app(app, bcrypt):
                     return 'Erro ao tentar inserir os dados do monitor'
                 
         except Exception as e:
-            # exibir a mensagem de erro
+            # exibe a mensagem de erro
             print(f'Erro: {e}')
             return f'Erro: {e}'
