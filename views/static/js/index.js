@@ -117,8 +117,6 @@ function updateProgressBar(progressBar) {
   }
 
   progressBar.style.width = `${progress}%`;
-
-  console.log(currentPage)
 }
 
 function toggleElements(...elements) {

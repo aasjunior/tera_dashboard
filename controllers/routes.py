@@ -157,6 +157,7 @@ def init_app(app, bcrypt):
                 monitor_dados = create_monitor_dados(form, image_id, user_id)
                 
                 if(db.Monitores.insert_one(monitor_dados).inserted_id):
+                    client.close()
                     return f'Monitor cadastrado com sucesso'
                 else:
                     return 'Erro ao tentar inserir os dados do monitor'
