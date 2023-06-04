@@ -1,3 +1,4 @@
+from flask import redirect, url_for, session
 from cv2 import imdecode, IMREAD_UNCHANGED, getRotationMatrix2D, warpAffine, imencode, cvtColor, COLOR_RGB2RGBA
 from numpy import *
 from cssmin import cssmin
@@ -29,6 +30,7 @@ def minify_css():
 
     with open(output_file, 'w') as f:
         f.write(minified_css)
+
 
 ## Rotação imagem
 # Esta função recebe uma imagem e um ângulo como entrada e retorna uma nova imagem que é rotacionada pelo ângulo fornecido.

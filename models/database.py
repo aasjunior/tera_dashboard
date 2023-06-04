@@ -3,6 +3,14 @@ from pymongo import MongoClient
 from gridfs import GridFS
 from datetime import datetime
 
+def conn(host, port, db_name, username = None, password = None):
+    if username and password:
+        uri = f'mongodb://{username}:{password}@{host}:{port}/{db_name}'
+    else:
+        uri = f'mongodb://{host}:{port}/{db_name}'
+    client = MongoClient(uri)
+    return client
+
 def create_monitor_login(bcrypt, form):
     password_hash = bcrypt.generate_password_hash(form['senha-monitor']).decode('utf-8')
     return {

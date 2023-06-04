@@ -6,7 +6,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  
+
   if(document.querySelector('.dashboard')){
     resizeDashboard();
 
@@ -17,18 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // SIDEBAR
+  let sidebar = document.querySelectorAll(".sidebar") ?? null;
   const btnSidebarCollapse = document.querySelector(".sidebar-collapse") ?? null;
   const btnSidebarExpand = document.querySelector(".sidebar-expand") ?? null;
   const sidebarCollapsed = document.querySelector("#sidebar-collapsed") ?? null;
   const sidebarExpanded = document.querySelector("#sidebar-expanded") ?? null;
   
-  btnSidebarCollapse.addEventListener('click', function () {
-    toggleElements(sidebarCollapsed, sidebarExpanded);
-  });
-
-  btnSidebarExpand.addEventListener('click', function () {
-      toggleElements(sidebarCollapsed, sidebarExpanded);
-  });
+  if(sidebar.length > 0){
+      btnSidebarCollapse.addEventListener('click', function () {
+          toggleElements(sidebarCollapsed, sidebarExpanded);
+      });
+  
+      btnSidebarExpand.addEventListener('click', function () {
+          toggleElements(sidebarCollapsed, sidebarExpanded);
+      });
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -160,3 +163,37 @@ function resizeDashboard(){
     dashboard.classList.remove('responsive');
   }
 }
+
+function submitForm(event, route, formID){
+  event.preventDefault();
+  var data = $(formID).serialize();
+  $.ajax({
+      url: route,
+      type: 'POST',
+      data: data,
+      success: function(response) {
+          if(route == '/setsession' && response == 'success'){
+            window.location.href = '/dashboard';
+          }else{
+            showAlert(response);
+          }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        var msg = 'Ocorreu um erro: ' + errorThrown;
+        showAlert(msg);
+      }
+  });
+}
+
+function showAlert(msg){
+  alert(msg);
+}
+
+$('form').on('submit', function(event) {
+  var form = $(this);
+  if (form.length > 0) {
+      var route = form.attr('action');
+      var formId = '#' + form.attr('id');
+      submitForm(event, route, formId);
+  }
+});
