@@ -7,6 +7,7 @@ from models.database import *
 from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 from gridfs import GridFS
+from bson.objectid import ObjectId
 
 def minify_css():
     css_files = [
@@ -39,10 +40,14 @@ def setsession(user):
     try:
         client = conn('localhost', 27017, user['clinica_db'])
         db = client.get_default_database()
-        session['name'] = db.Monitores.find_one({"usuario_id": str(user['_id'])}, {"nome":1, "_id":0})
-        session['fotoid'] = str(db.Monitores.find_one({"usuario_id": str(user['_id'])}, {"imagem_id":1, "_id":0}))
+        doc = db.Monitores.find_one({"usuario_id": ObjectId(user['_id'])}, {"nome":1, "_id":0})
+        name = doc['nome']
+        doc = db.Monitores.find_one({"usuario_id": ObjectId(user['_id'])}, {"imagem_id":1, "_id":0})
+        fotoid = str(doc['imagem_id'])
         client.close()
 
+        session['name'] = name
+        session['fotoid'] = fotoid
         session['username'] = user['login']
         session['nivel'] = user['nivel']
         session['clinica_db'] = user['clinica_db']
@@ -52,7 +57,6 @@ def setsession(user):
         return 'success'
     
     except Exception as e:
-        # exibe a mensagem de erro
         print(f'Erro: {e}')
         return f'Erro: {e}'
 

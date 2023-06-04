@@ -7,7 +7,7 @@
             <input type="hidden" id="mal" value="44">
             <input type="hidden" id="bom" value="55">
             <input type="hidden" id="sem_resposta" value="27">
-            {{ welcome_card('User', 'dashboard') | safe }}
+            {{ welcome_card(session['name'], 'dashboard') | safe }}
             <section id="daily-record" class="card col relative">
                 <h2 class="title">Registro Diário</h2>
                 <div id="g-daily" class="mt-30 relative"></div>

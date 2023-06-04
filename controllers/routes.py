@@ -163,6 +163,5 @@ def init_app(app, bcrypt):
                     return 'Erro ao tentar inserir os dados do monitor'
                 
         except Exception as e:
-            # exibe a mensagem de erro
             print(f'Erro: {e}')
             return f'Erro: {e}'
