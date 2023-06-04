@@ -49,10 +49,15 @@
     </div>
     <hr class="sidebar-line">
     <div class="sidebar-header row">
-        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% if image.startswith('data:image') %}
+            <!-- exibir a imagem codificada em base64 -->
+            <img class="user_image" src="{{ image }}" alt="Foto do usuário">
+        {% else %}
+            <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% endif %}
         <div class="col horizontal-start">
             <h2 class="sidebar-title">MONITOR</h2>
-            <h3 class="user_name">{{ name }}</h3>
+            <h3 class="user_name">{{ session['username'] }}</h3>
         </div>
     </div>
     <br>    
@@ -104,6 +109,11 @@
     </div>  
     <hr class="sidebar-line">
     <div class="sidebar-header d-flex row vertical-center">
-        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% if image.startswith('data:image') %}
+            <!-- exibir a imagem codificada em base64 -->
+            <img class="user_image" src="{{ image }}" alt="Foto do usuário">
+        {% else %}
+            <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% endif %}
     </div>
 </aside>

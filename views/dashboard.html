@@ -1,6 +1,6 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
-    {{ sidebar('User', 'user.png') | safe }}
+    {{ sidebar() | safe }}
     <main class="w-100">
         {{ header_title('Dashboard Overview') | safe }}
         <section class="dashboard m-30 mb-30">    
@@ -9,7 +9,7 @@
             <input type="hidden" id="sem_resposta" value="27">
             {{ welcome_card(session['name'], 'dashboard') | safe }}
             <section id="daily-record" class="card col relative">
-                <h2 class="title">Registro Diário</h2>
+                <h2 class="title">Registro Diário Total</h2>
                 <div id="g-daily" class="mt-30 relative"></div>
             </section>
             {{ annual_record(50, 180, 20) | safe }}

@@ -1,7 +1,7 @@
 <section class="welcome-card row space-between vertical-center m-30">
     {% if pag=="dashboard" %}
     <div class="col p-inline-20">
-        <h2 class="lbl-white fs-20">Bem vindo, <em>{{ name }}!</em></h2>
+        <h2 class="lbl-white fs-20">Bem vindo, <em>{{ session['name'] }}!</em></h2>
         <p class="subtitle mx-80">Aqui estão alguns dados gerais sobre seus pacientes.</p>
         <a class="welcome-card_link" href="#">Saiba mais sobre o Dashboard Overview &nbsp;&gt;</a>
     </div>
@@ -11,7 +11,7 @@
 
     {% elif pag=="pacientes" %}
     <div class="col p-inline-20">
-        <h2 class="lbl-white fs-20">Bem vindo, <em>{{ name }}!</em></h2>
+        <h2 class="lbl-white fs-20">Bem vindo, <em>{{ session['name'] }}!</em></h2>
         <p class="subtitle">Aqui estão alguns dados gerais sobre seus pacientes.</p>
     </div>
     <div>

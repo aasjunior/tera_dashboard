@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 from gridfs import GridFS
 from bson.objectid import ObjectId
+from base64 import b64encode
 
 def minify_css():
     css_files = [

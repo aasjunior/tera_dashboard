@@ -1,11 +1,38 @@
-from flask import render_template
+from flask import render_template, session
+from models.database import *
+from pymongo import MongoClient
+from pymongo.errors import PyMongoError
+from gridfs import GridFS
+from gridfs.errors import NoFile
+from bson.objectid import ObjectId
+from base64 import b64encode
 
-def render_sidebar(name, image):
-    user = {
-        'name': name,
-        'image': image,
-    }
-    return render_template("components/sidebar.html", **user)
+def imageDB():
+    client = conn('localhost', 27017, session['clinica_db'])
+    db = client.get_default_database()
+    fs = GridFS(db)
+
+    # obter o valor do campo fotoid da sessão
+    image_id = session['fotoid']
+    
+    try:
+        # consultar os dados da imagem no banco de dados
+        image = fs.get(ObjectId(image_id))
+        
+        # ler os dados da imagem
+        image_data = image.read()
+        
+        # codificar os dados da imagem em base64
+        image_base64 = 'data:image/png;base64,' + b64encode(image_data).decode('utf-8')
+
+        return image_base64
+    except NoFile:
+        # lidar com o caso em que a imagem não foi encontrada
+        return None
+
+def render_sidebar():
+    image = imageDB() or 'user.png'
+    return render_template("components/sidebar.html", image=image)
 
 def render_welcome_card(name, pag=False, titulo=False):
     return render_template("components/welcome-card.html", name=name, pag=pag, titulo=titulo)
