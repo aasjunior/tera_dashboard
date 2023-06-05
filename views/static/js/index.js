@@ -196,9 +196,25 @@ function showAlert(msg){
 
 $('form').on('submit', function(event) {
   var form = $(this);
-  if (form.length > 0) {
+  if(form.length > 0 ){
       var route = form.attr('action');
       var formId = '#' + form.attr('id');
-      submitForm(event, route, formId);
+      var allFieldsFilled = true;
+      form.find('input[required], select[required], textarea[required]').each(function() {
+          if ($(this).val() === '') {
+              allFieldsFilled = false;
+              return false;
+          }
+      });
+
+      if(allFieldsFilled){
+        if(route != '/paciente-dados' && route != '/paciente-diagnostico' && route != '/paciente-familiar'){
+          submitForm(event, route, formId);
+        }
+      }else{
+          // Nem todos os campos obrigatórios foram preenchidos, cancela o envio do formulário e exibe um alerta
+          event.preventDefault();
+          showAlert('Por favor, preencha todos os campos obrigatórios.');
+      } 
   }
 });

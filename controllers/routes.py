@@ -32,32 +32,44 @@ def init_app(app, bcrypt):
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            username = session['username']
-            return render_template("pacientes.html", **components, username=username)
+            return render_template("pacientes.html", **components)
     
-    @app.route("/paciente-dados")
+    @app.route("/paciente-dados", methods=['GET', 'POST'])
     def paciente_dados():
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            username = session['username']
-            return render_template("paciente-dados.html", **components, username=username)
+            if request.method == 'POST':
+                session['paciente_dados'] = request.form
+                return redirect(url_for('paciente_diagnostico'))
+            return render_template("paciente-dados.html", **components)
       
-    @app.route("/paciente-diagnostico")
+    @app.route("/paciente-diagnostico", methods=['GET', 'POST'])
     def paciente_diagnostico():
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            username = session['username']
-            return render_template("paciente-diagnostico.html", **components, username=username)
+            medicamentos = ['Fluoxetina', 'Naltrexona', 'Bupropiona', 'Acamprosato', 'Metadona']
+
+            if request.method == 'POST':
+                session['dados_medicos'] = request.form
+                session['hora-lembretes'] = request.form.getlist('hora-lembrete[]')
+                session['lembretes'] = request.form.getlist('lembrete[]')
+                hora_lembrete_medicamento = request.form.getlist('hora-lembrete-medicamento[]')
+                lembrete_medicamento = request.form.getlist('lembrete-medicamento[]')
+                session['lembretes_medicamentos'] = list(zip(hora_lembrete_medicamento, lembrete_medicamento))
+                return redirect(url_for('paciente_familiar'))
+            return render_template("paciente-diagnostico.html", **components, medicamentos=medicamentos, lembretes=session.get('lembretes', []))
+
     
-    @app.route("/paciente-familiar")
+    @app.route("/paciente-familiar", methods=['GET', 'POST'])
     def paciente_familiar():
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            username = session['username']
-            return render_template("paciente-familiar.html", **components, username=username)
+            if request.method == 'POST':
+                session['familiar'] = request.form
+            return render_template("paciente-familiar.html", **components)
 
     @app.route("/cadastro-monitor", methods=['GET', 'POST'])
     def cadastro_monitor():
@@ -165,3 +177,50 @@ def init_app(app, bcrypt):
         except Exception as e:
             print(f'Erro: {e}')
             return f'Erro: {e}'
+        
+    @app.route("/create-paciente", methods=['GET', 'POST'])
+    def create_paciente():
+        try:
+            tera = conn('localhost', 27017, 'tera')
+            tera_db = tera.get_default_database()
+
+            if request.method == 'POST':
+                form = request.form
+                monitor_login = create_monitor_login(bcrypt, form, session['clinica_db'])
+                user_id = tera_db.Usuarios.insert_one(monitor_login).inserted_id
+                tera.close()
+
+                client = conn('localhost', 27017, session['clinica_db'])
+                db = client.get_default_database()
+                fs = GridFS(db)
+
+                image_file = request.files['foto']
+                angle = float(form['angle'])
+                encoded_image = encode_image(image_file, angle)
+
+                image_filename = generate_unique_filename('png')
+                image_id = fs.put(encoded_image.tostring(), filename=image_filename)
+
+                monitor_dados = create_monitor_dados(form, image_id, user_id)
+                
+                if(db.Monitores.insert_one(monitor_dados).inserted_id):
+                    client.close()
+                    return f'Monitor cadastrado com sucesso'
+                else:
+                    return 'Erro ao tentar inserir os dados do monitor'
+                
+        except Exception as e:
+            print(f'Erro: {e}')
+            return f'Erro: {e}'
+        
+        @app.before_request
+        def clear_session():
+            # Obtém a URL da página atual
+            url = request.path
+
+            # # Verifica se a URL não corresponde a uma das páginas do formulário de cadastro
+            # if url not in ['/paciente-dados', '/paciente-diagnostico', '/paciente-familiar']:
+            #     # Remove as variáveis de sessão relacionadas ao cadastro do paciente
+            #     session.pop('paciente_dados', None)
+            #     session.pop('dados_medicos', None)
+            #     session.pop('familiar', None)
