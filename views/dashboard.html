@@ -4,16 +4,28 @@
     <main class="w-100">
         {{ header_title('Dashboard Overview') | safe }}
         <section class="dashboard m-30 mb-30">    
-            <input type="hidden" id="mal" value="44">
-            <input type="hidden" id="bom" value="55">
-            <input type="hidden" id="sem_resposta" value="27">
+            <input type="hidden" id="bom" value="{{ resultados.registros_bom }}">
+            <input type="hidden" id="mal" value="{{ resultados.registros_mal }}">
+            <input type="hidden" id="sem_resposta" value="{{ resultados.registros_sem_resposta }}">
             {{ welcome_card(session['name'], 'dashboard') | safe }}
             <section id="daily-record" class="card col relative">
                 <h2 class="title">Registro Diário Total</h2>
                 <div id="g-daily" class="mt-30 relative"></div>
             </section>
-            {{ annual_record(50, 180, 20) | safe }}
-            {{ monthly_record(50, 180, 20) | safe }}
+            <section id="annual-record" class="card">
+                <input type="hidden" id="dataBom" value="{{ anual.data_bom|tojson }}">
+                <input type="hidden" id="dataMal" value="{{ anual.data_mal|tojson }}">
+                <input type="hidden" id="dataSemResposta" value="{{ anual.data_sem_resposta|tojson }}">
+                <div class="row vertical-center space-between">
+                    <h2 class="title">Registros de Humor Anual</h2>
+                    <div class="labels">
+                        <span class="filterChart_bom" onclick="filterChart('Bom')">Bom</span>
+                        <span class="filterChart_mal" onclick="filterChart('Mal')">Mal</span>
+                        <span class="filterChart_sem" onclick="filterChart('Sem resposta')">Sem resposta</span>
+                    </div>
+                </div>
+                <div id="g-annual" class="graph"></div>
+            </section>
             <section class="single-cards">
                 <section id="form-answers" class="card">
                     <div class="row w-auto space-between">
@@ -25,13 +37,13 @@
                             <h2 class="subtitle">
                                 Responderam
                             </h2>
-                            <p id="amountAnswers" class="amount">231</p>
+                            <p id="amountAnswers" class="amount">{{resultados.total_respostas}}</p>
                         </div>
                         <div class="col center">
                             <h2 class="subtitle">
                                 Sem Resposta
                             </h2>
-                            <p id="no-reply" class="amount">29</p>
+                            <p id="no-reply" class="amount">{{resultados.registros_sem_resposta}}</p>
                         </div>
                     </div>
                 </section>
@@ -42,7 +54,7 @@
                     </div>
                     <div class="row w-auto w-80">
                         <div class="col center">
-                            <p id="amountPatientsActive" class="amount">250</p>
+                            <p id="amountPatientsActive" class="amount">{{resultados.total_pacientes}}
                             <p class="subtitle">nesta semana</p>
                         </div>
                     </div>

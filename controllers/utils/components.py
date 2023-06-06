@@ -48,13 +48,8 @@ def render_daily_record(mal, bom, sem_resposta):
     }
     return render_template("components/daily-record.html", **dados)
 
-def render_annual_record(mal, bom, sem_resposta):
-    dados = {
-        'mal': mal,
-        'bom': bom,
-        'sem_resposta': sem_resposta,
-    }
-    return render_template("components/annual-record.html", **dados)
+def render_annual_record(anual):
+    return render_template("components/annual-record.html", anual=anual)
 
 def render_monthly_record(mal, bom, sem_resposta):
     dados = {

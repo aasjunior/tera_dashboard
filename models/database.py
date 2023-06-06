@@ -1,7 +1,7 @@
 from flask import session
 from pymongo import MongoClient
 from gridfs import GridFS
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def conn(host, port, db_name, username = None, password = None):
     if username and password:
@@ -98,4 +98,93 @@ def create_dados_medicos(paciente_id):
         'alta': session.get('dados_medicos', {}).get('data-alta', ''),
         'medicamento': medicamento_list,
         'paciente_id': paciente_id,
+    }
+
+def consultar_registros(db):
+    # Data e hora atuais
+    agora = datetime.now()
+
+    # Data e hora de 24 horas atrás
+    ultimas_24_horas = agora - timedelta(days=1)
+
+    # Converter datas e horas para strings
+    agora_str = agora.strftime("%Y-%m-%d %H:%M:%S.%f")
+    ultimas_24_horas_str = ultimas_24_horas.strftime("%Y-%m-%d %H:%M:%S.%f")
+
+    # Consultar registros de humor nas últimas 24 horas
+    registros = db.RegistrosHumor.aggregate([
+        {
+            "$match": {
+                "data_registro": {"$gte": ultimas_24_horas_str, "$lte": agora_str}
+            }
+        },
+        {
+            "$group": {
+                "_id": "$paciente_id",
+                "registros": {"$push": "$humor"}
+            }
+        }
+    ])
+
+    # Inicializar contadores
+    registros_bom = 0
+    registros_mal = 0
+    pacientes_com_resposta = set()
+
+    # Contar registros de humor
+    for registro in registros:
+        for humor in registro["registros"]:
+            if humor == "Bom":
+                registros_bom += 1
+            elif humor == "Mal":
+                registros_mal += 1
+
+        pacientes_com_resposta.add(registro["_id"])
+
+    total_respostas = registros_bom + registros_mal
+    # Contagem de pacientes sem registro nas últimas 24 horas
+    total_pacientes = db.Pacientes.count_documents({})
+    pacientes_sem_resposta = total_pacientes - len(pacientes_com_resposta)
+
+    return {
+        "registros_bom": registros_bom,
+        "registros_mal": registros_mal,
+        "registros_sem_resposta": pacientes_sem_resposta,
+        "total_pacientes": total_pacientes,
+        "ultimas_24_horas": ultimas_24_horas,
+        "agora": agora,
+        "total_respostas": total_respostas
+    }
+
+def consultar_registros_anual(db):
+    # Data e hora atuais
+    agora = datetime.now()
+
+    # Contar registros de humor para o dia atual
+    total_pacientes = db.Pacientes.count_documents({})
+    humor_bom = db.RegistrosHumor.count_documents({"humor": "Bom", "data_registro": {"$gte": agora.replace(hour=0, minute=0, second=0), "$lte": agora.replace(hour=23, minute=59, second=59)}})
+    humor_mal = db.RegistrosHumor.count_documents({"humor": "Mal", "data_registro": {"$gte": agora.replace(hour=0, minute=0, second=0), "$lte": agora.replace(hour=23, minute=59, second=59)}})
+    sem_resposta = total_pacientes - (humor_bom + humor_mal)
+
+    # Inicializar contadores
+    data_mal = [0] * 12
+    data_bom = [0] * 12
+    data_sem_resposta = [0] * 12
+
+    # Contar registros de humor para cada mês do ano
+    for mes in range(1, 13):
+        inicio_mes = datetime(agora.year, mes, 1)
+        fim_mes = datetime(agora.year + (mes // 12), (mes % 12) + 1, 1)
+        total_pacientes = db.Pacientes.count_documents({})
+        humor_bom = db.RegistrosHumor.count_documents({"humor": "Bom", "data_registro": {"$gte": inicio_mes, "$lte": fim_mes}})
+        humor_mal = db.RegistrosHumor.count_documents({"humor": "Mal", "data_registro": {"$gte": inicio_mes, "$lte": fim_mes}})
+        sem_resposta = total_pacientes - (humor_bom + humor_mal)
+        data_mal[mes - 1] = humor_mal
+        data_bom[mes - 1] = humor_bom
+        data_sem_resposta[mes - 1] = sem_resposta
+        
+    return {
+        "data_mal": data_mal,
+        "data_bom": data_bom,
+        "data_sem_resposta": data_sem_resposta
     }

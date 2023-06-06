@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 from gridfs import GridFS
 from io import BytesIO
+from datetime import datetime, timedelta
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 import os
@@ -14,6 +15,7 @@ import os
 def init_app(app, bcrypt):
     @app.route("/")
     def index():
+        clear_session()
         if 'logado' in session and session['logado'] == True:
             return redirect(url_for('dashboard'))
         else:
@@ -21,18 +23,31 @@ def init_app(app, bcrypt):
         
     @app.route("/login")
     def login():
+        clear_session()
         return redirect(url_for('index'))
     
     @app.route("/dashboard")
     def dashboard():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            username = session['username']
-            return render_template("dashboard.html", **components, username=username)
+            client = conn('localhost', 27017, session['clinica_db'])
+            db = client.get_default_database()
+
+            # Contagem total de pacientes
+            total_pacientes = db.Pacientes.count_documents({})
+            
+            # Consultar os registros de humor nas últimas 24 horas
+            resultados = consultar_registros(db)
+            anual = consultar_registros_anual(db)
+            
+            return render_template("dashboard.html", **components, total_pacientes=total_pacientes, resultados=resultados, anual=anual)
+
     
     @app.route("/pacientes")
     def pacientes():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -121,6 +136,7 @@ def init_app(app, bcrypt):
 
     @app.route("/cadastro-monitor", methods=['GET', 'POST'])
     def cadastro_monitor():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -129,6 +145,7 @@ def init_app(app, bcrypt):
     
     @app.route("/cadastro-clinica")
     def cadastro_clinica():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -137,6 +154,7 @@ def init_app(app, bcrypt):
 
     @app.route("/static/<path:filename>")
     def static_files(filename):
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -145,6 +163,7 @@ def init_app(app, bcrypt):
     
     @app.route("/paciente")
     def paciente():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -153,6 +172,7 @@ def init_app(app, bcrypt):
     
     @app.route("/consulta-pacientes")
     def consulta_pacientes():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -161,6 +181,7 @@ def init_app(app, bcrypt):
     
     @app.route("/consulta-monitores")
     def consulta_monitores():
+        clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
@@ -169,6 +190,7 @@ def init_app(app, bcrypt):
     
     @app.route("/valida-login", methods=['GET', 'POST'])
     def valida_login():
+        clear_session()
         if request.method == 'POST':
             try:
                 client = conn('localhost', 27017, 'tera')
@@ -193,6 +215,7 @@ def init_app(app, bcrypt):
     ## CRUD
     @app.route("/create-monitor", methods=['GET', 'POST'])
     def create_monitor():
+        clear_session()
         try:
             tera = conn('localhost', 27017, 'tera')
             tera_db = tera.get_default_database()
@@ -227,24 +250,23 @@ def init_app(app, bcrypt):
             return f'Erro: {e}'
         
         
-        @app.before_request
-        def clear_session():
-            # Obtém a URL da página atual
-            url = request.path
+    def clear_session():
+        # Obtém a URL da página atual
+        url = request.path
 
-            # Verifica se a URL não corresponde a uma das páginas do formulário de cadastro
-            if url not in ['/paciente-dados', '/paciente-diagnostico', '/paciente-familiar']:
-                # Remove as variáveis de sessão relacionadas ao cadastro do paciente
-                session.pop('paciente_dados', None)
-                session.pop('dados_medicos', None)
-                session.pop('familiar', None)
+        # Verifica se a URL não corresponde a uma das páginas do formulário de cadastro
+        if url not in ['/paciente-dados', '/paciente-diagnostico', '/paciente-familiar']:
+            # Remove as variáveis de sessão relacionadas ao cadastro do paciente
+            session.pop('paciente_dados', None)
+            session.pop('dados_medicos', None)
+            session.pop('familiar', None)
 
-                # Remove as imagens armazenadas temporariamente
-                if 'imagem_paciente' in session:
-                    filename = session.pop('imagem_paciente')
-                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    os.remove(filepath)
-                if 'imagem_familiar' in session:
-                    filename = session.pop('imagem_familiar')
-                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    os.remove(filepath)
+            # Remove as imagens armazenadas temporariamente
+            if 'imagem_paciente' in session:
+                filename = session.pop('imagem_paciente')
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                os.remove(filepath)
+            if 'imagem_familiar' in session:
+                filename = session.pop('imagem_familiar')
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                os.remove(filepath)
