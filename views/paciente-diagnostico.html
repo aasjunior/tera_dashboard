@@ -8,16 +8,16 @@
             <section>
 
                 <section class="d-flex horizontal-center"> <!--Parte de cima-->
-                    <section class="section-form"> 
+                    <section class="section-form">
                         <div class="col">
-                            <input type="hidden" id="id-paciente" value="{{ session['id-paciente'] | default('') }}"> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                            <input type="hidden" id="id-paciente" > <!--INPUT HIDDEN CODIGO PACIENTE-->
                             <div id="nome-grid" class="col">
                                 <label class="lbl-green" for=""> Título do Diagnóstico </label>
-                                <input class="input_blue width-600" type="text" name="diagnostico-paciente" value="{{ session['diagnostico-paciente'] | default('') }}" required>
+                                <input class="input_blue width-600" type="text" name="diagnostico-paciente" value="{{ session.get('dados_medicos', {}).get('diagnostico-paciente', '') }}" required>
                             </div>
                             <div id="obs-grid" class="col mt-10" name="obs-paciente">
                                 <label class="lbl-green" for=""> Descrição do Laudo </label>
-                                <textarea class="textarea width-600" rows="8" name="descricao-diagnostico" value="{{ session['descricao-diagnostico'] | default('') }}" required></textarea>
+                                <textarea class="textarea width-600" rows="8" name="descricao-diagnostico" required>{{ session.get('dados_medicos', {}).get('descricao-diagnostico', '') }}</textarea>
                             </div>
                         </div>
                     </section>
@@ -25,11 +25,11 @@
                         <div class="mt-20">
                             <div class="col">
                                 <label class="lbl-green" for="">Admissão</label>
-                                <input class="input_dark_blue" type="date" name="data-admissao" value="{{ session['data-admissao'] | default('') }}" required>
+                                <input class="input_dark_blue" type="date" name="data-admissao" value="{{ session.get('dados_medicos', {}).get('data-admissao', '') }}" required>
                             </div>
                             <div class="col mt-20">
                                 <label class="lbl-green" for="">Alta</label>
-                                <input class="input_dark_blue" type="date" name="data-alta" value="{{ session['data-alta'] | default('') }}" required>
+                                <input class="input_dark_blue" type="date" name="data-alta" value="{{ session.get('dados_medicos', {}).get('data-alta', '') }}" required>
                             </div>
                         </div>
                     </aside>
@@ -42,7 +42,7 @@
                             <div class="d-flex vertical-center mt-20">
                                 <div class="col mr-20">
                                     <label class="lbl-green fs-14 ml-10" for="">Medicamento</label>
-                                        <input class="input_med" type="text" name="medicamento-prescrito[]" value="{{ session['medicamento-prescrito'] | default('') }}">
+                                        <input class="input_med" type="text" name="medicamento-prescrito[]" >
                                 </div>
                                 <div class="col">
                                     <label for=""  class="lbl-green fs-14 ml-10">Qtde</label>

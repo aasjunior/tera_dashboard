@@ -12,7 +12,7 @@
                         <div class="mt-30">
                             <div id="" class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
-                                <select id="" class="input_dark_blue" name="sangue-paciente" value="{{ session['sangue-paciente'] | default('') }}">
+                                <select id="" class="input_dark_blue" name="sangue-paciente" value="{{ session.get('paciente_dados', {}).get('sangue-paciente', '') }}">
                                     <option class="op-color" value="A+">A+</option>
                                     <option class="op-color" value="A-">A-</option>
                                     <option class="op-color" value="B+">B+</option>
@@ -25,11 +25,11 @@
                             </div>
                             <div id="" class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Altura </label>
-                                <input class="input_dark_blue" type="text" name="altura-paciente" value="{{ session['altura-paciente'] | default('') }}" required>
+                                <input class="input_dark_blue" type="text" name="altura-paciente" value="{{ session.get('paciente_dados', {}).get('altura-paciente', '') }}" required>
                             </div>
                             <div id="" class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Peso </label>
-                                <input class="input_dark_blue" type="text" name="peso-paciente" value="{{ session['peso-paciente'] | default('') }}" required>
+                                <input class="input_dark_blue" type="text" name="peso-paciente" value="{{ session.get('paciente_dados', {}).get('peso-paciente', '') }}" required>
                             </div>
                         </div>
                     </div>
@@ -37,50 +37,50 @@
 
                 <section class="section-form ml-20"> <!--Aqui o forms-->
                     <div class="side-left-grid">
-                        <input type="hidden" id="id-paciente" value="{{ session['id-paciente'] | default('') }}"> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                        <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
                         <div id="nome-grid" class="col">
                             <label class="lbl-green" for=""> Nome </label>
-                            <input class="input_blue" type="text" name="nome-paciente" value="{{ session['nome-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="nome-paciente" value="{{ session.get('paciente_dados', {}).get('nome-paciente', '') }}" required>
                         </div>
                         <div id="data-grid" class="col">
                             <label class="lbl-green" for=""> Data de nascimento </label>
-                            <input class="input_blue" type="date" name="data-nasc-paciente" value="{{ session['data-nasc-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="date" name="data-nasc-paciente" value="{{ session.get('paciente_dados', {}).get('data-nasc-paciente', '') }}" required>
                         </div>
                         <div id="cpf-grid" class="col">
                             <label class="lbl-green" for=""> CPF </label>
-                            <input class="input_blue" type="text" name="cpf-paciente" value="{{ session['cpf-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="cpf-paciente" value="{{ session.get('paciente_dados', {}).get('cpf-paciente', '') }}" required>
                         </div>
                         <div id="rg-grid" class="col">
                             <label class="lbl-green" for=""> RG </label>
-                            <input class="input_blue" type="text" name="rg-paciente" value="{{ session['rg-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="rg-paciente" value="{{ session.get('paciente_dados', {}).get('rg-paciente', '') }}" required>
                         </div>
                         <div id="cel-grid" class="col">
                             <label class="lbl-green" for=""> Celular </label>
-                            <input class="input_blue" type="tel" name="cel-paciente" value="{{ session['cel-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="tel" name="cel-paciente" value="{{ session.get('paciente_dados', {}).get('cel-paciente', '') }}" required>
                         </div>
                         <div id="email-grid" class="col">
                             <label class="lbl-green" for=""> Email </label>
-                            <input class="input_blue" type="email" name="email-paciente" value="{{ session['email-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="email" name="email-paciente" value="{{ session.get('paciente_dados', {}).get('email-paciente', '') }}" required>
                         </div>
                         <div id="endereco-grid" class="col">
                             <label class="lbl-green" for=""> Endereço </label>
-                            <input class="input_blue" type="text" name="endereco-paciente" value="{{ session['endereco-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="endereco-paciente" value="{{ session.get('paciente_dados', {}).get('endereco-paciente', '') }}" required>
                         </div>
                         <div id="numero-grid" class="col">
                             <label class="lbl-green" for=""> Nº </label>
-                            <input class="input_blue" type="text" name="numero-endereco-paciente" value="{{ session['numero-endereco-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="numero-endereco-paciente" value="{{ session.get('paciente_dados', {}).get('numero-endereco-paciente', '') }}" required>
                         </div>
                         <div id="cep-grid" class="col">
                             <label class="lbl-green" for=""> CEP </label>
-                            <input class="input_blue" type="text" name="cep-paciente" value="{{ session['cep-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="cep-paciente" value="{{ session.get('paciente_dados', {}).get('cep-paciente', '') }}" required>
                         </div>
                         <div id="cidade-grid" class="col">
                             <label class="lbl-green" for=""> Cidade </label>
-                            <input class="input_blue" type="text" name="cidade-paciente" value="{{ session['cidade-paciente'] | default('') }}" required>
+                            <input class="input_blue" type="text" name="cidade-paciente" value="{{ session.get('paciente_dados', {}).get('cidade-paciente', '') }}" required>
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado-paciente" value="{{ session['estado-paciente'] | default('') }}">
+                            <select id="" class="input_blue" name="estado-paciente">
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>
@@ -110,8 +110,8 @@
                                 <option class="op-color" value="TO">TO</option>
                             </select>
                         </div>
-                        <div id="obs-grid" class="col" name="obs-paciente" value="{{ session['obs-paciente'] | default('') }}">
-                            <label class="lbl-green" for=""> Observações </label>
+                        <div id="obs-grid" class="col" name="obs-paciente">
+                            <label class="lbl-green" for=""> {{ session.get('paciente_dados', {}).get('obs-paciente', '') }} </label>
                             <textarea class="textarea" rows="8"></textarea>
                         </div>
 
