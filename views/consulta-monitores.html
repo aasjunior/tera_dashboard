@@ -29,25 +29,25 @@
                 </table>
             </section>
 
-            <section class="d-flex flex-end mt-30"> <!--Aqui os botoes-->
+            <section class="d-flex flex-end mt-30 mr-100"> <!--Aqui os botoes-->
                 <a href="/dashboard" class="btn-font button btn-border-green mr-20">Editar</a>
                 <input class="btn-font-blue button btn-green mr-20" type="submit" value="Cadastrar" name="salvar" required>
             </section>
-        </section>
-        
-        <section class="mt-50 mb-30">
-            <div id="pagination" class="d-flex center">
-                {% if page_num > 1 %}
-                    <a href="{{ url_for('pagina', page_num=page_num-1) }}" class="button btn-pagination mr-10">Página Anterior</a>
-                {% endif %}
             
-                {% for num in range(1, num_paginas+1) %}
-                    <a href="{{ url_for('pagina', page_num=num) }}" class="button btn-pagination d-flex mr-10" style="text-decoration: underline;">{{ num }}</a>
-                {% endfor %}
-                {% if registros|length == 10 %}
-                    <button onclick="loadNextPage('{{ page_num|safe }}')" class="button btn-pagination mr-10">Próxima Página</button>
-                {% endif %}
-            </div>
+            <section class="mt-50 mb-30">
+                <div id="pagination" class="d-flex center">
+                    {% if page_num > 1 %}
+                        <a href="{{ url_for('pagina', page_num=page_num-1) }}" class="button btn-pagination mr-10">Página Anterior</a>
+                    {% endif %}
+                
+                    {% for num in range(1, num_paginas+1) %}
+                        <a href="{{ url_for('pagina', page_num=num) }}" class="button btn-pagination d-flex mr-10" style="text-decoration: underline;">{{ num }}</a>
+                    {% endfor %}
+                    {% if registros|length == 10 %}
+                        <button onclick="loadNextPage('{{ page_num|safe }}')" class="button btn-pagination mr-10">Próxima Página</button>
+                    {% endif %}
+                </div>
+            </section>
         </section>
 
     </main>

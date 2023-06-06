@@ -4,11 +4,24 @@
     <main class="w-auto">
         {{ header_title('Pacientes') | safe }}
         {{ welcome_card('User', False, 'Cosultar e Adicionar Pacientes') | safe }} <!--Aqui é o titulo da etapa-->
-        <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
-            <a href="/paciente-diagnostico" class="btn-font button btn-border-green mr-20">Voltar</a>
-            <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar">
-            <a href="/dashboard" class="btn-font button btn-border-green mr-20">Próximo</a>
-        </section>
+        
+        <div class="d-flex center">
+            <section class="mt-30 ml-30 section-acesso d-flex">
+                <div style="text-align: left;">
+                    <div style="width: 85%;">
+                        <h1 class="fs-30">Você não tem acesso a esta página!</h1> <br>
+                        <p>Parece que você não tem acesso a este local. Para mudar essa configuração, contate seu administrador.</p>
+                    </div>
+                    <div class="d-flex mt-30">
+                        <a href="/dashboard" class="btn-font button btn-border mr-20">Voltar ao dashboard</a>
+                    </div>
+                </div>
+                <div class="d-flex vertical-center">
+                    <img id="" class="" src="{{ url_for('static', filename='imgs/figures/meditate.svg') }}" alt="Olho aberto">
+                </div>
+            </section>
+        </div>
+
     </main>
 </div>
 {% include 'blades/footer.html' %}

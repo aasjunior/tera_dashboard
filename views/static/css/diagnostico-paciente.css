@@ -213,3 +213,30 @@ table {
     background-color: var(--color-green);
     color: var(--bg-primary);
 }
+
+.section-acesso{
+    color: var(--color-white);
+    width: 800px;
+    background: var(--welcome-card-bg);
+    border-radius: 10px;
+    padding: 50px;
+    font-weight: normal;
+}
+
+.mr-100{
+    margin-right: 170px;
+}
+
+.btn-border{
+    border: 1px solid #71DDB1;
+    border-radius: 100px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.btn-border:hover{
+    box-shadow: 1px 0px 63px -8px rgba(0,255,238,1);
+    transform: scale(1.1);
+}
