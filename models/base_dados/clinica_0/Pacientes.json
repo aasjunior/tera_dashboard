@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "647e86a95ad170c142393840"
+  },
+  "nome": "Junior Alves Silva",
+  "data_nascimento": "1998-10-28",
+  "cpf": "984.383.772-03",
+  "rg": "21.358.593-5",
+  "celular": "(82) 99363-2431",
+  "email": "junior.alves@sestito.com.br",
+  "endereco": [
+    {
+      "logradouro": "Rua Pedro Oliveira",
+      "numero": "128",
+      "cep": "11900-000",
+      "cidade": "Registro",
+      "uf": "AC"
+    }
+  ],
+  "imagem_id": {
+    "$oid": "647e86a85ad170c14239380d"
+  }
+},{
+  "_id": {
+    "$oid": "647e8972ef2e684b10570b69"
+  },
+  "nome": "João Augusto",
+  "data_nascimento": "1998-07-21",
+  "cpf": "785.363.772-03",
+  "rg": "21.358.593-5",
+  "celular": "(82) 995483-2321",
+  "email": "joão.algusto@sestito.com.br",
+  "endereco": [
+    {
+      "logradouro": "Rua Pedro Oliveira",
+      "numero": "129",
+      "cep": "11900-000",
+      "cidade": "Registro",
+      "uf": "AC"
+    }
+  ],
+  "imagem_id": {
+    "$oid": "647e8972ef2e684b10570b32"
+  }
+},{
+  "_id": {
+    "$oid": "647f9743944b1b3a6f3013ce"
+  },
+  "nome": "Aparecida Elaine Emily Almada",
+  "data_nascimento": "2002-09-26",
+  "cpf": "218.524.141-97",
+  "rg": "39.823.990-3",
+  "celular": "(98) 98878-6667",
+  "email": "aparecidaelainealmada@torrez.com.br",
+  "endereco": [
+    {
+      "logradouro": "Rua P",
+      "numero": "743",
+      "cep": "65047-620",
+      "cidade": "São Luís",
+      "uf": "MA"
+    }
+  ],
+  "imagem_id": {
+    "$oid": "647f9742944b1b3a6f301382"
+  }
+}]

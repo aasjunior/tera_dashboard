@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "647fc0f82388136e3b94b032"
+  },
+  "login": "pedrodias",
+  "senha": "$2b$12$BIK3nzI.SQQjrdNixE/QLuaLY6duflHoRYS4ChHuRCJP1flSKjNdS",
+  "nivel": "normal",
+  "clinica_db": "clinica_0",
+  "data_cadastro": {
+    "$date": "2023-06-06T20:27:52.108Z"
+  }
+},{
+  "_id": {
+    "$oid": "647fc281bd62a2169bad98f1"
+  },
+  "login": "felipe_araujo",
+  "senha": "$2b$12$KZzZcX6xxURzocbcRD/UQ.0Afindilc117KpG8nZv9dSJJADoVngC",
+  "nivel": "normal",
+  "clinica_db": "clinica_0",
+  "data_cadastro": {
+    "$date": "2023-06-06T20:34:25.784Z"
+  }
+}]

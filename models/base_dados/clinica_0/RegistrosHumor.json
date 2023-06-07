@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "647ea5b1d3e233fca4b3ed16"
+  },
+  "humor": "Mal",
+  "paciente_id": {
+    "$oid": "647e86a95ad170c142393840"
+  },
+  "data_registro": "2023-06-06 00:30:00.123456"
+},{
+  "_id": {
+    "$oid": "647ea618d3e233fca4b3ed19"
+  },
+  "humor": "Bom",
+  "paciente_id": {
+    "$oid": "647e8972ef2e684b10570b69"
+  },
+  "paciente_cpf": "599.287.530-20",
+  "data_registro": "2023-06-06 00:30:00.123456"
+},{
+  "_id": {
+    "$oid": "647ec1769e1950330c7fa378"
+  },
+  "humor": "Mal",
+  "paciente_id": {
+    "$oid": "647e86a95ad170c142393840"
+  },
+  "data_registro": "2023-04-06 00:30:00.123456"
+},{
+  "_id": {
+    "$oid": "647ec3469e1950330c7fa379"
+  },
+  "humor": "Mal",
+  "paciente_id": {
+    "$oid": "647e86a95ad170c142393840"
+  },
+  "data_registro": "2023-03-06 00:30:00.123456"
+}]

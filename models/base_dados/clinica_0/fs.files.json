@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "647fc0f82388136e3b94b034"
+  },
+  "filename": "b1462da7c5564db1b7186e8b48a5fc03.png",
+  "chunkSize": 261120,
+  "length": 13024712,
+  "uploadDate": {
+    "$date": "2023-06-06T23:27:52.732Z"
+  }
+},{
+  "_id": {
+    "$oid": "647fc282bd62a2169bad98f3"
+  },
+  "filename": "99fdefc123834ef584a5839a01317e5b.png",
+  "chunkSize": 261120,
+  "length": 21114067,
+  "uploadDate": {
+    "$date": "2023-06-06T23:34:27.168Z"
+  }
+}]

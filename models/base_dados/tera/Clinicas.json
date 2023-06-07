@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "647be0fe5a4381e2fa2f504f"
+  },
+  "razao-social": "Reabilitação e Saúde Ltda",
+  "nome-fantasia": "Clínica Renascer",
+  "cnpj": "12.345.678/0001-90",
+  "telefone": "1112345678",
+  "endereco": [
+    {
+      "logradouro": "Avenida Paulista",
+      "numero": "1234",
+      "cep": "01415-000",
+      "cidade": "São Paulo",
+      "uf": "SP"
+    }
+  ],
+  "db_name": "clinica_0"
+}]

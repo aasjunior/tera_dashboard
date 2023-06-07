@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "647fc0f82388136e3b94b067"
+  },
+  "nome": "Pedro Tiago Dias",
+  "data-nascimento": "1998-08-28",
+  "cpf": "921.675.212-27",
+  "rg": "34.222.003-2",
+  "celular": "(75) 99251-3099",
+  "email": "pedro-dias72@infilink.com.br",
+  "endereco": [
+    {
+      "logradouro": "Avenida Transnordestina",
+      "numero": "954",
+      "cep": "44053-426",
+      "cidade": "Feira de Santana",
+      "uf": "BA"
+    }
+  ],
+  "imagem_id": {
+    "$oid": "647fc0f82388136e3b94b034"
+  },
+  "usuario_id": {
+    "$oid": "647fc0f82388136e3b94b032"
+  }
+},{
+  "_id": {
+    "$oid": "647fc283bd62a2169bad9945"
+  },
+  "nome": "Felipe Vinicius Araújo",
+  "data-nascimento": "1996-04-27",
+  "cpf": "924.833.075-40",
+  "rg": "44.377.932-6",
+  "celular": "(86) 98493-8458",
+  "email": "felipe_araujo@unimedara.com.br",
+  "endereco": [
+    {
+      "logradouro": "Avenida Prefeito Freitas Neto",
+      "numero": "288",
+      "cep": "64009-600",
+      "cidade": "Teresina",
+      "uf": "PI"
+    }
+  ],
+  "imagem_id": {
+    "$oid": "647fc282bd62a2169bad98f3"
+  },
+  "usuario_id": {
+    "$oid": "647fc281bd62a2169bad98f1"
+  }
+}]
