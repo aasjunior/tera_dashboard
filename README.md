@@ -31,3 +31,39 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
+
+## Configurando a base de dados
+
+1. Crie duas bases de dados no MongoDB: tera e clinica_0.
+2. Dentro de cada base de dados, crie coleções com o mesmo nome dos arquivos listados abaixo.
+3. Insira os documentos nas respectivas coleções.
+
+A estrutura das bases de dados e coleções deve ser a seguinte:
+
+### Base de dados [tera](models/base_dados/tera):
+
+```
+📁 tera
+- 📄 Clinicas.json
+- 📄 Usuarios.json
+```
+
+### Base de dados [clinica_0](models/base_dados/clinica_0):
+
+```
+📁 clinica_0
+- 📄 Monitores.json
+- 📄 Pacientes.json
+- 📄 RegistrosHumor.json
+- 📄 fs.chunks.json
+- 📄 fs.files.json
+```
+
+## Acessando o sistema
+
+Para logar no sistema como administrador, utilize o usuário de Pedro:
+
+```
+Usuário: pedrodias
+Senha: 1234
+```
