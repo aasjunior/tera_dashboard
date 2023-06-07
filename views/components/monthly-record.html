@@ -1,15 +1,12 @@
 <section id="monthly-record" class="card">
     <div class="row space-between">
-        <h2 class="title">Registro de Humor Mensal</h2>
+        <h2 class="title">Registros de Humor por Mês</h2>
         <div class="row">
             <h2 class="title mr-20">Filtrar por:</h2>
             <select name="lbl_mes" id="lbl_mes"></select>
         </div>
     </div>
     <div id="g-monthly" class="graph mt-30"></div>
-    <input type="hidden" id="mal" value="{{ mal }}">
-    <input type="hidden" id="bom" value="{{ bom }}">
-    <input type="hidden" id="sem_resposta" value="{{ sem_resposta }}">
     <script>
         mesesAno.forEach(element => {
             document.querySelector('#lbl_mes').innerHTML += `<option value='${element}'>${element}</option>`;

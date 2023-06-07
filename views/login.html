@@ -9,7 +9,7 @@
             <div class="div-login">
                 <div>
                     <h2>Faça o login</h2>
-                    <form action="" class="form-login">
+                    <form id="form-login" class="form-login" method="post" action="/valida-login">
                         <div class="col">
                             <label class="lbl-green" for="">Login do usuário</label>
                             <br>
@@ -21,8 +21,9 @@
                             <input class="txt-login" type="password" name="user-password" required>
                             <p class="p-senha">Esqueceu a senha?</p>
                         </div>
-                        <button class="btn-login"><a href="\dashboard">Entrar</a></button>
+                        <button type="submit" class="btn-login"><!--<a href="\dashboard">Entrar</a>-->Entrar</button>
                     </form>
+                    <h3>{{ pacientes_count }}</h3>
                 </div>
             </div>
             <div class="div-copy">

@@ -6,7 +6,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  
+
   if(document.querySelector('.dashboard')){
     resizeDashboard();
 
@@ -17,18 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // SIDEBAR
+  let sidebar = document.querySelectorAll(".sidebar") ?? null;
   const btnSidebarCollapse = document.querySelector(".sidebar-collapse") ?? null;
   const btnSidebarExpand = document.querySelector(".sidebar-expand") ?? null;
   const sidebarCollapsed = document.querySelector("#sidebar-collapsed") ?? null;
   const sidebarExpanded = document.querySelector("#sidebar-expanded") ?? null;
   
-  btnSidebarCollapse.addEventListener('click', function () {
-    toggleElements(sidebarCollapsed, sidebarExpanded);
-  });
-
-  btnSidebarExpand.addEventListener('click', function () {
-      toggleElements(sidebarCollapsed, sidebarExpanded);
-  });
+  if(sidebar.length > 0){
+      btnSidebarCollapse.addEventListener('click', function () {
+          toggleElements(sidebarCollapsed, sidebarExpanded);
+      });
+  
+      btnSidebarExpand.addEventListener('click', function () {
+          toggleElements(sidebarCollapsed, sidebarExpanded);
+      });
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -114,8 +117,6 @@ function updateProgressBar(progressBar) {
   }
 
   progressBar.style.width = `${progress}%`;
-
-  console.log(currentPage)
 }
 
 function toggleElements(...elements) {
@@ -159,4 +160,69 @@ function resizeDashboard(){
   }else{
     dashboard.classList.remove('responsive');
   }
+}
+
+function submitForm(event, route, formID){
+  event.preventDefault();
+  
+  // criar um objeto FormData
+  var data = new FormData($(formID)[0]);
+    
+  $.ajax({
+      url: route,
+      type: 'POST',
+      data: data,
+
+      // definir o contentType e o processData como false
+      contentType: false,
+      processData: false,
+      success: function(response) {
+          if(route == '/valida-login' && response == 'success'){
+            window.location.href = '/dashboard';
+          }else if(route == '/create-monitor' && response == 'success'){
+            window.location.href = '/consulta-monitores';
+          }else{
+            showAlert(response);
+          }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        var msg = 'Ocorreu um erro: ' + errorThrown;
+        showAlert(msg);
+      }
+  });
+}
+
+function showAlert(msg){
+  alert(msg);
+}
+
+$('form').on('submit', function(event) {
+  var form = $(this);
+  if(form.length > 0 ){
+      var route = form.attr('action');
+      var formId = '#' + form.attr('id');
+      var allFieldsFilled = true;
+      form.find('input[required], select[required], textarea[required]').each(function() {
+          if ($(this).val() === '') {
+              allFieldsFilled = false;
+              return false;
+          }
+      });
+
+      if(allFieldsFilled){
+        if(route != '/paciente-dados' && route != '/paciente-diagnostico' && route != '/paciente-familiar'){
+          submitForm(event, route, formId);
+        }
+      }else{
+          // Nem todos os campos obrigatórios foram preenchidos, cancela o envio do formulário e exibe um alerta
+          event.preventDefault();
+          showAlert('Por favor, preencha todos os campos obrigatórios.');
+      } 
+  }
+});
+
+//pagination in consulta-monitores.html
+function loadNextPage(pageNum) {
+  var nextPage = parseInt(pageNum) + 1;
+  window.location.href = '/pagina/' + nextPage;
 }

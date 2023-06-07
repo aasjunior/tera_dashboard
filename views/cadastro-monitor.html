@@ -1,20 +1,20 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
-    {{ sidebar('User', 'user.png') | safe }}
+    {{ sidebar() | safe }}
     <main class="w-auto">
         {{ header_title('Cadastro do monitor') | safe }}
         {{ welcome_card('User', False, 'Dados do monitor') | safe }} <!--Aqui é o titulo da etapa-->
-        <section>
+        <form id="form-cadastro-monitor" action="/create-monitor" method="POST" enctype="multipart/form-data">
             <section class="d-flex horizontal-center mt-20">
                 <aside class="aside-profile"> <!--Aqui será o profile-->
-                    <form class="form-upload-picture" action="/cadastrar" method="POST" enctype="multipart/form-data">
+                    <div class="form-upload-picture">
                         {{ upload_image(False) | safe }}
                         <div class="mt-30">
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Login do usuário </label>
-                                <input id="" class="input_dark_blue lbl-green" name="login-monitor" type="text" required>
+                                <input class="input_dark_blue lbl-green" name="login-monitor" type="text" required>
                             </div>
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Senha </label>
                                 <div class="section-senha">
                                     <input id="senha" class="senha lbl-green" type="password" name="senha-monitor" required>
@@ -22,12 +22,12 @@
                                 </div>
                             </div>                            
                         </div>
-                    </form>
+                    </div>
                 </aside>
 
                 <section class="section-form ml-20"> <!--Aqui o forms-->
-                    <form action="" class="side-left-grid">
-                        <input type="hidden" id="id-paciente" required> <!--INPUT HIDDEN CODIGO PACIENTE-->
+                    <div class="side-left-grid">
+                        <input type="hidden" id="id-paciente"> <!--INPUT HIDDEN CODIGO PACIENTE-->
                         <div id="nome-grid" class="col">
                             <label class="lbl-green" for=""> Nome </label>
                             <input class="input_blue" type="text" name="nome-monitor" required>
@@ -70,7 +70,7 @@
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado-monitor" required>
+                            <select class="input_blue" name="estado-monitor" required>
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>
@@ -101,13 +101,11 @@
                             </select>
                         </div>
 
-                    </form>
+                    </div>
                 </section>
             </section>
             <section class="d-flex horizontal-center mt-30"> <!--Aqui os botoes-->
-                <a href="/dashboard" class="btn-font button btn-border-green mr-20">Voltar</a>
-                <input class="btn-font-blue button btn-green mr-20" type="submit" value="Salvar" name="salvar" required>
-                <a href="/" class="btn-font button btn-border-green mr-20">Próximo</a> <!--redirecionar para consulta de monitores cadastrados-->
+                <button class="btn-font-blue button btn-green mr-20" type="submit" name="salvar">Salvar</button>
             </section>
         </section>
         {{ progress_bar() | safe }}

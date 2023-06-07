@@ -154,3 +154,89 @@ textarea:focus, input:focus {
     height: 40px;
     margin-top: 10px;
 }
+
+/* tabelas */
+table {
+    border-collapse: collapse;
+    width: 70%;
+    overflow: hidden;
+  }
+  
+  th, td {
+    font-size: medium;
+    font-weight: normal;
+    padding: 8px;
+  }
+  
+  th {
+    font-weight: bold;
+    padding: 8px;
+    color: var(--bg-primary);
+    background-color: #71DDB1;
+
+  }
+  
+  tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  tr:nth-child(even) {
+    background-color: #2D5468;
+  }
+  
+  tr:hover {
+    color: var(--bg-primary);
+    background-color: #71DDB1;
+  }
+  
+  /* Round only the outer border of the table */
+  table {
+    border-radius: 10px;
+    border: 1px solid #000;
+  }
+  
+.btn-pagination{
+    border: 1px solid #71DDB1;
+    border-radius: 100px;
+    background-color: var(--bg-primary);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+    color: var(--color-white);
+    font-family: 'Poppins';
+}
+  
+
+.btn-pagination:hover{
+    background-color: var(--color-green);
+    color: var(--bg-primary);
+}
+
+.section-acesso{
+    color: var(--color-white);
+    width: 800px;
+    background: var(--welcome-card-bg);
+    border-radius: 10px;
+    padding: 50px;
+    font-weight: normal;
+}
+
+.mr-100{
+    margin-right: 170px;
+}
+
+.btn-border{
+    border: 1px solid #71DDB1;
+    border-radius: 100px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.btn-border:hover{
+    box-shadow: 1px 0px 63px -8px rgba(0,255,238,1);
+    transform: scale(1.1);
+}

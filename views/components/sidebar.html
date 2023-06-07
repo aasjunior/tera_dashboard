@@ -30,10 +30,10 @@
     <hr class="sidebar-line">
     <div class="sidebar-foot d-flex col space-between">
         <div class="sidebar-config">
-            <h2 class="sidebar-title">CONFIGURAÇÕES</h2>
-            <a href="#" class="sidebar-link d-flex row vertical-center">
-                <span class="icon configIcon"></span>
-                <h3>Settings</h3>
+            <h2 class="sidebar-title">ADMIN</h2>
+            <a href="/consulta-monitores" class="sidebar-link d-flex row vertical-center">
+                <span class="icon adminIcon"></span>
+                <h3>Área Administrador</h3>
             </a>
         </div>
         <div class="sidebar-bottom">
@@ -41,7 +41,7 @@
                 <span class="icon helpIcon"></span>
                 <h3>Ajuda</h3>
             </a>
-            <a href="#" class="sidebar-link d-flex row vertical-center">
+            <a href="/logout" class="sidebar-link d-flex row vertical-center">
                 <span class="icon logoutIcon"></span>
                 <h3>Sair</h3>
             </a>
@@ -49,10 +49,15 @@
     </div>
     <hr class="sidebar-line">
     <div class="sidebar-header row">
-        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% if image.startswith('data:image') %}
+            <!-- exibir a imagem codificada em base64 -->
+            <img class="user_image" src="{{ image }}" alt="Foto do usuário">
+        {% else %}
+            <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% endif %}
         <div class="col horizontal-start">
             <h2 class="sidebar-title">MONITOR</h2>
-            <h3 class="user_name">{{ name }}</h3>
+            <h3 class="user_name">{{ session['username'] }}</h3>
         </div>
     </div>
     <br>    
@@ -88,22 +93,27 @@
     <hr class="sidebar-line">
     <div class="sidebar-foot d-flex col space-between">
         <div class="sidebar-config d-flex col">
-            <h2 class="sidebar-title">CONFIG.</h2>
-            <a href="#" class="sidebar-link d-flex center">
-                <span class="icon configIcon"></span>
+            <h2 class="sidebar-title">ADM</h2>
+            <a href="/consulta-monitores" class="sidebar-link d-flex center">
+                <span class="icon adminIcon"></span>
             </a>
         </div>
         <div class="sidebar-bottom d-flex col">
             <a href="#" class="sidebar-link d-flex center">
                 <span class="icon helpIcon"></span>
             </a>
-            <a href="#" class="sidebar-link d-flex center">
+            <a href="/logout" class="sidebar-link d-flex center">
                 <span class="icon logoutIcon"></span>
             </a>
         </div>
     </div>  
     <hr class="sidebar-line">
     <div class="sidebar-header d-flex row vertical-center">
-        <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% if image.startswith('data:image') %}
+            <!-- exibir a imagem codificada em base64 -->
+            <img class="user_image" src="{{ image }}" alt="Foto do usuário">
+        {% else %}
+            <img class="user_image" src="{{ url_for('static', filename='imgs/' + image) }}" alt="Foto do usuário">
+        {% endif %}
     </div>
 </aside>

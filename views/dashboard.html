@@ -1,17 +1,35 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
-    {{ sidebar('User', 'user.png') | safe }}
+    {{ sidebar() | safe }}
     <main class="w-100">
         {{ header_title('Dashboard Overview') | safe }}
-        <section class="dashboard m-30 mb-30">
-            {{ daily_record(50, 180, 20) | safe }}
-            {{ welcome_card('User', 'dashboard') | safe }}
-            {{ annual_record(50, 180, 20) | safe }}
-            {{ monthly_record(50, 180, 20) | safe }}
+        <section class="dashboard m-30 mb-30">    
+            <input type="hidden" id="bom" value="{{ resultados.registros_bom }}">
+            <input type="hidden" id="mal" value="{{ resultados.registros_mal }}">
+            <input type="hidden" id="sem_resposta" value="{{ resultados.registros_sem_resposta }}">
+            {{ welcome_card(session['name'], 'dashboard') | safe }}
+            <section id="daily-record" class="card col relative">
+                <h2 class="title">Registro Diário Total</h2>
+                <div id="g-daily" class="mt-30 relative"></div>
+            </section>
+            <section id="annual-record" class="card">
+                <input type="hidden" id="dataBom" value="{{ anual.data_bom|tojson }}">
+                <input type="hidden" id="dataMal" value="{{ anual.data_mal|tojson }}">
+                <input type="hidden" id="dataSemResposta" value="{{ anual.data_sem_resposta|tojson }}">
+                <div class="row vertical-center space-between">
+                    <h2 class="title">Registros de Humor Anual</h2>
+                    <div class="labels">
+                        <span class="filterChart_bom" onclick="filterChart('Bom')">Bom</span>
+                        <span class="filterChart_mal" onclick="filterChart('Mal')">Mal</span>
+                        <span class="filterChart_sem" onclick="filterChart('Sem resposta')">Sem resposta</span>
+                    </div>
+                </div>
+                <div id="g-annual" class="graph"></div>
+            </section>
             <section class="single-cards">
                 <section id="form-answers" class="card">
                     <div class="row w-auto space-between">
-                        <h2 class="title">Respostas do Formulário</h2>
+                        <h2 class="title">Respostas do Formulário por Ciclo Diário</h2>
                         <span class="formIcon icon"></span>
                     </div>
                     <div class="row w-auto space-evenly w-80">
@@ -19,13 +37,13 @@
                             <h2 class="subtitle">
                                 Responderam
                             </h2>
-                            <p id="amountAnswers" class="amount">231</p>
+                            <p id="amountAnswers" class="amount">{{resultados.total_respostas}}</p>
                         </div>
                         <div class="col center">
                             <h2 class="subtitle">
                                 Sem Resposta
                             </h2>
-                            <p id="no-reply" class="amount">29</p>
+                            <p id="no-reply" class="amount">{{resultados.registros_sem_resposta}}</p>
                         </div>
                     </div>
                 </section>
@@ -36,7 +54,7 @@
                     </div>
                     <div class="row w-auto w-80">
                         <div class="col center">
-                            <p id="amountPatientsActive" class="amount">250</p>
+                            <p id="amountPatientsActive" class="amount">{{resultados.total_pacientes}}
                             <p class="subtitle">nesta semana</p>
                         </div>
                     </div>
@@ -53,51 +71,52 @@
                         </div>
                     </div>
                 </section>
-                <section id="patients-crisis" class="card center">
-                    <div class="header center">
+                <section id="patients-crisis" class="card">
+                    <div class="header">
                         <div class="row space-between">
                             <h2 class="title">Pacientes em Crise</h2>
                             <span class="cautionIcon icon"></span>
                         </div>
                         <div class="row w-100 space-between relative">
                             <div class="col w-80 center">
-                                <p id="amountPatientsActive" class="amount">2</p>
-                                <p class="subtitle">hoje</p>
+                                <p id="amountPatientsActive" class="amount">{{ panel_crisis.total_pacientes_em_crise}}</p>
+                                <p class="subtitle">nesta semana</p>
                             </div>
                             <span id="accordion" class="arrowIcon"></span>
                         </div>
                     </div>
                     <div id="accordion-content" class="d-none">
-                        <div class="panel_resolvidas">
-                            <div class="row space-between vertical-center">
-                                <hgroup class="horizontal-start">
-                                    <h2 class="title">Crises resolvidas</h2>
-                                    <h3 class="subtitle">nesta semana</h3>
-                                </hgroup>
-                                <p class="amount">3</p>
-                            </div>
-                            <div class="row center space-around">
-                                <p>65%</p>
-                                <div class="progress-bar w-80">
-                                    <div class="progress" style="width:65%;"></div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="panel_pendentes mt-20">
                             <div class="row space-between">
                                 <hgroup>
                                     <h2 class="title">Pendentes</h2>
                                     <h3 class="subtitle">pacientes ainda em crise</h3>
                                 </hgroup>
-                                <p class="amount">5</p>
+                                <p class="amount">{{ panel_crisis.pacientes_em_crise|length }}</p>
                             </div>
                             <div class="row center space-around">
-                                <p>65%</p>
+                                <p>{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
                                 <div class="progress-bar w-80">
-                                    <div class="progress" style="width:65%;"></div>
+                                    <div class="progress" style="width:{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%;"></div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="panel_resolvidas">
+                            <div class="row space-between vertical-center">
+                                <hgroup class="horizontal-start">
+                                    <h2 class="title">Crises resolvidas</h2>
+                                    <h3 class="subtitle">nesta semana</h3>
+                                </hgroup>
+                                <p class="amount">{{ panel_crisis.crises_resolvidas }}</p>
+                            </div>
+                            <div class="row center space-around">
+                                <p>{{ (panel_crisis.crises_resolvidas / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
+                                <div class="progress-bar w-80">
+                                    <div class="progress" style="width:{{ (panel_crisis.crises_resolvidas / panel_crisis.total_registros_mal * 100)|round|int }}%;"></div>
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
                 </section>
             </section>
@@ -115,4 +134,5 @@
         accordionButton.classList.toggle('deg-180')
     });
 </script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% include 'blades/footer.html' %}

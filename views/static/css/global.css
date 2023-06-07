@@ -26,6 +26,7 @@
     --sidebar-color-logout: #CC8889;
 
     --welcome-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #284F63 50%);
+    --access-card-bg: linear-gradient(270deg, #45C4B0 -9.55%, #19626B 20.23%, #04334A 50%);
 
     --dashboard-gap: 20px;
     --padding-container: 2.3rem;
@@ -116,6 +117,10 @@ em{
 
 .configIcon{
     background-image: url(../imgs/icons/configIcon.svg);
+}
+
+.adminIcon{
+    background-image: url(../imgs/icons/adminIcon.svg);
 }
 
 .helpIcon{
@@ -274,6 +279,12 @@ em{
     justify-content: space-evenly;
 }
 
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
 .center{
     align-items: center;
     justify-content: center;
@@ -369,6 +380,10 @@ a{
     margin-left: 20px;
 }
 
+.ml-30{
+    margin-left: 30px;
+}
+
 .mt-10{
     margin-top: 10px;
 }
@@ -379,6 +394,10 @@ a{
 
 .mt-30{
     margin-top: 30px;
+}
+
+.mt-50{
+    margin-top: 50px;
 }
 
 .mb-10{
@@ -398,6 +417,11 @@ a{
 
 .lbl-white{
     color: var(--color-white) !important;
+}
+
+.fs-30{
+    font-size: 30px !important;
+    line-height: 30px;
 }
 
 .fs-20{
