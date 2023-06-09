@@ -1,8 +1,8 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
-    {{ sidebar('User', 'user.png') | safe }}
+    {{ sidebar() | safe }}
     <main class="w-auto">
-        {{ header_title('Monitores') | safe }}
+        {{ header_title('Pacientes') | safe }}
         {{ welcome_card(session['name'], False, 'Consultar e Adicionar Monitores') | safe }} <!--Aqui é o titulo da etapa-->
         
         <section class="col">

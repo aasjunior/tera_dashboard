@@ -22,17 +22,15 @@
     }
 
     .overlay-image {
-        max-width: 500px;
-        max-height: 500px;
-        margin-bottom: 10px;
-        border-radius: 100%;
-        height: 200px;
-        width: 200px;
+        height: 200px; /* Defina a altura desejada para o contêiner da imagem */
+        width: 200px; /* Mantenha a largura automática para manter a proporção da imagem */
+        object-fit: cover; /* Ajuste a imagem para preencher o contêiner mantendo a proporção */
+        border-radius: 50%;
     }
 </style>
 
 <div class="col horizontal-center">
-    <label class="align-self" for=""><img id="preview" src="static/imgs/figures/imagem-padrao.jpg" alt="Foto de Perfil"></label>
+    <label class="align-self" for=""><img id="preview" src="static/imgs/user.png" alt="Foto de Perfil"></label>
     <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem 
         <input class="" type="file" id="upload-picture" name="foto" accept="image/*">
     </label>

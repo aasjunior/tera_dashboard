@@ -1,22 +1,41 @@
 const mal = parseInt(document.getElementById("mal").value) ?? null;
 const bom = parseInt(document.getElementById("bom").value) ?? null;
 const sem_resposta = parseInt(document.getElementById("sem_resposta").value) ?? null;
-
+var mesAtual = new Date().getMonth();
 var dataMal = JSON.parse(document.getElementById("dataMal").value) ?? null;
 var dataBom = JSON.parse(document.getElementById("dataBom").value) ?? null;
 var dataSemResposta = JSON.parse(document.getElementById("dataSemResposta").value) ?? null;
+var dataMalMensal = JSON.parse(document.getElementById("dataMalMensal").value);
+var dataBomMensal = JSON.parse(document.getElementById("dataBomMensal").value);
+var dataSemRespostaMensal = JSON.parse(document.getElementById("dataSemRespostaMensal").value);
 var line_chart;
+var monthly_chart;
 
 // Cores para cada label
 let colors = {
   Mal: "#023047",
   Bom: "#45C4B0",
-  "Sem resposta": "#8195A8",
+  Sem_resposta: "#8195A8",
 };
+var mesesAno = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
+];
 
-if (document.querySelector(".dashboard")) {
+if(document.querySelector(".dashboard")) {
   dailyRecord(mal, bom, sem_resposta);
   annualRecord(dataMal, dataBom, dataSemResposta);
+  monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal)
 }
 
 function dailyRecord(mal, bom, sem_resposta) {
@@ -26,7 +45,7 @@ function dailyRecord(mal, bom, sem_resposta) {
       height: "90%",
     },
     series: [mal, bom, sem_resposta],
-    colors: ["#023047", "#45C4B0", "#8195A8"],
+    colors: [colors["Mal"], colors["Bom"], colors["Sem_resposta"]],
     labels: ["Humor: Mal", "Humor: Bom", "Sem resposta"],
     legend: {},
     plotOptions: {
@@ -69,23 +88,6 @@ function dailyRecord(mal, bom, sem_resposta) {
 }
 
 function annualRecord(dataMal, dataBom, dataSemResposta) {
-
-  // Obtém o mês atual
-  var mesAtual = new Date().getMonth();
-  var mesesAno = [
-    "Jan",
-    "Fev",
-    "Mar",
-    "Abr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Ago",
-    "Set",
-    "Out",
-    "Nov",
-    "Dez",
-  ];
 
   // Cria um array com os nomes dos meses do ano
   var meses = [];
@@ -155,7 +157,6 @@ function annualRecord(dataMal, dataBom, dataSemResposta) {
     line_options
   );
   line_chart.render();
-
 }
 
 // Filtrar o gráfico com base na label selecionada
@@ -170,7 +171,7 @@ function filterChart(label) {
     newColor = colors["Bom"];
   } else if (label === "Sem resposta") {
     newData = dataSemResposta;
-    newColor = colors["Sem resposta"];
+    newColor = colors["Sem_resposta"];
   }
 
   line_chart.updateOptions({
@@ -179,4 +180,73 @@ function filterChart(label) {
     },
   });
   line_chart.updateSeries([{ data: newData }]);
+}
+
+function monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal) {
+  var selectMes = document.getElementById("lbl_mes");
+  var mesSelecionado = selectMes.value; // Obter o mês selecionado (valor de 1 a 12)
+
+  var semanasMes = Array.from({ length: 5 }, (_, i) => i + 1); // Considerando 5 semanas em cada mês
+
+  var dataBomSemanal = dataBomMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
+  var dataMalSemanal = dataMalMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
+  var dataSemRespostaSemanal = dataSemRespostaMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
+
+  // Define as opções do gráfico de área com ApexCharts
+  var area_options = {
+    series: [
+      {
+        name: "Humor: Bom",
+        data: dataBomSemanal,
+      },
+      {
+        name: "Humor: Mal",
+        data: dataMalSemanal,
+      },
+      {
+        name: "Sem Resposta",
+        data: dataSemRespostaSemanal,
+      },
+    ],
+    chart: {
+      height: 350,
+      type: "area",
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "smooth",
+    },
+    xaxis: {
+      categories: semanasMes.map(function (semanaIndex) {
+        return "Semana " + semanaIndex;
+      }),
+    },
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
+    },
+    colors: [colors["Mal"], colors["Bom"], colors["Sem_resposta"]],
+  };
+
+  // Cria um novo gráfico de área com os dados mensais
+  var monthly_chart = new ApexCharts(
+    document.querySelector("#g-monthly"),
+    area_options
+  );
+  monthly_chart.render();
+}
+
+function formatDate(date) {
+  var year = date.getFullYear();
+  var month = ("0" + (date.getMonth() + 1)).slice(-2);
+  var day = ("0" + date.getDate()).slice(-2);
+  var hours = ("0" + date.getHours()).slice(-2);
+  var minutes = ("0" + date.getMinutes()).slice(-2);
+  var seconds = ("0" + date.getSeconds()).slice(-2);
+  var milliseconds = ("00" + date.getMilliseconds()).slice(-3);
+
+  return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
 }

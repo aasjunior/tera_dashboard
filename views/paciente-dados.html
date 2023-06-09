@@ -10,9 +10,9 @@
                     <div class="form-upload-picture">
                         {{ upload_image(False) | safe }}
                         <div class="mt-30">
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Tipo Sanguíneo </label>
-                                <select id="" class="input_dark_blue" name="sangue-paciente" value="{{ session.get('paciente_dados', {}).get('sangue-paciente', '') }}">
+                                <select class="input_dark_blue" name="sangue-paciente" value="{{ session.get('paciente_dados', {}).get('sangue-paciente', '') }}">
                                     <option class="op-color" value="A+">A+</option>
                                     <option class="op-color" value="A-">A-</option>
                                     <option class="op-color" value="B+">B+</option>
@@ -23,11 +23,11 @@
                                     <option class="op-color" value="O-">O-</option>
                                 </select>
                             </div>
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Altura </label>
                                 <input class="input_dark_blue" type="text" name="altura-paciente" value="{{ session.get('paciente_dados', {}).get('altura-paciente', '') }}" required>
                             </div>
-                            <div id="" class="col">
+                            <div class="col">
                                 <label class="lbl-white fs-14 mt-10" for=""> Peso </label>
                                 <input class="input_dark_blue" type="text" name="peso-paciente" value="{{ session.get('paciente_dados', {}).get('peso-paciente', '') }}" required>
                             </div>
@@ -80,7 +80,7 @@
                         </div>
                         <div id="estado-grid" class="col">
                             <label class="lbl-green" for=""> Estado </label> <!--SELECT DOS ESTADOS-->
-                            <select id="" class="input_blue" name="estado-paciente">
+                            <select class="input_blue" name="estado-paciente">
                                 <option class="op-color" value="AC">AC</option>
                                 <option class="op-color" value="AL">AL</option>
                                 <option class="op-color" value="AP">AP</option>

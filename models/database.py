@@ -2,6 +2,7 @@ from flask import session
 from pymongo import MongoClient
 from gridfs import GridFS
 from datetime import datetime, timedelta
+import pandas as pd
 import random
 
 def conn(host, port, db_name, username = None, password = None):
@@ -141,7 +142,7 @@ def consultar_registros(db):
             elif humor == "Mal":
                 registros_mal += 1
 
-        pacientes_com_resposta.add(registro["_id"])
+        pacientes_com_resposta.add(str(registro["_id"]))
 
     total_respostas = registros_bom + registros_mal
     # Contagem de pacientes sem registro nas últimas 24 horas
@@ -190,6 +191,42 @@ def consultar_registros_anual(db):
         "data_bom": data_bom,
         "data_sem_resposta": data_sem_resposta
     }
+
+# Criar uma função para consultar os registros de humor dentro de um mês
+def consultar_registros_mensal(db):
+    # Data e hora atuais
+    agora = datetime.now()
+
+    # Inicializar contadores
+    data_mal = []
+    data_bom = []
+    data_sem_resposta = []
+
+    # Contar registros de humor para cada semana dentro do mês
+    inicio_mes = datetime(agora.year, agora.month, 1)
+    fim_mes = datetime(agora.year + (agora.month // 12), (agora.month % 12) + 1, 1)
+
+    semanas_mes = pd.date_range(start=inicio_mes, end=fim_mes, freq='W')
+
+    for semana in semanas_mes:
+        inicio_semana = semana
+        fim_semana = semana + pd.DateOffset(days=6)
+
+        total_pacientes = db.Pacientes.count_documents({})
+        humor_bom = db.RegistrosHumor.count_documents({"humor": "Bom", "data_registro": {"$gte": inicio_semana, "$lte": fim_semana}})
+        humor_mal = db.RegistrosHumor.count_documents({"humor": "Mal", "data_registro": {"$gte": inicio_semana, "$lte": fim_semana}})
+        sem_resposta = total_pacientes - (humor_bom + humor_mal)
+
+        data_mal.append(humor_mal)
+        data_bom.append(humor_bom)
+        data_sem_resposta.append(sem_resposta)
+
+    return {
+        "data_mal": data_mal,
+        "data_bom": data_bom,
+        "data_sem_resposta": data_sem_resposta
+    }
+
 
 def panelCrisis(db):
     # Data e hora atuais
@@ -244,25 +281,63 @@ def panelCrisis(db):
         "total_registros_mal": total_registros_mal
     }
 
-def criar_registros_exemplo(db):
+def pacientesNovos(db):
+    # Data de hoje
+    data_atual = datetime.now()
+
+    # Data da semana anterior
+    data_semana_anterior = data_atual - timedelta(days=7)
+
+    # Consulta no banco de dados para obter a quantidade de pacientes cadastrados na semana
+    total_pacientes = db.Pacientes.count_documents({
+        "data_cadastro": {
+            "$gte": data_semana_anterior,
+            "$lt": data_atual
+        }
+    })
+
+    return {
+        "pacientes_novos": total_pacientes,
+    }
+
+def create_registro_humor(db, paciente_id):
     # Documento modelo
     documento_modelo = {
         "humor": "",
         "paciente_id": {
-            "$oid": "647e8972ef2e684b10570b69"
+            "$oid": paciente_id
         },
-        "paciente_cpf": "599.287.530-20",
-        "data_registro": "2023-06-06 00:30:00.123456"
+        "data_registro": ""
     }
 
     # Data e hora atuais
     agora = datetime.now()
 
-    # Criar 12 documentos para os últimos 12 meses
-    for i in range(1, 13):
-        data_registro = agora.replace(month=i, day=1, hour=0, minute=0, second=0, microsecond=0)
-        documento = documento_modelo.copy()
-        # Gerar valor aleatório entre "Bom" e "Mal"
-        documento["humor"] = random.choice(["Bom", "Mal"])
-        documento["data_registro"] = data_registro.strftime("%Y-%m-%d %H:%M:%S.%f")
-        db.RegistrosHumor.insert_one(documento)
+    # Gerar valor aleatório entre "Bom" e "Mal"
+    documento = documento_modelo.copy()
+    documento["humor"] = random.choice(["Bom", "Mal"])
+    documento["data_registro"] = agora.strftime("%Y-%m-%d %H:%M:%S.%f")
+    db.RegistrosHumor.insert_one(documento)
+
+    # # Criar 12 documentos para os últimos 12 meses
+    # for i in range(1, 13):
+    #     data_registro = agora.replace(month=i, day=1, hour=0, minute=0, second=0, microsecond=0)
+    #     documento = documento_modelo.copy()
+    #     # Gerar valor aleatório entre "Bom" e "Mal"
+    #     documento["humor"] = random.choice(["Bom", "Mal"])
+    #     documento["data_registro"] = data_registro.strftime("%Y-%m-%d %H:%M:%S.%f")
+    #     db.RegistrosHumor.insert_one(documento)
+
+def create_dados_sensores(db, paciente_id):
+    agora = datetime.now()
+    data = {
+        "paciente_id": paciente_id,
+        "passos_percorridos": str(random.randint(0, 10000)),
+        "bpms": str(random.randint(60, 100)),
+        "start_time": datetime.strptime("2023-05-23T22:00:00Z", '%Y-%m-%dT%H:%M:%SZ'),
+        "end_time": datetime.strptime("2023-05-24T06:00:00Z", '%Y-%m-%dT%H:%M:%SZ'),
+        "duration_minutes": 480,
+        "sleep_quality": "good",
+        "data_registro": agora
+    }
+    db.DadosSensores.insert_one(data)

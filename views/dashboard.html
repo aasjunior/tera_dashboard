@@ -26,6 +26,19 @@
                 </div>
                 <div id="g-annual" class="graph"></div>
             </section>
+            <section id="monthly-record" class="card">
+                <input type="hidden" id="dataBomMensal" value="{{ mensal.data_mal|tojson }}">
+                <input type="hidden" id="dataMalMensal" value="{{ mensal.data_bom|tojson }}">
+                <input type="hidden" id="dataSemRespostaMensal" value="{{ mensal.data_sem_resposta|tojson }}">
+                <div class="row space-between">
+                    <h2 class="title">Registros de Humor por Mês</h2>
+                    <div class="row">
+                        <h2 class="title mr-20">Filtrar por:</h2>
+                        <select name="lbl_mes" id="lbl_mes"></select>
+                    </div>
+                </div>
+                <div id="g-monthly" class="graph mt-30"></div>
+            </section>
             <section class="single-cards">
                 <section id="form-answers" class="card">
                     <div class="row w-auto space-between">
@@ -66,7 +79,7 @@
                     </div>
                     <div class="row w-auto w-80">
                         <div class="col center">
-                            <p id="amountPatientsActive" class="amount">3</p>
+                            <p id="amountPatientsActive" class="amount">{{ pacientes_novos.pacientes_novos }}</p>
                             <p class="subtitle">nesta semana</p>
                         </div>
                     </div>

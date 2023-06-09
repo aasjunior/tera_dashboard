@@ -42,9 +42,11 @@ def init_app(app, bcrypt):
             # Consultar os registros de humor nas últimas 24 horas
             resultados = consultar_registros(db)
             anual = consultar_registros_anual(db)
+            mensal = consultar_registros_mensal(db)
             panel_crisis = panelCrisis(db)
-            
-            return render_template("dashboard.html", **components, total_pacientes=total_pacientes, resultados=resultados, anual=anual, panel_crisis=panel_crisis)
+            pacientes_novos = pacientesNovos(db)
+
+            return render_template("dashboard.html", **components, total_pacientes=total_pacientes, resultados=resultados, anual=anual, mensal=mensal, panel_crisis=panel_crisis, pacientes_novos=pacientes_novos)
 
     
     @app.route("/pacientes")
@@ -132,6 +134,9 @@ def init_app(app, bcrypt):
                             familiarimage_id = fs.put(encoded_image.tostring(), filename=image_filename)
                             familiar = create_familiar(familiarimage_id, paciente_id)
                             db.Familiares.insert_one(familiar)
+
+                            create_registro_humor(db, paciente_id)
+                            create_dados_sensores(db, paciente_id)
 
                 return redirect(url_for('dashboard'))
             return render_template("paciente-familiar.html", **components)

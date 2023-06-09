@@ -1,12 +1,10 @@
 #preview {
     border: solid 3px var(--color-green);
-    width: 150px;
-    height: 150px;
-    left: 332px;
-    top: 263px;
-    /* background: url(../imgs/figures/imagem-padrao.jpg); */
-    background-size: 100%;
+    height: 200px; /* Defina a altura desejada para o contêiner da imagem */
+    width: 200px; /* Mantenha a largura automática para manter a proporção da imagem */
+    object-fit: cover; /* Ajuste a imagem para preencher o contêiner mantendo a proporção */
     border-radius: 50%;
+    background-size: cover;
     margin: 20px;
 }
 
