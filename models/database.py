@@ -1,6 +1,8 @@
 from flask import session
 from pymongo import MongoClient
 from gridfs import GridFS
+from bson.objectid import ObjectId
+from base64 import b64encode
 from datetime import datetime, timedelta
 import pandas as pd
 import random
@@ -341,3 +343,61 @@ def create_dados_sensores(db, paciente_id):
         "data_registro": agora
     }
     db.DadosSensores.insert_one(data)
+
+def pacientes_sem_registro_humor(db):
+    fs = GridFS(db)
+    # Obter a data atual e a data de um dia atrás
+    data_atual = datetime.now()
+    data_um_dia_atras = data_atual - timedelta(days=1)
+    
+    # Consultar os registros de humor nos últimos dias
+    registros_humor = list(db.RegistrosHumor.find({
+        'data_registro': {
+            '$gte': data_um_dia_atras,
+            '$lte': data_atual
+        }
+    }))
+    
+    # Obter os IDs dos pacientes que fizeram registro de humor nos últimos dias
+    pacientes_com_registro_humor = {registro['paciente_id']['$oid'] for registro in registros_humor}
+    
+    # Consultar os pacientes que não fizeram registro de humor nos últimos dias e estão offline há 1 ou mais dias
+    pacientes_sem_registro_humor = list(db.Pacientes.find({
+        '_id': {
+            '$nin': list(pacientes_com_registro_humor)
+        },
+        'data_cadastro': {
+            '$lte': data_um_dia_atras
+        }
+    }))
+    
+    # Obter os dados relacionados aos pacientes sem registro de humor
+    dados_pacientes = []
+    for paciente in pacientes_sem_registro_humor:
+        registro_humor = db.RegistrosHumor.find_one({'paciente_id': paciente['_id']})
+        ultima_data_registro = datetime.strptime(registro_humor['data_registro'], "%Y-%m-%d %H:%M:%S.%f") if registro_humor else None
+        if ultima_data_registro:
+            quantidade_dias = (data_atual - ultima_data_registro).days
+        else:
+            data_cadastro = paciente['data_cadastro']
+            quantidade_dias = (data_atual - data_cadastro).days
+        image = fs.get(ObjectId(paciente['imagem_id']))
+        image_data = image.read()
+        image_base64 = 'data:image/png;base64,' + b64encode(image_data).decode('utf-8')
+        
+        dados = {
+            'paciente': paciente,
+            'dados_sensores': db.DadosSensores.find_one({'paciente_id': paciente['_id']}),
+            'dados_medicos': db.DadosMedicos.find_one({'paciente_id': paciente['_id']}),
+            'ultima_data_registro': ultima_data_registro,
+            'quantidade_dias': quantidade_dias,
+            'foto': image_base64,
+            'registro_humor': db.RegistrosHumor.find_one({'paciente_id': paciente['_id']})
+        }
+        dados_pacientes.append(dados)
+    
+    # Retornar o dicionário com os registros de humor e dados dos pacientes
+    return {
+        'registros_humor': registros_humor,
+        'dados_pacientes': dados_pacientes
+    }

@@ -1,13 +1,14 @@
 <article class="article-risco col horizontal-center mr-15"> <!--cada article é um pacientes-->
+    <input type="hidden" name="paciente_id" value="{{paciente['paciente']['_id']}}">
     <div>
         <div class="off-3-dias p-5">
             <div class="bolinha-verm"></div>
-            <p>Offline há 3 dias</p>
+            <p>Offline há {{paciente['quantidade_dias']}} dias</p>
         </div>
         <div class="borda-verm">
-            <img class="foto-paciente-risco" src="{{ url_for('static', filename='imgs/figures/imagem-padrao.jpg') }}" alt="Foto paciente">
+            <img class="foto-paciente-risco" src="{{ paciente['foto'] }}" alt="Foto paciente">
         </div>
-        <h3>Junior Alves Silva</h3>
+        <h3>{{paciente['paciente']['nome']}}</h3>
     </div>
     <hr>
     <div class="fs-12">
@@ -18,21 +19,21 @@
                     <!---bolinha-->
                 </div>
                 <p class="mr-5">Batimento Cardíaco:</p>
-                <p class="bold">80 bpms</p>
+                <p class="bold">{{paciente['dados_sensores']['bpms']}} bpms</p>
             </div>
             <div class="row vertical-center">
                 <div class="bolinha-green-2">
                     <!---bolinha-->
                 </div>
                 <p class="mr-5">Passos percorridos:</p>
-                <p class="bold">300 passos</p>
+                <p class="bold">{{paciente['dados_sensores']['passos_percorridos']}} passos</p>
             </div>
             <div class="row vertical-center">
                 <div class="bolinha-green-3">
                     <!---bolinha-->
                 </div>
                 <p class="mr-5">Horas de sono:</p>
-                <p class="bold">5 h e 33 min</p>
+                <p class="bold">{{paciente['dados_sensores']['duration_minutes']|int // 60}} horas</p>
             </div>
         </div>
     </div>

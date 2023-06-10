@@ -1,9 +1,15 @@
-<article class="article-offline d-flex mr-15"><!--cada article é um pacientes-->
-    <div class="borda-amar">
-        <img class="foto-paciente" src="{{ url_for('static', filename='imgs/figures/imagem-padrao.jpg') }}" alt="Foto paciente">
-    </div>
-    <div class="col center">
-        <p class="off-1-dia">Off há 1 dia</p>
-        <h3 class="fs-14 p-5">Junior Alves Silva</h3>
-    </div>
-</article>
+<label for="btn">
+    <article class="article-offline d-flex mr-15"><!--cada article é um pacientes-->
+        <form action="/paciente" method="post">
+            <input type="hidden" name="paciente_id" value="{{paciente['paciente']['_id']}}">
+            <input type="submit" class="d-none" id="btn">
+        </form>
+        <div class="borda-amar">
+            <img class="foto-paciente" src="{{ paciente['foto'] }}" alt="Foto paciente">
+        </div>
+        <div class="col horizontal-center">
+            <p class="off-1-dia">Off há {{ paciente['quantidade_dias'] }} dia{{ 's' if paciente['quantidade_dias'] > 1 }}</p>
+            <h3 class="fs-14 p-5">{{ paciente['paciente']['nome'] }}</h3>
+        </div>
+    </article>
+</label>

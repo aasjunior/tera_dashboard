@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for, send_from_directory, Response, session
+from flask import render_template, redirect, request, url_for, send_from_directory, Response, session, json
 from flask_bcrypt import Bcrypt, check_password_hash
 from models.database import *
 from .utils.components import *
@@ -55,7 +55,10 @@ def init_app(app, bcrypt):
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            return render_template("pacientes.html", **components)
+            client = conn('localhost', 27017, session['clinica_db'])
+            db = client.get_default_database()
+            pacientes = pacientes_sem_registro_humor(db)
+            return render_template("pacientes.html", **components, pacientes=pacientes)
     
     @app.route("/paciente-dados", methods=['GET', 'POST'])
     def paciente_dados():
@@ -171,14 +174,28 @@ def init_app(app, bcrypt):
             username = session['username']
             return send_from_directory("static", filename, username=username)
     
-    @app.route("/paciente")
+    @app.route("/paciente", methods=['GET', 'POST'])
     def paciente():
         clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            username = session['username']
-            return render_template("paciente.html", **components, username=username)
+            paciente_dados = None
+            dados_medicos = None
+            dados_sensores = None
+            image_base64 = None
+            if request.method == 'POST':
+                client = conn('localhost', 27017, session['clinica_db'])
+                db = client.get_default_database()
+                fs = GridFS(db)
+                paciente_id = request.form.get('paciente_id')
+                paciente_dados = db.Pacientes.find_one({'_id': ObjectId(paciente_id)})
+                dados_medicos = db.DadosMedicos.find_one({'paciente_id': ObjectId(paciente_id)})
+                dados_sensores = db.DadosSensores.find_one({'paciente_id': ObjectId(paciente_id)})
+                image = fs.get(ObjectId(paciente_dados['imagem_id']))
+                image_data = image.read()
+                image_base64 = 'data:image/png;base64,' + b64encode(image_data).decode('utf-8')
+            return render_template("paciente.html", **components, paciente_dados=paciente_dados, dados_medicos=dados_medicos, dados_sensores=dados_sensores, foto=image_base64)
     
     @app.route("/consulta-pacientes")
     def consulta_pacientes():

@@ -12,14 +12,14 @@
     margin: 5px;
     width: 140px;
     height: 140px;
-    background: url(../imgs/figures/imagem-padrao.jpg);
-    background-size: 100%;
+    object-fit: cover;
     border-radius: 50%;
 }
 
 .section-risco{
     padding: 30px;
-    max-width: max-content;
+    max-width: 90vw;
+    overflow: hidden;
     height: max-content;
     background-color: var(--color-light-blue);
     border-radius: 20px; 
@@ -34,7 +34,12 @@
     border-radius: 20px;
     align-items: center;
     position: relative; 
-    color: var(--bg-primary);   
+    color: var(--bg-primary);
+    cursor: pointer;   
+}
+
+.article-risco:hover{
+    transform: scale(1.01);
 }
 
 .off-3-dias{
@@ -102,6 +107,7 @@ hr{
     border: solid 2px #FFCC4D;
     border-radius: 50%;
     width: 100px;
+    min-width: 100px;
     height: 100px;
     position: relative;
     margin: 5px;
@@ -109,11 +115,16 @@ hr{
 
 .article-offline{
     padding: 15px;
-    max-width: max-content;
+    width: 300px;
     height: max-content;
     background-color: var(--color-white);
     border-radius: 20px;
     color: var(--bg-primary);   
+    cursor: pointer;
+}
+
+.article-offline:hover{
+    transform: scale(1.01);
 }
 
 .off-1-dia{

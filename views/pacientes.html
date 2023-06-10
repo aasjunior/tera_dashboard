@@ -1,29 +1,41 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
-    {{ sidebar() | safe }}
-    <main class="container w-auto">
-        {{ header_title('Pacientes Overview') | safe }}
-        <section id="patient-overview">
-            {{ welcome_card('User', "pacientes") | safe }}
-        </section>
+  {{ sidebar() | safe }}
+  <main class="container w-auto">
+    {{ header_title('Pacientes Overview') | safe }}
+    <section id="patient-overview">
+      {{ welcome_card('User', "pacientes") | safe }}
+    </section>
 
-        <section class="section-risco mt-30">
-            <h2 class="lbl-white fs-normal fs-16">Pacientes em <span class="bold">Risco</span></h2>
+    <section class="section-risco mt-30">
+      <h2 class="lbl-white fs-normal fs-16">
+        Pacientes em <span class="bold">Risco</span>
+      </h2>
 
-            <section class="mt-20 d-flex"> <!--frame de pacientes-->
-                {{ crisis_patient_card() | safe }}
-            </section>
+      <section class="mt-20 d-flex">
+        <!--frame de pacientes-->
+        {% for paciente in pacientes['dados_pacientes'] %}
+          {% if paciente['quantidade_dias'] >= 3 %}
+            {{ crisis_patient_card(paciente) | safe }}
+          {% endif %}
+        {% endfor %}
+      </section>
+    </section>
 
-        </section>
+    <section class="section-risco mt-30">
+      <h2 class="lbl-white fs-normal fs-16">
+        Pacientes <span class="bold">Offline há 1 e 2 dias</span>
+      </h2>
 
-        <section class="section-risco mt-30">
-            <h2 class="lbl-white fs-normal fs-16">Pacientes <span class="bold">Offline há 1 e 2 dias</span></h2>
-
-            <section class="mt-10 d-flex"><!--frame de pacientes-->
-                {{ offline_patient_card() | safe }}
-            </section>
-
-        </section>
-    </main>
+      <section class="mt-10 d-flex">
+        <!--frame de pacientes-->
+        {% for paciente in pacientes['dados_pacientes'] %}
+          {% if paciente['quantidade_dias'] <= 2 %}
+            {{ offline_patient_card(paciente) | safe }}
+          {% endif %}
+        {% endfor %}
+      </section>
+    </section>
+  </main>
 </div>
 {% include 'blades/footer.html' %}

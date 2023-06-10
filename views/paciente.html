@@ -9,16 +9,16 @@
                     <div class="col vertical-center">
                         <div class="off-3-dias p-5 w-80">
                             <div class="bolinha-verm"></div>
-                            <p>Offline há 3 dia(s)</p>
+                            <p>Offline há dia(s)</p>
                         </div>
                         <div class="borda-verm">
-                            <img class="foto-paciente-risco" src="{{ url_for('static', filename='imgs/figures/imagem-padrao.jpg') }}" alt="Foto paciente">
+                            <img class="foto-paciente-risco" src="{{ foto }}" alt="Foto paciente">
                         </div>
-                        <h3>Junior Alves Silva</h3>
+                        <h3>{{ paciente_dados['nome'] }}</h3>
                         <hgroup class="patient_hgroup row vertical-center space-between">
                             <h4 class="fs-12 fs-normal">25 anos</h4>
                             <hr class="vertical-line">
-                            <h4 class="fs-12 fs-normal"><i class="fas fa-map-marker-alt"></i> Registro, SP</h4>
+                            <h4 class="fs-12 fs-normal"><i class="fas fa-map-marker-alt"></i> {{paciente_dados['endereco'][0]['cidade']}}, {{paciente_dados['endereco'][0]['uf']}}</h4>
                         </hgroup>
                         <table>
                             <thead class="fs-12">
@@ -30,9 +30,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>O+</td>
-                                    <td>186cm</td>
-                                    <td>90kg</td>
+                                    <td>{{dados_medicos['tipo_sanguineo']}}</td>
+                                    <td>{{dados_medicos['altura']}}cm</td>
+                                    <td>{{dados_medicos['peso']}}kg</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -41,7 +41,7 @@
                 <hr class="vertical-line h-60 m-20">
                 <div class="col p-10">
                     <div class="row vertical-end fs-12 mb-20">
-                        <p class="mr-30">Admissão: <data id="dt_admissao">22/05/2022</data></p>
+                        <p class="mr-30">Admissão: <data id="dt_admissao">{{dados_medicos['admissao']}}</data></p>
                         <p>Alta: <data id="dt_alta">12/09/2022</data></p>
                     </div>
                     <div class="col mt-30">
