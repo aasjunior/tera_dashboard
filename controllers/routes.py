@@ -69,7 +69,9 @@ def init_app(app, bcrypt):
                 session['paciente_dados'] = request.form
                 if 'foto' in request.files:
                     imagem_paciente = request.files['foto']
-                    filename = secure_filename(imagem_paciente.filename)
+                    nome_arquivo = imagem_paciente.filename
+                    nome_base, extensao = os.path.splitext(nome_arquivo)
+                    filename = secure_filename(generate_unique_filename(extensao))
                     imagem_paciente.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     session['imagem_paciente'] = filename
                 return redirect(url_for('paciente_diagnostico'))
@@ -102,7 +104,9 @@ def init_app(app, bcrypt):
                 session['familiar'] = request.form
                 if 'foto' in request.files:
                     imagem_familiar = request.files['foto']
-                    filename = secure_filename(imagem_familiar.filename)
+                    nome_arquivo = imagem_familiar.filename
+                    nome_base, extensao = os.path.splitext(nome_arquivo)
+                    filename = secure_filename(generate_unique_filename(extensao))
                     imagem_familiar.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     session['imagem_familiar'] = filename
 
