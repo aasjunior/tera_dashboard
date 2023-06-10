@@ -10,6 +10,7 @@ from io import BytesIO
 from datetime import datetime, timedelta
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
+from glob import glob
 import math
 import os
 
@@ -71,7 +72,7 @@ def init_app(app, bcrypt):
                     imagem_paciente = request.files['foto']
                     nome_arquivo = imagem_paciente.filename
                     nome_base, extensao = os.path.splitext(nome_arquivo)
-                    filename = secure_filename(generate_unique_filename(extensao))
+                    filename = secure_filename('imagem_paciente' + generate_unique_filename(extensao))
                     imagem_paciente.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     session['imagem_paciente'] = filename
                 return redirect(url_for('paciente_diagnostico'))
@@ -106,7 +107,7 @@ def init_app(app, bcrypt):
                     imagem_familiar = request.files['foto']
                     nome_arquivo = imagem_familiar.filename
                     nome_base, extensao = os.path.splitext(nome_arquivo)
-                    filename = secure_filename(generate_unique_filename(extensao))
+                    filename = secure_filename('imagem_familiar' + generate_unique_filename(extensao))
                     imagem_familiar.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     session['imagem_familiar'] = filename
 
@@ -353,11 +354,10 @@ def init_app(app, bcrypt):
             session.pop('familiar', None)
 
             # Remove as imagens armazenadas temporariamente
-            if 'imagem_paciente' in session:
-                filename = session.pop('imagem_paciente')
-                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                os.remove(filepath)
-            if 'imagem_familiar' in session:
-                filename = session.pop('imagem_familiar')
-                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                os.remove(filepath)
+            pasta = app.config['UPLOAD_FOLDER']
+            extensoes = ('*.jpg', '*.jpeg', '*.png', '*.gif') # Adicione ou remova extensões conforme necessário
+
+            for extensao in extensoes:
+                arquivos = glob(os.path.join(pasta, extensao))
+                for arquivo in arquivos:
+                    os.remove(arquivo)

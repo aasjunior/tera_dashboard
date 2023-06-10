@@ -185,8 +185,7 @@ table {
   }
   
   tr:hover {
-    color: var(--bg-primary);
-    background-color: #71DDB1;
+    cursor: normal;
   }
   
   /* Round only the outer border of the table */
