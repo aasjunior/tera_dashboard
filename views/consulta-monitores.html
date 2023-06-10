@@ -13,7 +13,9 @@
                             <th>Nome</th>
                             <th>Login</th>
                             <th>Data de Cadastro</th>
-                            <th>CPF</th>
+                            <th>Nível</th>
+                            <th colspan="2">Ações</th> <!-- Adicionando a coluna para as ações -->
+
                         </tr>
                     </thead>
                     <tbody>
@@ -22,15 +24,22 @@
                             <td>{{ registro.nome }}</td>
                             <td>{{ registro.login }}</td>
                             <td>{{ registro.data_cadastro }}</td>
-                            <td>{{ registro.cpf }}</td>
+                            <td>{{ registro.nivel }}</td>
+                            <td>
+                                <a href="/editar/{{ registro.id }}">Editar</a>  <!-- Adicionando o link de editar -->
+                            </td>
+                            <td>
+                                <a href="/excluir/{{ registro.id }}">Excluir</a> <!-- Adicionando o link de excluir -->
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </section>
+        </section>
+        
 
             <section class="d-flex flex-end mt-30 mr-100"> <!--Aqui os botoes-->
-                <a href="/dashboard" class="btn-font button btn-border-green mr-20">Editar</a>
                 <a href="/cadastro-monitor" class="btn-font-blue button btn-green mr-20 center">Cadastrar</a>
             </section>
             

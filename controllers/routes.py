@@ -237,6 +237,7 @@ def init_app(app, bcrypt):
                 if usuario:
                     registro["login"] = usuario["login"]
                     registro["data_cadastro"] = usuario["data_cadastro"]
+                    registro["nivel"] = usuario["nivel"]
             
             return render_template("consulta-monitores.html", **components, num_paginas=num_paginas, page_num=page_num, registros=registros)
     
