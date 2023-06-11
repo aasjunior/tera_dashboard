@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "64863a279a186efa0b13efda"
+  },
+  "paciente_id": {
+    "$oid": "64863a269a186efa0b13ef7a"
+  },
+  "passos_percorridos": "5482",
+  "bpms": "69",
+  "start_time": {
+    "$date": "2023-06-11T23:39:00.000Z"
+  },
+  "end_time": {
+    "$date": "2023-06-12T05:39:00.000Z"
+  },
+  "duration_minutes": 360,
+  "sleep_quality": "good",
+  "data_registro": {
+    "$date": "2023-06-11T18:18:31.166Z"
+  }
+},{
+  "_id": {
+    "$oid": "648640e1172ebcec4fd02df6"
+  },
+  "paciente_id": {
+    "$oid": "648640e0172ebcec4fd02da7"
+  },
+  "passos_percorridos": "2983",
+  "bpms": "68",
+  "start_time": {
+    "$date": "2023-06-11T23:17:00.000Z"
+  },
+  "end_time": {
+    "$date": "2023-06-12T05:17:00.000Z"
+  },
+  "duration_minutes": 360,
+  "sleep_quality": "good",
+  "data_registro": {
+    "$date": "2023-06-11T18:47:13.307Z"
+  }
+},{
+  "_id": {
+    "$oid": "648644b6172ebcec4fd02f2c"
+  },
+  "paciente_id": {
+    "$oid": "648644b5172ebcec4fd02ec7"
+  },
+  "passos_percorridos": "2306",
+  "bpms": "82",
+  "start_time": {
+    "$date": "2023-06-11T22:10:00.000Z"
+  },
+  "end_time": {
+    "$date": "2023-06-12T04:10:00.000Z"
+  },
+  "duration_minutes": 360,
+  "sleep_quality": "good",
+  "data_registro": {
+    "$date": "2023-06-11T19:03:34.658Z"
+  }
+},{
+  "_id": {
+    "$oid": "64864820ff093cb849811d01"
+  },
+  "paciente_id": {
+    "$oid": "6486481fff093cb849811ca0"
+  },
+  "passos_percorridos": "9877",
+  "bpms": "62",
+  "start_time": {
+    "$date": "2023-06-11T21:07:00.000Z"
+  },
+  "end_time": {
+    "$date": "2023-06-12T03:07:00.000Z"
+  },
+  "duration_minutes": 360,
+  "sleep_quality": "good",
+  "data_registro": {
+    "$date": "2023-06-11T19:18:08.345Z"
+  }
+}]

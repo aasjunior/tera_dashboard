@@ -1,7 +1,7 @@
 {% include 'blades/header.html' %}
 <div class="wrapper row">
   {{ sidebar() | safe }}
-  <main class="container">
+  <main class="container w-auto">
     {{ header_title('Pacientes Overview') | safe }}
     <section id="patient-overview">
       {{ welcome_card('User', "pacientes") | safe }}
@@ -12,13 +12,19 @@
         Pacientes em <span class="bold">Risco</span>
       </h2>
 
-      <section class="mt-20 d-flex">
+      <section class="mt-20 col">
         <!--frame de pacientes-->
-        {% for paciente in pacientes['dados_pacientes'] %}
-          {% if paciente['quantidade_dias'] >= 3 %}
-            {{ crisis_patient_card(paciente) | safe }}
-          {% endif %}
-        {% endfor %}
+        <div class="carousel row">
+          {% for paciente in pacientes['dados_pacientes'] %}
+            {% if paciente['quantidade_dias'] >= 3 %}
+              {{ crisis_patient_card(paciente) | safe }}
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="row">
+          <span class="leftButton carouselIcon arrowLeft"></span>
+          <span class="rightButton carouselIcon arrowRight"></span>
+        </div>
       </section>
     </section>
 
@@ -35,10 +41,6 @@
               {{ offline_patient_card(paciente) | safe }}
             {% endif %}
           {% endfor %}
-        </div>
-        <div class="row">
-          <button class="leftButton">Prev</button>
-          <button class="rightButton">Next</button>
         </div>
       </section>
     </section>

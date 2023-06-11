@@ -54,6 +54,9 @@ A estrutura das bases de dados e coleções deve ser a seguinte:
 📁 clinica_0
 - 📄 Monitores.json
 - 📄 Pacientes.json
+- 📄 Familiares.json
+- 📄 DadosMedicos.json
+- 📄 DadosSensores.json
 - 📄 RegistrosHumor.json
 - 📄 fs.chunks.json
 - 📄 fs.files.json

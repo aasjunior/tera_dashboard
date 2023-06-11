@@ -308,9 +308,7 @@ def create_registro_humor(db, paciente_id):
     # Documento modelo
     documento_modelo = {
         "humor": "",
-        "paciente_id": {
-            "$oid": paciente_id
-        },
+        "paciente_id": paciente_id,
         "data_registro": "",
         "calorias_queimadas": 0
     }
@@ -325,24 +323,42 @@ def create_registro_humor(db, paciente_id):
     documento["calorias_queimadas"] = random.randint(0, 1000)
     db.RegistrosHumor.insert_one(documento)
 
-    # # Criar 12 documentos para os últimos 12 meses
-    # for i in range(1, 13):
-    #     data_registro = agora.replace(month=i, day=1, hour=0, minute=0, second=0, microsecond=0)
-    #     documento = documento_modelo.copy()
-    #     # Gerar valor aleatório entre "Bom" e "Mal"
-    #     documento["humor"] = random.choice(["Bom", "Mal"])
-    #     documento["data_registro"] = data_registro.strftime("%Y-%m-%d %H:%M:%S.%f")
-    #     db.RegistrosHumor.insert_one(documento)
+    # Criar 12 documentos para os últimos 12 meses
+    for i in range(1, 13):
+        # Calcular a data para o ano anterior
+        data_registro = agora - timedelta(days=365)
+        data_registro = data_registro.replace(month=i, day=1, hour=0, minute=0, second=0, microsecond=0)
+        
+        documento = documento_modelo.copy()
+        # Gerar valor aleatório entre "Bom" e "Mal"
+        documento["humor"] = random.choice(["Bom", "Mal"])
+        documento["data_registro"] = data_registro.strftime("%Y-%m-%d %H:%M:%S.%f")
+        db.RegistrosHumor.insert_one(documento)
 
 def create_dados_sensores(db, paciente_id):
     agora = datetime.now()
+    
+    # Gerar hora de início do sono aleatória entre 20:00 e 23:00
+    hora_inicio_sono = random.randint(20, 23)
+    minuto_inicio_sono = random.randint(0, 59)
+    start_time = agora.replace(hour=hora_inicio_sono, minute=minuto_inicio_sono, second=0, microsecond=0)
+    start_time_str = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    
+    # Gerar duração do sono aleatória entre 6 e 9 horas
+    duracao_sono_horas = random.randint(6, 9)
+    duracao_sono_minutos = duracao_sono_horas * 60
+    
+    # Calcular hora de término do sono
+    end_time = start_time + timedelta(minutes=duracao_sono_minutos)
+    end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    
     data = {
         "paciente_id": paciente_id,
         "passos_percorridos": str(random.randint(0, 10000)),
         "bpms": str(random.randint(60, 100)),
-        "start_time": datetime.strptime("2023-05-23T22:00:00Z", '%Y-%m-%dT%H:%M:%SZ'),
-        "end_time": datetime.strptime("2023-05-24T06:00:00Z", '%Y-%m-%dT%H:%M:%SZ'),
-        "duration_minutes": 480,
+        "start_time": datetime.strptime(start_time_str, '%Y-%m-%dT%H:%M:%SZ'),
+        "end_time": datetime.strptime(end_time_str, '%Y-%m-%dT%H:%M:%SZ'),
+        "duration_minutes": duracao_sono_minutos,
         "sleep_quality": "good",
         "data_registro": agora
     }

@@ -14,14 +14,35 @@
       "numero": "954",
       "cep": "44053-426",
       "cidade": "Feira de Santana",
-      "uf": "BA"
+      "uf": "AC"
     }
   ],
-  "imagem_id": {
-    "$oid": "647fc0f82388136e3b94b034"
-  },
+  "imagem_id": "64861d93911ec4d0eece6675",
   "usuario_id": {
     "$oid": "647fc0f82388136e3b94b032"
+  }
+},{
+  "_id": {
+    "$oid": "648642c0172ebcec4fd02e5a"
+  },
+  "nome": "Lucas Ferreira",
+  "data-nascimento": "1992-03-08",
+  "cpf": "987.654.321-03",
+  "rg": "37.954.621",
+  "celular": "11987659876",
+  "email": "pedro.oliveira@example.com",
+  "endereco": [
+    {
+      "logradouro": "Rua das Flores",
+      "numero": "700",
+      "cep": "01445-000",
+      "cidade": "São Paulo",
+      "uf": "SP"
+    }
+  ],
+  "imagem_id": "648642c0172ebcec4fd02e08",
+  "usuario_id": {
+    "$oid": "648642be172ebcec4fd02e06"
   }
 },{
   "_id": {

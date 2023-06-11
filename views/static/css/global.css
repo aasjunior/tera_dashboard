@@ -221,6 +221,18 @@ em{
     background-image: url(../imgs/icons/alertIcon.svg);
 }
 
+.arrowLeft{
+    background-image: url(../imgs/icons/arrowLeft.svg);
+}
+
+.arrowRight{
+    background-image: url(../imgs/icons/arrowRight.svg);
+}
+
+.carouselIcon{
+    width: 75px;
+}
+
 .modalIcon{
     width: 50px;
     min-width: 50px;

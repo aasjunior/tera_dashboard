@@ -108,10 +108,17 @@
                                 <p class="amount">{{ panel_crisis.pacientes_em_crise|length }}</p>
                             </div>
                             <div class="row center space-around">
+                                {% if panel_crisis.pacientes_em_crise != 0 %}
                                 <p>{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
                                 <div class="progress-bar w-80">
                                     <div class="progress" style="width:{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%;"></div>
                                 </div>
+                                {% else %}
+                                <p>Nenhum paciente em crise</p>
+                                <div class="progress-bar w-80">
+                                    <div class="progress" style="width:0%;"></div>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                         
@@ -124,10 +131,17 @@
                                 <p class="amount">{{ panel_crisis.crises_resolvidas }}</p>
                             </div>
                             <div class="row center space-around">
+                                {% if panel_crisis.crises_resolvidas != 0 %}
                                 <p>{{ (panel_crisis.crises_resolvidas / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
                                 <div class="progress-bar w-80">
                                     <div class="progress" style="width:{{ (panel_crisis.crises_resolvidas / panel_crisis.total_registros_mal * 100)|round|int }}%;"></div>
                                 </div>
+                                {% else %}
+                                <p>0</p>
+                                <div class="progress-bar w-80">
+                                    <div class="progress" style="width:0%;"></div>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>                        
                     </div>
