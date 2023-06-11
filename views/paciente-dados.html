@@ -111,8 +111,8 @@
                             </select>
                         </div>
                         <div id="obs-grid" class="col" name="obs-paciente">
-                            <label class="lbl-green" for=""> {{ session.get('paciente_dados', {}).get('obs-paciente', '') }} </label>
-                            <textarea class="textarea" rows="8"></textarea>
+                            <label class="lbl-green" for=""></label>
+                            <textarea class="textarea" rows="8" name="obs-paciente">{{ session.get('paciente_dados', {}).get('obs-paciente', '') }}</textarea>
                         </div>
 
                     </div>

@@ -165,16 +165,16 @@
     opacity: 0.5;
   }
 
-:is(#peso-chart, #health-chart, #sono_chart) foreignObject {
+:is(#weight-chart, #health-chart, #sleep_chart) foreignObject {
     display: none !important;
 }
 
-:is(#peso-chart, #health-chart) svg {
+:is(#weight-chart, #health-chart) svg {
     width: 50px !important;
 }
 
-#sono_chart{
-    position: relative;
+#sleep_chart{
+    position: absolute;
     z-index: 9998;
 }
 
@@ -182,3 +182,4 @@
     position: absolute;
     z-index: 9999;
 }
+

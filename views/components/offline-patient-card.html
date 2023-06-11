@@ -1,9 +1,5 @@
-<label for="btn">
+<a href="/paciente/{{paciente['paciente']['_id']}}/{{paciente['quantidade_dias']}}">
     <article class="article-offline d-flex mr-15"><!--cada article é um pacientes-->
-        <form action="/paciente" method="post">
-            <input type="hidden" name="paciente_id" value="{{paciente['paciente']['_id']}}">
-            <input type="submit" class="d-none" id="btn">
-        </form>
         <div class="borda-amar">
             <img class="foto-paciente" src="{{ paciente['foto'] }}" alt="Foto paciente">
         </div>
@@ -12,4 +8,4 @@
             <h3 class="fs-14 p-5">{{ paciente['paciente']['nome'] }}</h3>
         </div>
     </article>
-</label>
+</a>

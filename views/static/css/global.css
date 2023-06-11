@@ -349,6 +349,11 @@ a{
     color: var(--bg-primary);
 }
 
+.m-60{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
 .m-30{
     margin-inline: 30px;
 }

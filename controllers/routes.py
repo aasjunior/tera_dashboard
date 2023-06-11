@@ -179,28 +179,25 @@ def init_app(app, bcrypt):
             username = session['username']
             return send_from_directory("static", filename, username=username)
     
-    @app.route("/paciente", methods=['GET', 'POST'])
-    def paciente():
+    @app.route("/paciente/<string:id>/<int:qt_dias>", methods=['GET', 'POST'])
+    def paciente(id, qt_dias):
         clear_session()
         if 'logado' not in session or session['logado'] != True:
             return redirect(url_for('login'))
         else:
-            paciente_dados = None
-            dados_medicos = None
-            dados_sensores = None
-            image_base64 = None
-            if request.method == 'POST':
-                client = conn('localhost', 27017, session['clinica_db'])
-                db = client.get_default_database()
-                fs = GridFS(db)
-                paciente_id = request.form.get('paciente_id')
-                paciente_dados = db.Pacientes.find_one({'_id': ObjectId(paciente_id)})
-                dados_medicos = db.DadosMedicos.find_one({'paciente_id': ObjectId(paciente_id)})
-                dados_sensores = db.DadosSensores.find_one({'paciente_id': ObjectId(paciente_id)})
-                image = fs.get(ObjectId(paciente_dados['imagem_id']))
-                image_data = image.read()
-                image_base64 = 'data:image/png;base64,' + b64encode(image_data).decode('utf-8')
-            return render_template("paciente.html", **components, paciente_dados=paciente_dados, dados_medicos=dados_medicos, dados_sensores=dados_sensores, foto=image_base64)
+            client = conn('localhost', 27017, session['clinica_db'])
+            db = client.get_default_database()
+            fs = GridFS(db)
+            paciente_dados = db.Pacientes.find_one({'_id': ObjectId(id)})
+            dados_medicos = db.DadosMedicos.find_one({'paciente_id': ObjectId(id)})
+            dados_sensores = db.DadosSensores.find_one({'paciente_id': ObjectId(id)})
+            image = fs.get(ObjectId(paciente_dados['imagem_id']))
+            image_data = image.read()
+            image_base64 = 'data:image/png;base64,' + b64encode(image_data).decode('utf-8')
+            dash_data = patient_dash_data(dados_sensores, dados_medicos)
+            registros_humor = registros_humor_individual(db, id)
+            idade = calcular_idade(paciente_dados['data_nascimento'])
+            return render_template("paciente.html", **components, idade=idade, dash_data=dash_data, registros_humor=registros_humor, qt_dias=qt_dias, paciente_dados=paciente_dados, dados_medicos=dados_medicos, dados_sensores=dados_sensores, foto=image_base64)
     
     @app.route("/consulta-pacientes")
     def consulta_pacientes():

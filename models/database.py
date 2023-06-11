@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from gridfs import GridFS
 from bson.objectid import ObjectId
 from base64 import b64encode
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import pandas as pd
 import random
 
@@ -99,6 +99,7 @@ def create_dados_medicos(paciente_id):
         'peso': session.get('paciente_dados', {}).get('peso-paciente', ''),
         'titulo-diagnostico': session.get('dados_medicos', {}).get('diagnostico-paciente', ''),
         'descricao-diagnostico': session.get('dados_medicos', {}).get('descricao-diagnostico', ''),
+        'observacao': session.get('paciente_dados', {}).get('obs-paciente', ''),
         'admissao': session.get('dados_medicos', {}).get('data-admissao', ''),
         'alta': session.get('dados_medicos', {}).get('data-alta', ''),
         'medicamento': medicamento_list,
@@ -309,7 +310,8 @@ def create_registro_humor(db, paciente_id):
         "paciente_id": {
             "$oid": paciente_id
         },
-        "data_registro": ""
+        "data_registro": "",
+        "calorias_queimadas": 0
     }
 
     # Data e hora atuais
@@ -319,6 +321,7 @@ def create_registro_humor(db, paciente_id):
     documento = documento_modelo.copy()
     documento["humor"] = random.choice(["Bom", "Mal"])
     documento["data_registro"] = agora.strftime("%Y-%m-%d %H:%M:%S.%f")
+    documento["calorias_queimadas"] = random.randint(0, 1000)
     db.RegistrosHumor.insert_one(documento)
 
     # # Criar 12 documentos para os últimos 12 meses
@@ -401,3 +404,92 @@ def pacientes_sem_registro_humor(db):
         'registros_humor': registros_humor,
         'dados_pacientes': dados_pacientes
     }
+
+def patient_dash_data(dados_sensores, dados_medicos):
+    horas_sono = float(dados_sensores['duration_minutes']) / 60
+    percentual_sono = (horas_sono / 8) * 100
+
+    # Calcular IMC
+    peso = float(dados_medicos['peso'])
+    altura = float(dados_medicos['altura']) / 100
+    imc =  peso / (altura ** 2)
+
+    # Atribuir pontuação para IMC
+    if imc < 18.5:
+        pontuacao_imc = 0
+    elif imc >= 18.5 and imc < 25:
+        pontuacao_imc = 1
+    else:
+        pontuacao_imc = 0
+
+    # Atribuir pontuação para horas de sono
+    horas_adequadas_sono = 8
+    if horas_sono >= horas_adequadas_sono:
+        pontuacao_sono = 1
+    else:
+        pontuacao_sono = horas_sono / horas_adequadas_sono
+
+    # Atribuir pontuação para passos percorridos
+    passos_adequados = 10000
+    if float(dados_sensores['passos_percorridos']) >= passos_adequados:
+        pontuacao_passos = 1
+    else:
+        pontuacao_passos = float(dados_sensores['passos_percorridos']) / passos_adequados
+
+    # Atribuir pontuação para BPMs
+    if float(dados_sensores['bpms']) >= 60 and float(dados_sensores['bpms']) <= 100:
+        pontuacao_bpms = 1
+    else:
+        pontuacao_bpms = 0
+
+    # Calcular pontuação geral de saúde (média simples)
+    pontuacao_geral = (pontuacao_imc + pontuacao_sono + pontuacao_passos + pontuacao_bpms) / 4
+
+    # Converter pontuação geral em percentual
+    percentual_saude = pontuacao_geral * 100
+
+    horas_sono = dados_sensores['duration_minutes'] // 60
+    minutos_sono = dados_sensores['duration_minutes'] % 60
+
+    return{
+        'horas_sono': horas_sono,
+        'minutos_sono': minutos_sono,
+        'percentual_sono': round(percentual_sono),
+        'percentual_saude': round(percentual_saude)
+    }
+
+def registros_humor_individual(db, id):
+    paciente_id = ObjectId(id)
+    registros = db.RegistrosHumor.find({"paciente_id": paciente_id})
+
+    # Contar o número de respostas "Mal" e "Bom"
+    total_respostas = 0
+    respostas_mal = 0
+    respostas_bom = 0
+    for registro in registros:
+        total_respostas += 1
+        if registro["humor"] == "Mal":
+            respostas_mal += 1
+        elif registro["humor"] == "Bom":
+            respostas_bom += 1
+
+    # Calcular o percentual de respostas "Mal" e "Bom"
+    if total_respostas > 0:
+        percentual_mal = round((respostas_mal / total_respostas) * 100)
+        percentual_bom = round((respostas_bom / total_respostas) * 100)
+    else:
+        percentual_mal = 0
+        percentual_bom = 0
+
+    return{
+        'percentual_bom': percentual_bom,
+        'percentual_mal': percentual_mal
+    }
+
+def calcular_idade(dt_nascimento):
+    data_nascimento_str = "1998-10-28"
+    data_nascimento = date.fromisoformat(data_nascimento_str)
+    hoje = date.today()
+    idade = hoje.year - data_nascimento.year - ((hoje.month, hoje.day) < (data_nascimento.month, data_nascimento.day))
+
+    return idade
