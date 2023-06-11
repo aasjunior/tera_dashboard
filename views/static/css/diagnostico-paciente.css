@@ -131,7 +131,10 @@ textarea:focus, input:focus {
 }
 
 .eye{
+    position: relative;
     height: 15px;
+    right: 0;
+    margin-left: auto;
 }
 
 .senha{
