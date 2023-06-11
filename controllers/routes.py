@@ -416,6 +416,36 @@ def init_app(app, bcrypt):
             print(f'Erro: {e}')
             return f'Erro: {e}'
         
+    @app.route("/delete-monitor/<string:id>", methods=['GET', 'POST'])
+    def delete_monitor(id):
+        clear_session()
+        try:
+            tera = conn('localhost', 27017, 'tera')
+            tera_db = tera.get_default_database()
+
+            clinica = conn('localhost', 27017, session['clinica_db'])
+            clinica_db = clinica.get_default_database()
+            fs = GridFS(clinica_db)
+
+            monitor = clinica_db.Monitores.find_one({'_id': ObjectId(id)})
+
+            if monitor:
+                # Armazena o documento em uma variável antes de excluir
+                usuario_id = monitor['usuario_id']
+                imagem_id = monitor['imagem_id']
+
+                # Excluir o documento do MongoDB
+                clinica_db.Monitores.delete_one({'_id': ObjectId(id)})
+                fs.delete(ObjectId(imagem_id))
+                
+                tera_db.Usuarios.delete_one({'_id': ObjectId(usuario_id)})
+            clinica.close()
+            tera.close()
+            return 'Deletado com sucesso'
+        except Exception as e:
+            print(f'Erro: {e}')
+            return f'Erro: {e}'
+    
         
     def clear_session():
         # Obtém a URL da página atual

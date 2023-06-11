@@ -29,7 +29,7 @@
                                 <a href="/editar-monitor/{{ registro['_id'] }}">Editar</a>  <!-- Adicionando o link de editar -->
                             </td>
                             <td>
-                                <a href="/excluir-monitor/{{ registro['_id'] }}">Excluir</a> <!-- Adicionando o link de excluir -->
+                                <button type="button" onclick="excluirMonitor('{{ registro['_id'] }}')">Excluir</button> <!-- Adicionando o link de excluir -->
                             </td>
                         </tr>
                         {% endfor %}
@@ -58,7 +58,7 @@
                 </div>
             </section>
         </section>
-
     </main>
 </div>
+{{ modal() | safe }}
 {% include 'blades/footer.html' %}

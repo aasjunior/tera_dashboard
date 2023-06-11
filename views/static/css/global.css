@@ -82,6 +82,54 @@ em{
     color: var(--color-white);
 }
 
+.modal-wrapper{
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 100vw;
+    background-color: rgba(184, 184, 184, 0.5);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.modal{
+    width: 550px;
+    height: 240px;
+    background-color: var(--bg-primary);
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-danger{
+    width: 125px;
+    background: var(--color-red);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border-radius: 100px;   
+    color: var(--bg-primary);
+}
+
+.btn-terciary{
+    width: 125px;
+    background: var(--color-medium-turquoise);
+    border-radius: 100px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: var(--bg-primary);
+}
+
+
 /*figures*/
 .meditateFig{
     position: relative;
@@ -169,6 +217,19 @@ em{
     background-image: url(../imgs/icons/heartIcon.svg);
 }
 
+.alertIcon{
+    background-image: url(../imgs/icons/alertIcon.svg);
+}
+
+.modalIcon{
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: 24px 24px;
+}
+
 .agenda .bellIcon{
     width: 35px;
     height: 35px;
@@ -186,6 +247,7 @@ em{
     border-radius: 50%;
     background-position: center center;
     background-size: 24px 24px;
+    background-color: var(--color-green);
 
 }
 

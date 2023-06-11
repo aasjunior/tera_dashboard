@@ -39,6 +39,9 @@ def render_welcome_card(name, pag=False, titulo=False):
 
 def render_upload_image(pag=False, foto=False):
     return render_template("components/upload-image.html", pag=pag, foto=foto)
+
+def render_modal(icon=False, msg=False, id=False):
+    return render_template("components/modal.html", icon=icon, msg=msg, id=id)
   
 def render_monthly_record(mal, bom, sem_resposta):
     dados = {
@@ -67,6 +70,7 @@ components = {
             'header_title' : render_header_title,
             'crisis_patient_card' : render_crisis_patient_card,
             'upload_image': render_upload_image,
+            'modal': render_modal,
             'header_title' : render_header_title,
             'progress_bar' : render_progress_bar,
             'offline_patient_card': render_offline_patient_card,

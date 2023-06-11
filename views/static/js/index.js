@@ -266,3 +266,20 @@ function updateSectionWidth() {
   sectionRisco.style.maxWidth = `calc(100vw - ${sidebarWidth}px)`;
   console.log(sidebarWidth);
 }
+
+function excluirMonitor(id) {
+  if (confirm('Deseja realmente excluir este monitor?')) {
+    $.ajax({
+      url: '/delete-monitor/' + id,
+      type: 'GET',
+      success: function(response) {
+        // Exclusão bem-sucedida, recarregar a página
+        location.reload();
+      },
+      error: function(xhr, status, error) {
+        alert('Erro ao excluir o monitor. Por favor, tente novamente.');
+      }
+    });
+  }
+}
+
