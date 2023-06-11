@@ -1,23 +1,3 @@
-[{
-  "_id": {
-    "$oid": "647fc0f82388136e3b94b032"
-  },
-  "login": "pedrodias",
-  "senha": "$2b$12$BIK3nzI.SQQjrdNixE/QLuaLY6duflHoRYS4ChHuRCJP1flSKjNdS",
-  "nivel": "administrador",
-  "clinica_db": "clinica_0",
-  "data_cadastro": {
-    "$date": "2023-06-06T20:27:52.108Z"
-  }
-},{
-  "_id": {
-    "$oid": "648642be172ebcec4fd02e06"
-  },
-  "login": "lucas_ferreira",
-  "senha": "$2b$12$UKeA0N54zUPys9XSlRyIH.eIPPQvUFfE0HfraOCLQeHQwrKw75Kcq",
-  "nivel": "normal",
-  "clinica_db": "clinica_0",
-  "data_cadastro": {
-    "$date": "2023-06-11T18:55:10.967Z"
-  }
-}]
+version https://git-lfs.github.com/spec/v1
+oid sha256:6417372b7b68f4ae991c131eb500b97e087d4d85f8ee056d899e46186cf5f802
+size 559
