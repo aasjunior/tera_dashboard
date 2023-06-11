@@ -26,10 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if(sidebar.length > 0){
       btnSidebarCollapse.addEventListener('click', function () {
           toggleElements(sidebarCollapsed, sidebarExpanded);
+          updateSectionWidth();
       });
   
       btnSidebarExpand.addEventListener('click', function () {
           toggleElements(sidebarCollapsed, sidebarExpanded);
+          updateSectionWidth();
       });
   }
 
@@ -179,7 +181,7 @@ function submitForm(event, route, formID){
       success: function(response) {
           if(route == '/valida-login' && response == 'success'){
             window.location.href = '/dashboard';
-          }else if(route == '/create-monitor' && response == 'success'){
+          }else if((route === '/create-monitor' || route === '/update-monitor') && response == 'success'){
             window.location.href = '/consulta-monitores';
           }else{
             showAlert(response);
@@ -225,4 +227,42 @@ $('form').on('submit', function(event) {
 function loadNextPage(pageNum) {
   var nextPage = parseInt(pageNum) + 1;
   window.location.href = '/pagina/' + nextPage;
+}
+
+if(document.querySelector(".carousel")){
+  let carousel = [...document.querySelectorAll('.carousel')];
+  scrollLeftRight(carousel);
+}
+
+function scrollLeftRight(carousel){
+  carousel.forEach((item, i) => {
+    let previousButton = [...document.querySelectorAll('.leftButton')];
+    let nextButton = [...document.querySelectorAll('.rightButton')];
+    let wrapperDimensions = item.getBoundingClientRect();
+    let wrapperWidth = wrapperDimensions.width;
+  
+    previousButton[i].addEventListener('click', () => {
+      item.scrollLeft -= wrapperWidth * 1.5;
+    });
+  
+    nextButton[i].addEventListener('click', () => {
+      item.scrollLeft += wrapperWidth * 1.5;
+    });
+  });
+}
+
+if(document.querySelector(".section-risco")){
+  updateSectionWidth();
+}
+
+function updateSectionWidth() {
+  let sidebarWidth
+  if(document.querySelector('#sidebar-expanded').classList.contains('d-none')){
+    sidebarWidth = document.querySelector('#sidebar-collapsed').offsetWidth;
+  }else{
+    sidebarWidth = document.querySelector('#sidebar-expanded').offsetWidth;
+  }
+  let sectionRisco = document.querySelector('.container');
+  sectionRisco.style.maxWidth = `calc(100vw - ${sidebarWidth}px)`;
+  console.log(sidebarWidth);
 }

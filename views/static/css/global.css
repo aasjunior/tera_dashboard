@@ -76,10 +76,6 @@ em{
     margin: 0 auto;
 }
 
-.container{
-    padding: var(--padding-container);
-}
-
 .title{
     font-size: 18px;
     font-weight: 400;

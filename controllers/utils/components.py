@@ -37,8 +37,8 @@ def render_sidebar():
 def render_welcome_card(name, pag=False, titulo=False):
     return render_template("components/welcome-card.html", name=name, pag=pag, titulo=titulo)
 
-def render_upload_image(pag=False):
-    return render_template("components/upload-image.html", pag=pag)
+def render_upload_image(pag=False, foto=False):
+    return render_template("components/upload-image.html", pag=pag, foto=foto)
   
 def render_monthly_record(mal, bom, sem_resposta):
     dados = {

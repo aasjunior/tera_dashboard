@@ -30,7 +30,13 @@
 </style>
 
 <div class="col horizontal-center">
-    <label class="align-self" for=""><img id="preview" src="static/imgs/user.png" alt="Foto de Perfil"></label>
+    <label class="align-self" for="">
+        {% if foto %}
+            <img id="preview" src="{{foto}}" alt="Foto de Perfil">
+        {% else %}
+            <img id="preview" src="static/imgs/user.png" alt="Foto de Perfil">
+        {% endif %}
+    </label>
     <label class="lbl-upload-picture" for="upload-picture"> Upload de Imagem 
         <input class="" type="file" id="upload-picture" name="foto" accept="image/*">
     </label>

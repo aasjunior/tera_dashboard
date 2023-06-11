@@ -26,10 +26,10 @@
                             <td>{{ registro.data_cadastro }}</td>
                             <td>{{ registro.nivel }}</td>
                             <td>
-                                <a href="/editar/{{ registro.id }}">Editar</a>  <!-- Adicionando o link de editar -->
+                                <a href="/editar-monitor/{{ registro['_id'] }}">Editar</a>  <!-- Adicionando o link de editar -->
                             </td>
                             <td>
-                                <a href="/excluir/{{ registro.id }}">Excluir</a> <!-- Adicionando o link de excluir -->
+                                <a href="/excluir-monitor/{{ registro['_id'] }}">Excluir</a> <!-- Adicionando o link de excluir -->
                             </td>
                         </tr>
                         {% endfor %}

@@ -11,7 +11,7 @@ if not os.path.exists(dir_tmp):
   os.makedirs(dir_tmp)
 app.config['UPLOAD_FOLDER'] = dir_tmp
 bcrypt = Bcrypt(app)
-helpers.minify_css()
+helpers.minify_css()  
 routes.init_app(app, bcrypt)
 
 if __name__ == "__main__":

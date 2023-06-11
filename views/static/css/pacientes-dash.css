@@ -18,11 +18,14 @@
 
 .section-risco{
     padding: 30px;
-    max-width: 90vw;
-    overflow: hidden;
+    max-width: 85vw;
     height: max-content;
     background-color: var(--color-light-blue);
-    border-radius: 20px; 
+    border-radius: 20px;
+}
+
+.carousel{
+    overflow: hidden;
 }
 
 .article-risco{

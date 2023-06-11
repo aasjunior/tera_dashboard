@@ -159,6 +159,27 @@ def init_app(app, bcrypt):
         else:
             return render_template("cadastro-monitor.html", **components)
     
+    @app.route("/editar-monitor/<string:id>", methods=['GET', 'POST'])
+    def editar_monitor(id):
+        clear_session()
+        if 'logado' not in session or session['logado'] != True:
+            return redirect(url_for('login'))
+        elif 'administrador' not in session['nivel']:
+            return redirect(url_for('acesso_recusado'))
+        else:
+            client = conn('localhost', 27017, session['clinica_db'])
+            db = client.get_default_database()
+            fs = GridFS(db)
+            dados_monitor = db.Monitores.find_one({'_id': ObjectId(id)})
+            image = fs.get(ObjectId(dados_monitor['imagem_id']))
+            image_data = image.read()
+            image_base64 = 'data:image/png;base64,' + b64encode(image_data).decode('utf-8')
+            client.close()
+            client = conn('localhost', 27017, 'tera')
+            db = client.get_default_database()
+            dados_usuario = db.Usuarios.find_one({'_id': ObjectId(dados_monitor['usuario_id'])})
+            return render_template("editar-monitor.html", **components, dados_monitor=dados_monitor, dados_usuario=dados_usuario, foto=image_base64)
+    
     @app.route("/cadastro-clinica")
     def cadastro_clinica():
         clear_session()
@@ -333,7 +354,64 @@ def init_app(app, bcrypt):
                     return 'success'
                 else:
                     return 'Erro ao tentar inserir os dados do monitor'
+        except Exception as e:
+            print(f'Erro: {e}')
+            return f'Erro: {e}'
+        
+    @app.route("/update-monitor", methods=['GET', 'POST'])
+    def update_monitor():
+        clear_session()
+        try:
+            tera = conn('localhost', 27017, 'tera')
+            tera_db = tera.get_default_database()
+
+            if request.method == 'POST':
+                form = request.form
+                login = form['login-monitor']
+                user_id = form['usuario_id']
+                monitor_id = form['monitor_id']
+
+                tera_db.Usuarios.update_one(
+                        {'_id': ObjectId(user_id)},
+                        {'$set': {'login': login}}
+                    )
+                if 'senha-monitor' in form and form['senha-monitor'] != '':
+                    password_hash = bcrypt.generate_password_hash(form['senha-monitor']).decode('utf-8')
+                    tera_db.Usuarios.update_one(
+                        {'_id': ObjectId(user_id)},
+                        {'$set': {'senha': password_hash}}
+                    )
                 
+                tera.close()
+
+                client = conn('localhost', 27017, session['clinica_db'])
+                db = client.get_default_database()
+                fs = GridFS(db)
+                
+                # Verificar se foi enviada uma imagem
+                if 'foto' in request.files:
+                    image_file = request.files['foto']
+                    if image_file.filename != '':
+                        # O campo de foto não está vazio, processar a imagem
+                        angle = float(form['angle'])
+                        encoded_image = encode_image(image_file, angle)
+
+                        image_filename = generate_unique_filename('png')
+
+                        image_id = fs.put(encoded_image.tostring(), filename=image_filename)
+
+                        if 'imagem_id' in form:
+                            fs.delete(ObjectId(form['imagem_id']))
+                    else:
+                        # O campo de foto está vazio
+                        image_id = form.get('imagem_id')
+
+                monitor_dados = create_monitor_dados(form, image_id, ObjectId(user_id))
+
+                db.Monitores.update_one({'_id': ObjectId(monitor_id)},{'$set': monitor_dados})
+                client.close()
+                # return f'Monitor cadastrado com sucesso'
+                return 'success'
         except Exception as e:
             print(f'Erro: {e}')
             return f'Erro: {e}'
