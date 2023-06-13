@@ -19,29 +19,43 @@ var mesesAno = [
   "Dezembro",
 ];
 var line_chart;
-var monthly_chart; 
+var monthly_chart;
 
-if(document.querySelector(".dashboard")) {
+if (document.querySelector(".dashboard")) {
   var mal = parseInt(document.getElementById("mal").value) ?? null;
   var bom = parseInt(document.getElementById("bom").value) ?? null;
-  var sem_resposta = parseInt(document.getElementById("sem_resposta").value) ?? null;
+  var sem_resposta =
+    parseInt(document.getElementById("sem_resposta").value) ?? null;
   var mesAtual = new Date().getMonth() ?? null;
-  var dataMal = JSON.parse(document.getElementById("dataMal").value) ?? null;
-  var dataBom = JSON.parse(document.getElementById("dataBom").value) ?? null;
-  var dataSemResposta = JSON.parse(document.getElementById("dataSemResposta").value) ?? null;
-  var dataMalMensal = JSON.parse(document.getElementById("dataMalMensal").value) ?? null;
-  var dataBomMensal = JSON.parse(document.getElementById("dataBomMensal").value) ?? null;
-  var dataSemRespostaMensal = JSON.parse(document.getElementById("dataSemRespostaMensal").value) ?? null;
+  // var dataMal = JSON.parse(document.getElementById("dataMal").value) ?? null;
+  // var dataBom = JSON.parse(document.getElementById("dataBom").value) ?? null;
+  // var dataSemResposta = JSON.parse(document.getElementById("dataSemResposta").value) ?? null;
+
+  
+  var dataMal = [2, 6, 8, 5, 10, 9, 7, 4, 3, 1, 12];
+  var dataBom = [10, 5, 3, 8, 6, 4, 11, 9, 7, 2, 12];
+  var dataSemResposta = [4, 2, 1, 6, 3, 5, 2, 4, 1, 6, 5];
+
+  var dataMalMensal =
+    JSON.parse(document.getElementById("dataMalMensal").value) ?? null;
+  var dataBomMensal =
+    JSON.parse(document.getElementById("dataBomMensal").value) ?? null;
+  var dataSemRespostaMensal =
+    JSON.parse(document.getElementById("dataSemRespostaMensal").value) ?? null;
 
   dailyRecord(mal, bom, sem_resposta);
   annualRecord(dataMal, dataBom, dataSemResposta);
-  monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal)
+  // monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal)
+  monthlyChart();
 }
 
-if(document.querySelector(".patient-card_dash")) {
-  const weight_data = parseFloat(document.getElementById("weight_data").value) ?? null;
-  const sleep_data = parseFloat(document.getElementById("sleep_data").value) ?? null;
-  const health_data = parseFloat(document.getElementById("health_data").value) ?? null;
+if (document.querySelector(".patient-card_dash")) {
+  const weight_data =
+    parseFloat(document.getElementById("weight_data").value) ?? null;
+  const sleep_data =
+    parseFloat(document.getElementById("sleep_data").value) ?? null;
+  const health_data =
+    parseFloat(document.getElementById("health_data").value) ?? null;
 
   weight_chart(weight_data);
   sleep_chart(sleep_data);
@@ -98,7 +112,6 @@ function dailyRecord(mal, bom, sem_resposta) {
 }
 
 function annualRecord(dataMal, dataBom, dataSemResposta) {
-
   // Cria um array com os nomes dos meses do ano
   var meses = [];
 
@@ -156,7 +169,7 @@ function annualRecord(dataMal, dataBom, dataSemResposta) {
       categories: meses,
     },
     yaxis: {
-      max: 200,
+      max: 12,
     },
     legend: {
       show: false,
@@ -192,35 +205,95 @@ function filterChart(label) {
   line_chart.updateSeries([{ data: newData }]);
 }
 
-function monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal) {
-  var selectMes = document.getElementById("lbl_mes");
-  var mesSelecionado = selectMes.value; // Obter o mês selecionado (valor de 1 a 12)
+// function monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal) {
+//   var selectMes = document.getElementById("lbl_mes");
+//   var mesSelecionado = selectMes.value; // Obter o mês selecionado (valor de 1 a 12)
 
-  var semanasMes = Array.from({ length: 5 }, (_, i) => i + 1); // Considerando 5 semanas em cada mês
+//   var semanasMes = Array.from({ length: 5 }, (_, i) => i + 1); // Considerando 5 semanas em cada mês
 
-  var dataBomSemanal = dataBomMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
-  var dataMalSemanal = dataMalMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
-  var dataSemRespostaSemanal = dataSemRespostaMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
+//   var dataBomSemanal = dataBomMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
+//   var dataMalSemanal = dataMalMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
+//   var dataSemRespostaSemanal = dataSemRespostaMensal.slice((mesSelecionado - 1) * 5, mesSelecionado * 5);
 
-  // Define as opções do gráfico de área com ApexCharts
-  var area_options = {
+//   // Define as opções do gráfico de área com ApexCharts
+//   var area_options = {
+//     series: [
+//       {
+//         name: "Humor: Bom",
+//         data: dataBomSemanal,
+//       },
+//       {
+//         name: "Humor: Mal",
+//         data: dataMalSemanal,
+//       },
+//       {
+//         name: "Sem Resposta",
+//         data: dataSemRespostaSemanal,
+//       },
+//     ],
+//     chart: {
+//       height: 350,
+//       type: "area",
+//     },
+//     dataLabels: {
+//       enabled: false,
+//     },
+//     stroke: {
+//       curve: "smooth",
+//     },
+//     xaxis: {
+//       categories: semanasMes.map(function (semanaIndex) {
+//         return "Semana " + semanaIndex;
+//       }),
+//     },
+//     tooltip: {
+//       x: {
+//         format: "dd/MM/yy HH:mm",
+//       },
+//     },
+//     colors: [colors["Mal"], colors["Bom"], colors["Sem_resposta"]],
+//   };
+
+//   // Cria um novo gráfico de área com os dados mensais
+//   var monthly_chart = new ApexCharts(
+//     document.querySelector("#g-monthly"),
+//     area_options
+//   );
+//   monthly_chart.render();
+// }
+function monthlyChart() {
+  var dataMal = [2, 6, 8, 5, 10, 9, 7, 4, 3, 1, 12, 11, 6];
+  var dataBom = [10, 5, 3, 8, 6, 4, 11, 9, 7, 2, 12, 1, 6];
+  var dataSemResposta = [4, 2, 1, 6, 3, 5, 2, 4, 1, 6, 5, 3, 2];
+  var dataTime = generateDateRange("2023-06-01", "2023-06-13");
+
+  var colors = {
+    Mal: "#023047",
+    Bom: "#45C4B0",
+    "Sem Registro": "#8195A8",
+  };
+
+  var monthly_options = {
     series: [
       {
-        name: "Humor: Bom",
-        data: dataBomSemanal,
+        name: "Mal",
+        data: dataMal,
       },
       {
-        name: "Humor: Mal",
-        data: dataMalSemanal,
+        name: "Bom",
+        data: dataBom,
       },
       {
         name: "Sem Resposta",
-        data: dataSemRespostaSemanal,
+        data: dataSemResposta,
       },
     ],
     chart: {
       height: 350,
       type: "area",
+      toolbar: {
+        show: false,
+      },
     },
     dataLabels: {
       enabled: false,
@@ -229,24 +302,40 @@ function monthlyChart(dataMalMensal, dataBomMensal, dataSemRespostaMensal) {
       curve: "smooth",
     },
     xaxis: {
-      categories: semanasMes.map(function (semanaIndex) {
-        return "Semana " + semanaIndex;
-      }),
+      type: "datetime",
+      categories: dataTime,
     },
     tooltip: {
       x: {
-        format: "dd/MM/yy HH:mm",
+        format: "dd/MM/yy",
       },
     },
-    colors: [colors["Mal"], colors["Bom"], colors["Sem_resposta"]],
+    colors: [colors["Mal"], colors["Bom"], colors["Sem Registro"]],
   };
 
-  // Cria um novo gráfico de área com os dados mensais
   var monthly_chart = new ApexCharts(
     document.querySelector("#g-monthly"),
-    area_options
+    monthly_options
   );
   monthly_chart.render();
+}
+
+function generateRandomData(count) {
+  var data = [];
+  for (var i = 0; i < count; i++) {
+    data.push(Math.floor(Math.random() * 100) + 1);
+  }
+  return data;
+}
+
+function generateDateRange(startDate, endDate) {
+  var currentDate = new Date(startDate);
+  var dates = [];
+  while (currentDate <= new Date(endDate)) {
+    dates.push(currentDate.toISOString().split("T")[0]);
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  return dates;
 }
 
 function formatDate(date) {
@@ -258,51 +347,68 @@ function formatDate(date) {
   var seconds = ("0" + date.getSeconds()).slice(-2);
   var milliseconds = ("00" + date.getMilliseconds()).slice(-3);
 
-  return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  return (
+    year +
+    "-" +
+    month +
+    "-" +
+    day +
+    " " +
+    hours +
+    ":" +
+    minutes +
+    ":" +
+    seconds +
+    "." +
+    milliseconds
+  );
 }
 
-function weight_chart(data){
+function weight_chart(data) {
   var weight_options = {
     series: [data],
     chart: {
-    height: 100,
-    type: 'radialBar',
-  },
-    colors: ['#71DDB1'],
+      height: 100,
+      type: "radialBar",
+    },
+    colors: ["#71DDB1"],
     plotOptions: {
       radialBar: {
         track: {
           background: "#6C95A0",
         },
         hollow: {
-          size: '40%',
+          size: "40%",
         },
         dataLabels: {
-            show: false,
+          show: false,
         },
       },
-    }
+    },
   };
-  var weight_chart = new ApexCharts(document.querySelector("#weight-chart"), weight_options);
+  var weight_chart = new ApexCharts(
+    document.querySelector("#weight-chart"),
+    weight_options
+  );
   weight_chart.render();
 }
 
-function sleep_chart(data){
+function sleep_chart(data) {
   var sleep_options = {
-      series: [data],
-      chart: {
-      type: 'radialBar',
+    series: [data],
+    chart: {
+      type: "radialBar",
       offsetY: 0,
       width: "240px",
       heigh: "220px",
     },
-    colors: ['#71DDB1'],
+    colors: ["#71DDB1"],
     plotOptions: {
       radialBar: {
         startAngle: -135,
         endAngle: 135,
         hollow: {
-            size: '50%'
+          size: "50%",
         },
         track: {
           background: "#6C95A0",
@@ -313,44 +419,49 @@ function sleep_chart(data){
           },
           value: {
             show: false,
-          }
-        }
-      }
+          },
+        },
+      },
     },
     grid: {
       padding: {
-        top: 10
-      }
-    }
+        top: 10,
+      },
+    },
   };
 
-  var sleep_chart = new ApexCharts(document.querySelector("#sleep_chart"), sleep_options);
+  var sleep_chart = new ApexCharts(
+    document.querySelector("#sleep_chart"),
+    sleep_options
+  );
   sleep_chart.render();
 }
 
-function health_chart(data){
+function health_chart(data) {
   var health_options = {
     series: [data],
     chart: {
-    height: 100,
-    type: 'radialBar',
-  },
-    colors: ['#3FBDF1'],
+      height: 100,
+      type: "radialBar",
+    },
+    colors: ["#3FBDF1"],
     plotOptions: {
       radialBar: {
         track: {
           background: "#6C95A0",
         },
         hollow: {
-          size: '40%',
+          size: "40%",
         },
         dataLabels: {
-            show: false,
+          show: false,
         },
       },
-    }
+    },
   };
-  var health_chart = new ApexCharts(document.querySelector("#health-chart"), health_options);
+  var health_chart = new ApexCharts(
+    document.querySelector("#health-chart"),
+    health_options
+  );
   health_chart.render();
 }
-

@@ -1,7 +1,7 @@
 <a href="/paciente/{{paciente['paciente']['_id']}}/{{paciente['quantidade_dias']}}">
-    <article class="article-risco col horizontal-center mr-15"> <!--cada article é um pacientes-->
+    <article class="article-risco col horizontal-center mr-15 center"> <!--cada article é um pacientes-->
         <input type="hidden" name="paciente_id" value="{{paciente['paciente']['_id']}}">
-        <div>
+        <div class="col center">
             <div class="off-3-dias p-5">
                 <div class="bolinha-verm"></div>
                 <p>Offline há {{paciente['quantidade_dias']}} dias</p>

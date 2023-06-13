@@ -29,7 +29,7 @@ pip install -r requirements.txt
 3. Execute o projeto pelo comando:
 
 ```
-python app.py
+py app.py
 ```
 
 ## Configurando a base de dados
