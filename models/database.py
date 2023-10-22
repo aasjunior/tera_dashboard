@@ -269,9 +269,11 @@ def panelCrisis(db):
         registros_paciente = registro["registros"]
         if "Mal" in registros_paciente:
             pacientes_em_crise.add(paciente_id)
+            total_registros_mal += registros_paciente.count("Mal")
             if "Bom" in registros_paciente:
                 crises_resolvidas += 1
-        total_registros_mal += registros_paciente.count("Mal")
+                pacientes_em_crise.remove(paciente_id)
+        
 
     total_pacientes_em_crise = len(pacientes_em_crise)
 
