@@ -110,7 +110,7 @@
                                 <p class="amount">{{ panel_crisis.pacientes_em_crise|length }}</p>
                             </div>
                             <div class="row center space-around">
-                                {% if panel_crisis.pacientes_em_crise != 0 %}
+                                {% if panel_crisis.pacientes_em_crise != 0 and panel_crisis.total_registros_mal != 0 %}
                                 <p>{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
                                 <div class="progress-bar w-80">
                                     <div class="progress" style="width:{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%;"></div>
@@ -121,7 +121,7 @@
                                     <div class="progress" style="width:0%;"></div>
                                 </div>
                                 {% endif %}
-                            </div>
+                            </div>                            
                         </div>
                         
                         <div class="panel_resolvidas">
