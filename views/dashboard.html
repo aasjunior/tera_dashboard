@@ -94,7 +94,7 @@
                         </div>
                         <div class="row w-100 space-between relative">
                             <div class="col w-80 center">
-                                <p id="amountPatientsActive" class="amount">{{ panel_crisis.total_registros_mal}}</p>
+                                <p id="amountPatientsActive" class="amount">{{ panel_crisis.total_pacientes_mal}}</p>
                                 <p class="subtitle">nesta semana</p>
                             </div>
                             <span id="accordion" class="arrowIcon"></span>
@@ -110,10 +110,10 @@
                                 <p class="amount">{{ panel_crisis.pacientes_em_crise|length }}</p>
                             </div>
                             <div class="row center space-around">
-                                {% if panel_crisis.pacientes_em_crise != 0 and panel_crisis.total_registros_mal != 0 %}
-                                <p>{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
+                                {% if panel_crisis.pacientes_em_crise != 0 and panel_crisis.total_pacientes_mal != 0 %}
+                                <p>{{ (panel_crisis.pacientes_em_crise|length / panel_crisis.total_pacientes_mal * 100)|round|int }}%</p>
                                 <div class="progress-bar w-80">
-                                    {% set width = (panel_crisis.pacientes_em_crise|length / panel_crisis.total_registros_mal * 100)|round|int %}
+                                    {% set width = (panel_crisis.pacientes_em_crise|length / panel_crisis.total_pacientes_mal * 100)|round|int %}
                                     <div class="progress" style="width:{{ width }}"></div>
                                 </div>
                                 {% else %}
@@ -132,7 +132,7 @@
                             </div>
                             <div class="row center space-around">
                                 {% if panel_crisis.crises_resolvidas != 0 %}
-                                <p>{{ (panel_crisis.crises_resolvidas / panel_crisis.total_registros_mal * 100)|round|int }}%</p>
+                                <p>{{ (panel_crisis.crises_resolvidas / panel_crisis.total_pacientes_mal * 100)|round|int }}%</p>
                                 <div class="progress-bar w-80">
                                     <div class="progress" style="width:{{ (panel_crisis.crises_resolvidas / panel_crisis.total_registros_mal * 100)|round|int }}%;"></div>
                                 </div>

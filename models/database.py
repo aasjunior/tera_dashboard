@@ -5,6 +5,8 @@ from bson.objectid import ObjectId
 from bson.codec_options import CodecOptions
 from base64 import b64encode
 from datetime import datetime, timedelta, date
+from pytz import timezone
+from dateutil import parser
 import pandas as pd
 import random
 
@@ -23,7 +25,7 @@ def create_monitor_login(bcrypt, form, clinica_db):
         'senha': password_hash,
         'nivel': 'normal',
         'clinica_db': clinica_db,
-        'data_cadastro': datetime.now()
+        'data_cadastro': datetime.now(timezone('America/Sao_Paulo'))
     }
 
 def create_monitor_dados(form, image_id, user_id):
@@ -61,7 +63,7 @@ def create_paciente_dados(image_id):
             'uf': session.get('paciente_dados', {}).get('estado-paciente', '')
         }],
         'imagem_id': image_id,
-        'data_cadastro': datetime.now()
+        'data_cadastro': datetime.now(timezone('America/Sao_Paulo'))
     }
 
 def create_familiar(image_id, paciente_id):
@@ -109,14 +111,14 @@ def create_dados_medicos(paciente_id):
 
 def consultar_registros(db):
     # Data e hora atuais
-    agora = datetime.now()
+    agora = datetime.now(timezone('America/Sao_Paulo'))
 
     # Data e hora de 24 horas atrás
     ultimas_24_horas = agora - timedelta(days=1)
 
     # Converter datas e horas para strings
-    agora_str = agora.strftime("%Y-%m-%d %H:%M:%S.%f")
-    ultimas_24_horas_str = ultimas_24_horas.strftime("%Y-%m-%d %H:%M:%S.%f")
+    agora_str = agora
+    ultimas_24_horas_str = ultimas_24_horas
 
     # Consultar registros de humor nas últimas 24 horas
     registros = db.RegistrosHumor.aggregate([
@@ -165,7 +167,7 @@ def consultar_registros(db):
 
 def consultar_registros_anual(db):
     # Data e hora atuais
-    agora = datetime.now()
+    agora = datetime.now(timezone('America/Sao_Paulo'))
 
     # Contar registros de humor para o dia atual
     total_pacientes = db.Pacientes.count_documents({})
@@ -199,7 +201,7 @@ def consultar_registros_anual(db):
 # Criar uma função para consultar os registros de humor dentro de um mês
 def consultar_registros_mensal(db):
     # Data e hora atuais
-    agora = datetime.now()
+    agora = datetime.now(timezone('America/Sao_Paulo'))
 
     # Inicializar contadores
     data_mal = []
@@ -231,17 +233,16 @@ def consultar_registros_mensal(db):
         "data_sem_resposta": data_sem_resposta
     }
 
-
 def panelCrisis(db):
     # Data e hora atuais
-    agora = datetime.now()
+    agora = datetime.now(timezone('America/Sao_Paulo'))
 
     # Data e hora de 7 dias atrás
     ultimos_7_dias = agora - timedelta(days=7)
 
     # Converter datas e horas para strings
-    agora_str = agora.strftime("%Y-%m-%d %H:%M:%S.%f")
-    ultimos_7_dias_str = ultimos_7_dias.strftime("%Y-%m-%d %H:%M:%S.%f")
+    agora_str = agora
+    ultimos_7_dias_str = ultimos_7_dias
 
       # Consultar registros de humor nos últimos 7 dias
     registros = db.RegistrosHumor.aggregate([
@@ -262,6 +263,7 @@ def panelCrisis(db):
     pacientes_em_crise = set()
     crises_resolvidas = 0
     total_registros_mal = 0
+    total_pacientes_mal = 0
 
     # Verificar pacientes em crise e crises resolvidas
     for registro in registros:
@@ -270,6 +272,7 @@ def panelCrisis(db):
         if "Mal" in registros_paciente:
             pacientes_em_crise.add(paciente_id)
             total_registros_mal += registros_paciente.count("Mal")
+            total_pacientes_mal += 1
             if "Bom" in registros_paciente:
                 crises_resolvidas += 1
                 pacientes_em_crise.remove(paciente_id)
@@ -284,12 +287,13 @@ def panelCrisis(db):
         "pacientes_em_crise": pacientes_em_crise,
         "crises_resolvidas": crises_resolvidas,
         "total_pacientes_em_crise": total_pacientes_em_crise,
-        "total_registros_mal": total_registros_mal
+        "total_registros_mal": total_registros_mal,
+        "total_pacientes_mal": total_pacientes_mal
     }
 
 def pacientesNovos(db):
     # Data de hoje
-    data_atual = datetime.now()
+    data_atual = datetime.now(timezone('America/Sao_Paulo'))
 
     # Data da semana anterior
     data_semana_anterior = data_atual - timedelta(days=7)
@@ -316,12 +320,12 @@ def create_registro_humor(db, paciente_id):
     }
 
     # Data e hora atuais
-    agora = datetime.now()
+    agora = datetime.now(timezone('America/Sao_Paulo'))
 
     # Gerar valor aleatório entre "Bom" e "Mal"
     documento = documento_modelo.copy()
     documento["humor"] = random.choice(["Bom", "Mal"])
-    documento["data_registro"] = agora.strftime("%Y-%m-%d %H:%M:%S.%f")
+    documento["data_registro"] = agora
     documento["calorias_queimadas"] = random.randint(0, 1000)
     db.RegistrosHumor.insert_one(documento)
 
@@ -334,11 +338,11 @@ def create_registro_humor(db, paciente_id):
         documento = documento_modelo.copy()
         # Gerar valor aleatório entre "Bom" e "Mal"
         documento["humor"] = random.choice(["Bom", "Mal"])
-        documento["data_registro"] = data_registro.strftime("%Y-%m-%d %H:%M:%S.%f")
+        documento["data_registro"] = data_registro
         db.RegistrosHumor.insert_one(documento)
 
 def create_dados_sensores(db, paciente_id):
-    agora = datetime.now()
+    agora = datetime.now(timezone('America/Sao_Paulo'))
     
     # Gerar hora de início do sono aleatória entre 20:00 e 23:00
     hora_inicio_sono = random.randint(20, 23)
@@ -368,9 +372,9 @@ def create_dados_sensores(db, paciente_id):
 
 def pacientes_sem_registro_humor(db):
     fs = GridFS(db)
-    # Obter a data atual e a data de um dia atrás
-    data_atual = datetime.now()
-    data_um_dia_atras = data_atual - timedelta(days=1)
+    # Obter a data atual e a data de 24 horas atrás em UTC
+    data_atual = datetime.now(timezone('America/Sao_Paulo'))
+    data_24_horas_atras = data_atual - timedelta(hours=24)
 
     # Criar índice na coleção Pacientes
     db.Pacientes.create_index("_id")
@@ -378,24 +382,21 @@ def pacientes_sem_registro_humor(db):
     # Criar índice na coleção RegistrosHumor
     db.RegistrosHumor.create_index("data_registro")
 
-    # Consultar os registros de humor nos últimos dias
+    # Consultar os registros de humor nas últimas 24 horas
     registros_humor = list(db.RegistrosHumor.find({
         'data_registro': {
-            '$gte': data_um_dia_atras,
+            '$gte': data_24_horas_atras,
             '$lte': data_atual
         }
     }))
 
-    # Obter os IDs dos pacientes que fizeram registro de humor nos últimos dias
-    pacientes_com_registro_humor_ids = [registro['paciente_id']['$oid'] for registro in registros_humor]
+    # Obter os IDs dos pacientes que fizeram registro de humor nas últimas 24 horas
+    pacientes_com_registro_humor_ids = [str(registro['paciente_id']) for registro in registros_humor]
 
-    # Consultar os pacientes que não fizeram registro de humor nos últimos dias e estão offline há 1 ou mais dias
+    # Consultar os pacientes que não fizeram registro de humor nas últimas 24 horas
     pacientes_sem_registro_humor = list(db.Pacientes.find({
         '_id': {
             '$nin': pacientes_com_registro_humor_ids
-        },
-        'data_cadastro': {
-            '$lte': data_um_dia_atras
         }
     }))
 
@@ -414,12 +415,10 @@ def pacientes_sem_registro_humor(db):
     for paciente in pacientes_sem_registro_humor:
         paciente_id = paciente['_id']
         registro_humor = next((registro for registro in registros_humor_pacientes_sem_registro if registro['paciente_id'] == paciente_id), None)
-        ultima_data_registro = datetime.strptime(registro_humor['data_registro'], "%Y-%m-%d %H:%M:%S.%f") if registro_humor else None
+        ultima_data_registro = registro_humor['data_registro'] if registro_humor else None
         if ultima_data_registro:
+            ultima_data_registro = ultima_data_registro.replace(tzinfo=timezone('UTC'))
             quantidade_dias = (data_atual - ultima_data_registro).days
-        else:
-            data_cadastro = paciente['data_cadastro']
-            quantidade_dias = (data_atual - data_cadastro).days
 
         image = fs.get(ObjectId(paciente['imagem_id']))
         image_data = image.read()
@@ -441,6 +440,9 @@ def pacientes_sem_registro_humor(db):
         'registros_humor': registros_humor,
         'dados_pacientes': dados_pacientes
     }
+
+
+
 
 def patient_dash_data(dados_sensores, dados_medicos):
     horas_sono = float(dados_sensores['duration_minutes']) / 60
